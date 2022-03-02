@@ -1,6 +1,5 @@
 /* SETUP  */
 
-@import '/style/setup/typography.css';
 @import 'setup/vars.css';
 @import 'setup/typography.css';
 
@@ -19,3 +18,4 @@
 /* APPS */
 
 @import 'missKeep/notes-main.css';
+@import 'misterEmail/cmps/mail-preview.css'

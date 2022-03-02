@@ -4,7 +4,7 @@ export default {
         <section class="mail-preview">
             <div>
             <p>{{ mail.subject }}</p>
-            <p>{{ mail.body }}</p>
+            <p class="mail-body">{{ mail.body }}</p>
             </div>
         </section>
     `,
