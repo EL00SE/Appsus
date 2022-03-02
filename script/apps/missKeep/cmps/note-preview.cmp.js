@@ -4,13 +4,13 @@ export default {
     props: ['note'],
     template: `
         <section class="note-preview">
-           <component :is="note.type" :note="note"/>
+           <component :is="note.type" :note="note"></component>
         </section>
     `,
     data() {
         return {}
     },
-    created() {},
+    created() { },
     components: {
         noteText
     },
