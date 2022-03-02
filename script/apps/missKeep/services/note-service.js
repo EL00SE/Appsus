@@ -2,7 +2,7 @@ import { utilService } from './util-service.js';
 import { storageService } from './async-storage-service.js';
 
 const STORAGE_KEY = 'carsDB';
-_createCars();
+_createNotes();
 
 export const carService = {
     query,
@@ -22,9 +22,9 @@ function remove(carId) {
 
 function get(carId) {
     return storageService.get(STORAGE_KEY, carId)
-    .then(car => {
-        return _setNextPrevCarId(car)
-    })
+        .then(car => {
+            return _setNextPrevCarId(car)
+        })
 }
 
 function save(car) {
@@ -35,8 +35,8 @@ function save(car) {
 function _setNextPrevCarId(car) {
     return storageService.query(STORAGE_KEY).then(cars => {
         const carIdx = cars.findIndex(currCar => currCar.id === car.id)
-        car.nextCarId = (cars[carIdx+1])? cars[carIdx+1].id : cars[0].id
-        car.prevCarId = (cars[carIdx-1])? cars[carIdx-1].id : cars[cars.length-1].id
+        car.nextCarId = (cars[carIdx + 1]) ? cars[carIdx + 1].id : cars[0].id
+        car.prevCarId = (cars[carIdx - 1]) ? cars[carIdx - 1].id : cars[cars.length - 1].id
         return car
     })
 }
@@ -69,6 +69,3 @@ function _createCar(vendor, maxSpeed = 250) {
     car.id = utilService.makeId()
     return car;
 }
-
-
-
