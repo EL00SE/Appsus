@@ -13,3 +13,7 @@
 @import 'basic/base.css';
 @import 'basic/helpers.css';
 @import 'basic/mq.css';
+
+/* APPS */
+
+@import 'missKeep/notes-main.css';
