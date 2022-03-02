@@ -7,6 +7,7 @@
 }
 
 .note-preview-container {
+    transition: all 0.2s ease-in-out;
     padding: 10px;
     margin: 10px;
     background-color: lightpink;
@@ -28,18 +29,21 @@
 }
 
 .note-preview-container:hover {
-    /* border: 1px solid black; */
-    /* overflow: hidden; */
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.29);
 }
 
 .note-preview-container:hover>.actions {
-    display: flex;
-    justify-content: space-between;
+    opacity: 100%;
+    transition: all 0.2s ease-in-out;
 }
 
 .note-preview-container .actions {
-    display: none;
-    /* justify-content: space-between; */
+    display: flex;
+    justify-content: space-between;
+    opacity: 0%;
+    transition: all 0.2s ease-in-out;
 }
 
 .note-preview-container .actions a {
