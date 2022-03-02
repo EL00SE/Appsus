@@ -2,11 +2,13 @@ export default {
     props: ['mail'],
     template: `
         <section class="mail-preview">
-            <div class="flex align-center mail-container unread">
-                <p class="mail-from">{{ mail.fromName }}</p>
-                <!-- <p class="mail-from">{{ mail.fromEmail }}</p> -->
+            <div class="grid mail-container unread">
+            <i class="fa-solid fa-star mail-star"></i>
+            <p class="mail-from">{{ mail.fromName }}</p>
             <p class="mail-subject">{{ mail.subject }}</p>
-            <div class="mail-body read">{{ mail.body }}</div>
+            <p class="mail-body read">{{ mail.body }}</p>
+            <p class="mail-date read">{{ formatDate }}</p>
+            <div class="mail-actions"></div>
             </div>
             <!-- <hr> -->
         </section>
@@ -24,6 +26,8 @@ export default {
 
     },
     computed: {
-
+        formatDate() {
+            return moment(this.mail.sentAt).format('MMM DD')
+        }
     }
 }
