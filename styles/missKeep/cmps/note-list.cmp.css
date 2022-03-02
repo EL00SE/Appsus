@@ -27,12 +27,19 @@
     padding: 12px 16px;
 }
 
-.note-preview-container .actions {
+.note-preview-container:hover {
+    /* border: 1px solid black; */
+    /* overflow: hidden; */
+}
+
+.note-preview-container:hover>.actions {
     display: flex;
     justify-content: space-between;
-    /* background-color: aliceblue; */
-    /* margin-top: 1em; */
-    /* padding: 0.5em; */
+}
+
+.note-preview-container .actions {
+    display: none;
+    /* justify-content: space-between; */
 }
 
 .note-preview-container .actions a {
