@@ -33,8 +33,8 @@ function save(note) {
 }
 
 function _setNextPrevNoteId(note) {
-    return storageService.query(STORAGE_KEY).then(note => {
-        const noteIdx = note.findIndex(currNote => currNote.id === note.id)
+    return storageService.query(STORAGE_KEY).then(notes => {
+        const noteIdx = notes.findIndex(currNote => currNote.id === note.id)
         note.nextNoteId = (note[noteIdx + 1]) ? note[noteIdx + 1].id : note[0].id
         note.prevNoteId = (note[noteIdx - 1]) ? note[noteIdx - 1].id : note[note.length - 1].id
         return note
