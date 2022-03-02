@@ -2,7 +2,7 @@ export default {
     props: ['note'],
     template: `
         <section class="note-text">
-            {{note.txt}}
+            {{note.info.txt}}
         </section>
     `,
     data() {

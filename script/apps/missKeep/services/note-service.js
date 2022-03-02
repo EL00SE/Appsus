@@ -42,7 +42,7 @@ function _setNextPrevNoteId(note) {
 }
 
 // Factory Method:
-function getEmptyNote(type = 'note-txt', info = { txt: '' }) {
+function getEmptyNote(type = 'noteText', info = { txt: '' }) {
     return {
         id: '',
         type,
@@ -55,10 +55,10 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(STORAGE_KEY);
     if (!notes || !notes.length) {
         notes = [];
-        notes.push(_createNote('note-txt', { txt: 'Dont forget to finish sprint 3' }))
-        notes.push(_createNote('note-txt', { txt: 'Bring some vegies!!' }))
+        notes.push(_createNote('noteText', { txt: 'Dont forget to finish sprint 3' }))
+        notes.push(_createNote('noteText', { txt: 'Bring some vegies!!' }))
             // notes.push(_createNote('note-list', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
-        notes.push(_createNote('note-txt', { txt: 'Play Elden Ring' }))
+        notes.push(_createNote('noteText', { txt: 'Play Elden Ring' }))
         utilService.saveToStorage(STORAGE_KEY, notes)
     }
     return notes
