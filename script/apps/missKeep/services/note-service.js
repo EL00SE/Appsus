@@ -1,8 +1,8 @@
-import { utilService } from '../../../services/util-service.js';
-import { storageService } from './async-storage-service.js';
+import { utilService } from '../../../services/util-service.js'
+import { storageService } from './async-storage-service.js'
 
-const STORAGE_KEY = 'carsDB';
-_createNotes();
+const STORAGE_KEY = 'carsDB'
+_createNotes()
 
 export const carService = {
     query,
@@ -17,7 +17,7 @@ function query() {
 }
 
 function remove(carId) {
-    return storageService.remove(STORAGE_KEY, carId);
+    return storageService.remove(STORAGE_KEY, carId)
 }
 
 function get(carId) {
@@ -28,8 +28,8 @@ function get(carId) {
 }
 
 function save(car) {
-    if (car.id) return storageService.put(STORAGE_KEY, car);
-    else return storageService.post(STORAGE_KEY, car);
+    if (car.id) return storageService.put(STORAGE_KEY, car)
+    else return storageService.post(STORAGE_KEY, car)
 }
 
 function _setNextPrevCarId(car) {
@@ -54,18 +54,18 @@ function getEmptyCar(vendor = '', maxSpeed = 0) {
 function _createCars() {
     let cars = utilService.loadFromStorage(STORAGE_KEY);
     if (!cars || !cars.length) {
-        cars = [];
-        cars.push(_createCar('audu', 300));
-        cars.push(_createCar('fiak', 120));
-        cars.push(_createCar('subali', 100));
-        cars.push(_createCar('mitsi', 150));
-        utilService.saveToStorage(STORAGE_KEY, cars);
+        cars = []
+        cars.push(_createCar('audu', 300))
+        cars.push(_createCar('fiak', 120))
+        cars.push(_createCar('subali', 100))
+        cars.push(_createCar('mitsi', 150))
+        utilService.saveToStorage(STORAGE_KEY, cars)
     }
-    return cars;
+    return cars
 }
 
 function _createCar(vendor, maxSpeed = 250) {
     const car = getEmptyCar(vendor, maxSpeed)
     car.id = utilService.makeId()
-    return car;
+    return car
 }
