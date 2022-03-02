@@ -1,10 +1,10 @@
-import { storageService } from '../../../services/async-storage-service'
+import { storageService } from '../../../services/async-storage-service.js'
 import { utilService } from '../../../services/util-service.js'
 
 const STORAGE_KEY = 'mailsDB'
 _createMails()
 
-export const noteService = {
+export const mailService = {
     query,
     remove,
     save,
@@ -45,12 +45,12 @@ function _setNextPrevMailId(mail) {
 function getEmptyMail() {
     return {
         id: _createMailId(),
-        subject: _createMailSubject(),
-        body: _createMailBody(),
+        subject: '',
+        body: '',
         to: 'Me',
         from: '',
         isRead: false,
-        sentAt: _createMailTimeStamp(),
+        sentAt: null,
         isSent: false,
         isStar: false,
         isTrash: false,
@@ -64,17 +64,19 @@ function _createMails() {
     if (!mails || !mails.length) {
         mails = []
         for (var i = 0; i < 10; i++) {
-            mails.push(getEmptyMail())
+            mails.push(_createMail())
         }
         utilService.saveToStorage(STORAGE_KEY, mails)
     }
     return mails
 }
 
-function _createMail(type, info) {
-    const mail = getEmptyMail(type, info)
-    mail.isPinned = false;
-    mail.id = utilService.makeId()
+function _createMail() {
+    const mail = getEmptyMail()
+    mail.subject = _createMailSubject()
+    mail.body = _createMailBody()
+    mail.sentAt = _createMailTimeStamp()
+
     return mail
 }
 

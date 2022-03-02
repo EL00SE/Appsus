@@ -12,7 +12,7 @@ export default {
             cmpType: this.note.type
         }
     },
-    created() {},
+    created() { },
     components: {
         noteText
     },

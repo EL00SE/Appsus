@@ -2,7 +2,9 @@ export default {
     props: ['mail'],
     template: `
         <section class="mail-preview">
-            <h3>Mail pre</h3>
+            <h3>{{ mail.subject }}</h3>
+            <h3>{{ mail.body }}</h3>
+
         </section>
     `,
     data() {
@@ -11,6 +13,7 @@ export default {
         }
     },
     created() {
+        // console.log(this.title);
 
     },
     methods: {

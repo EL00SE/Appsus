@@ -4,7 +4,14 @@ export default {
     props: ['mails'],
     template: `
         <section class="mail-list">
-        <mail-preview></mail-preview>
+        <ul class="clean-list flex wrap space-evenly">
+                <li v-for="mail in mails" :key="mail.id" class="mail-preview-container" >
+                   <mail-preview :mail="mail"/>
+                   <!-- <hr> -->
+                   <div class="actions">
+                   </div>
+                </li>
+            </ul>
         </section>
     `,
     components: {
