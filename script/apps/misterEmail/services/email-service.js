@@ -44,13 +44,13 @@ function _setNextPrevMailId(mail) {
 // Factory Method:
 function getEmptyMail() {
     return {
-        id: utilService.makeId(),
-        subject: '',
-        body: '',
-        to: '',
+        id: _createMailId(),
+        subject: _createMailSubject(),
+        body: _createMailBody(),
+        to: 'Me',
         from: '',
         isRead: false,
-        sentAt: utilService,
+        sentAt: _createMailTimeStamp(),
         isSent: false,
         isStar: false,
         isTrash: false,
@@ -64,12 +64,8 @@ function _createMails() {
     if (!mails || !mails.length) {
         mails = []
         for (var i = 0; i < 10; i++) {
-            mails
+            mails.push(getEmptyMail())
         }
-        mails.push(_createMail('note-txt', { txt: 'Dont forget to finish sprint 3' }))
-        mails.push(_createMail('note-txt', { txt: 'Bring some vegies!!' }))
-        mails.push(_createMail('note-list', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
-        mails.push(_createMail('note-txt', { txt: 'Play Elden Ring' }))
         utilService.saveToStorage(STORAGE_KEY, mails)
     }
     return mails
@@ -84,4 +80,16 @@ function _createMail(type, info) {
 
 function _createMailTimeStamp() {
     return utilService.getRndIntInc(1425300160995, 1646224940880)
+}
+
+function _createMailSubject() {
+    return utilService.makeLorem(utilService.getRndIntInc(2, 4)).trim()
+}
+
+function _createMailBody() {
+    return utilService.makeLorem(utilService.getRndIntInc(50, 150)).trim()
+}
+
+function _createMailId() {
+    return utilService.makeId()
 }
