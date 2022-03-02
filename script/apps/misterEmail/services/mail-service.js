@@ -4,6 +4,8 @@ import { utilService } from '../../../services/util-service.js'
 const STORAGE_KEY = 'mailsDB'
 _createMails()
 
+
+
 export const mailService = {
     query,
     remove,
@@ -47,8 +49,9 @@ function getEmptyMail() {
         id: _createMailId(),
         subject: '',
         body: '',
-        to: 'Me',
-        from: '',
+        to: '',
+        fromName: '',
+        fromEmail: '',
         isRead: false,
         sentAt: null,
         isSent: false,
@@ -76,6 +79,10 @@ function _createMail() {
     mail.subject = _createMailSubject()
     mail.body = _createMailBody()
     mail.sentAt = _createMailTimeStamp()
+    var senderIdx = _getSenderIdx()
+    mail.fromName = _createSenderEmail(senderIdx).name
+    mail.fromEmail = _createSenderEmail(senderIdx).email[mail.fromName] + '@gmail.com'
+    // console.log(_createSenderEmail(senderIdx).email[mail.fromName]);
 
     return mail
 }
@@ -94,4 +101,23 @@ function _createMailBody() {
 
 function _createMailId() {
     return utilService.makeId()
+}
+
+function _createSenderEmail(userIdx) {
+    // var idx = utilService.getRndIntInc(1, 5)
+    const usersEmail = [
+        { 'popo div': 'popo385' },
+        { 'momo lib': 'momo592' },
+        { 'puki atrr': 'puki205' },
+        { 'muki bind': 'muki391' },
+        { 'luki dom': 'luki012' },
+    ]
+    return {
+        name: Object.keys(usersEmail[userIdx])[0],
+        email: usersEmail[userIdx]
+    }
+}
+
+function _getSenderIdx() {
+    return utilService.getRndIntInc(0, 4)
 }

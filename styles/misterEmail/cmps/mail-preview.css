@@ -1,14 +1,52 @@
-.mail-preview hr{
-    /* height: 100px; */
+.mail-preview{
+    height: 50px;
     /* overflow: hidden; */
     /* background-color: lightgray; */
     /* margin: 1px; */
-    background-color: rgba(236, 10, 10, 0);
+    /* background-color: rgba(236, 10, 10, 0); */
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+    /* padding: 10px; */
+}
+
+.mail-preview:hover{
+    background-color: rgba(211, 211, 211, 0.5);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.25);
+
+    /* font-size: 18px; */
+    
 }
 
 .mail-body{
     white-space: nowrap; 
     width: 600px; 
+    /* overflow: hidden;
+    text-overflow: ellipsis; */
+    /* margin-inline-start: 20px; */
+}
+
+.mail-subject{
+    /* margin-inline-end: 20px; */
+    /* text-align: center; */
+    width: 250px;
+   
+}
+
+.mail-from{
+    width: 150px;
+    margin-inline-start: 200px;
+}
+.mail-body, .mail-subject, .mail-from{
     overflow: hidden;
     text-overflow: ellipsis;
+    /* text-align: center; */
+
+}
+
+.unread{
+    font-weight: bold;
+}
+
+.read{
+    font-weight: lighter;
 }
