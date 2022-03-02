@@ -1,8 +1,14 @@
-.mail-preview{
-    
+.mail-preview hr{
+    /* height: 100px; */
+    /* overflow: hidden; */
+    /* background-color: lightgray; */
+    /* margin: 1px; */
+    background-color: rgba(236, 10, 10, 0);
 }
 
-.mail-bodt{
-    text-overflow: ellipsis; 
-    /* height: 10px !important; */
+.mail-body{
+    white-space: nowrap; 
+    width: 600px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
