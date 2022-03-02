@@ -2,9 +2,10 @@ export default {
     props: ['mail'],
     template: `
         <section class="mail-preview">
-            <h3>{{ mail.subject }}</h3>
-            <h3>{{ mail.body }}</h3>
-
+            <div>
+            <p>{{ mail.subject }}</p>
+            <p>{{ mail.body }}</p>
+            </div>
         </section>
     `,
     data() {
