@@ -4,7 +4,7 @@ import { noteService } from '../services/note-service.js'
 export default {
     template: `
         <section class="note-app main">
-        <note-list></note-list>
+        <note-list :notes="notes"></note-list>
         </section>
     `,
     components: {

@@ -1,10 +1,10 @@
-import noteText from "./note-text.cmp"
+import noteText from "./note-text.cmp.js"
 
 export default {
     props: ['note'],
     template: `
         <section class="note-preview">
-           <component :is=note.type :note=note/>
+           <component :is="note.type" :note="note"/>
         </section>
     `,
     data() {

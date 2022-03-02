@@ -1,5 +1,5 @@
-import { utilService } from '../../../services/util-service';
-import { storageService } from '../../../service/async-storage-service.js';
+import { utilService } from '../../../services/util-service.js';
+import { storageService } from '../../../services/async-storage-service.js';
 
 const STORAGE_KEY = 'notesDB'
 _createNotes()
@@ -44,9 +44,9 @@ function _setNextPrevNoteId(note) {
 // Factory Method:
 function getEmptyNote(type = 'note-txt', info = { txt: '' }) {
     return {
-        id,
+        id: '',
         type,
-        isPinned,
+        isPinned: '',
         info
     };
 }
@@ -57,7 +57,7 @@ function _createNotes() {
         notes = [];
         notes.push(_createNote('note-txt', { txt: 'Dont forget to finish sprint 3' }))
         notes.push(_createNote('note-txt', { txt: 'Bring some vegies!!' }))
-        notes.push(_createNote('note-list', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
+            // notes.push(_createNote('note-list', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
         notes.push(_createNote('note-txt', { txt: 'Play Elden Ring' }))
         utilService.saveToStorage(STORAGE_KEY, notes)
     }

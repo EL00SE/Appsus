@@ -7,7 +7,7 @@ export default {
             <nav class="nav-bar">
                 <router-link to="/">Home</router-link> |
                 <router-link to="/about">About</router-link>
-                
+                <router-link to="/note">Note</router-link>
             </nav>
         </header>
     

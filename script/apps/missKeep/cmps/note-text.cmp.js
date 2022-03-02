@@ -1,8 +1,8 @@
 export default {
-    props: ['currNote'],
+    props: ['note'],
     template: `
         <section class="note-text">
-            {{currNote.txt}}
+            {{note.txt}}
         </section>
     `,
     data() {
