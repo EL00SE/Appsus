@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+import noteApp from './views/note-app.cmp.js';
+
+const routes = []
+=======
 import carApp from './views/car-app.cmp.js'
 import homePage from './views/home-page.cmp.js'
 import aboutPage, { aboutTeam, aboutServices } from './views/about-page.cmp.js'
@@ -36,6 +41,7 @@ const routes = [
         component: carEdit
     },
 ]
+>>>>>>> 6937a0c20603565217f5aa5e6050b8d1e756a8e4
 
 export const router = VueRouter.createRouter({
     routes,
