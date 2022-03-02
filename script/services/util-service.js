@@ -1,7 +1,9 @@
 export const utilService = {
     saveToStorage,
     loadFromStorage,
-    makeId
+    makeId,
+    makeLorem,
+    getRndIntInc
 }
 
 function saveToStorage(key, value) {
@@ -20,4 +22,20 @@ function makeId(length = 8) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return txt;
+}
+
+function makeLorem(wordCount = 100) {
+    const words = ['The', 'sky', 'above', 'the', 'port', 'was', 'the', 'color', 'of', 'television', 'tuned', 'to', 'dead', 'channel', 'All', 'this', 'happened', 'more', 'or', 'less', 'had', 'the', 'story', 'bit', 'by', 'from', 'various', 'people', 'and', 'as', 'generally', 'happens', 'in', 'such', 'cases', 'each', 'time', 'it', 'was', 'different', 'story', 'pleasure', 'burn'];
+    var txt = '';
+    while (wordCount > 0) {
+        wordCount--;
+        txt += words[Math.floor(Math.random() * words.length)] + ' ';
+    }
+    return txt;
+}
+
+function getRndIntInc(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
