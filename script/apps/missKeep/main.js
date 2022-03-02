@@ -15,10 +15,10 @@ const options = {
         appFooter,
         userMsg
     }
-};
+}
 
 
 
-const app = Vue.createApp(options);
-app.use(router);
-app.mount('#app');
+const app = Vue.createApp(options)
+app.use(router)
+app.mount('#app')
