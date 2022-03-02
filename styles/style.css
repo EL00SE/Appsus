@@ -1,5 +1,6 @@
 /* SETUP  */
 
+@import '/style/setup/typography.css';
 @import 'setup/vars.css';
 @import 'setup/typography.css';
 
