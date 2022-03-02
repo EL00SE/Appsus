@@ -1,15 +1,36 @@
-.note-list ul {
-    list-style: none;
-    margin: 0;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
+.main {
+    width: 95vw;
+    height: 70vh;
+}
+
+.note-list {
+    align-self: center;
+    display: inline-block;
+    height: 100%;
+    /* margin: auto; */
+    /* padding: 10px; */
+    columns: 238px 10;
+    /* gap: 15px */
+    /* overflow: auto; */
+    /* max-width: 90vw; */
+}
+
+.note-list div {
+    /* list-style: none; */
+    /* margin: 0; */
+    /* padding: 10px; */
+    /* display: grid; */
+    /* grid-auto-flow: dense; */
+    /* grid-template-columns: repeat(auto-fill, 260px); */
+    /* grid-template-rows: min-content; */
 }
 
 .note-preview-container {
+    position: relative;
+    break-inside: avoid-column;
     transition: all 0.2s ease-in-out;
     padding: 10px;
-    margin: 10px;
+    margin: 0px 10px 10px 10px;
     background-color: lightpink;
     color: black;
     display: flex;
@@ -28,6 +49,7 @@
     height: fit-content;
     min-height: 150px;
     padding: 12px 16px;
+    /* margin-top: 00px; */
 }
 
 .note-content {
@@ -37,7 +59,7 @@
 .note-preview-container:hover {
     transition: all 0.2s ease-in-out;
     overflow: hidden;
-    box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.29);
+    /* box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.29); */
     cursor: pointer;
 }
 
