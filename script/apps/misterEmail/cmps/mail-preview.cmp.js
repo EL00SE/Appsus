@@ -2,10 +2,11 @@ export default {
     props: ['mail'],
     template: `
         <section class="mail-preview">
-            <div>
+            <div class="flex align-center">
             <p>{{ mail.subject }}</p>
-            <p class="mail-body">{{ mail.body }}</p>
+            <div class="mail-body">{{ mail.body }}</div>
             </div>
+            <hr>
         </section>
     `,
     data() {
