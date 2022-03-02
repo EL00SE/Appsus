@@ -42,7 +42,7 @@ function _setNextPrevNoteId(note) {
 }
 
 // Factory Method:
-function getEmptyNote(type = 'noteText', info = { txt: '' }) {
+function getEmptyNote(type = 'noteText', info = { title: '', txt: '' }) {
     return {
         id: '',
         type,
@@ -55,10 +55,11 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(STORAGE_KEY);
     if (!notes || !notes.length) {
         notes = [];
-        notes.push(_createNote('noteText', { txt: 'Dont forget to finish sprint 3' }))
-        notes.push(_createNote('noteText', { txt: 'Bring some vegies!!' }))
-            // notes.push(_createNote('note-list', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
-        notes.push(_createNote('noteText', { txt: 'Play Elden Ring' }))
+        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Dont forget to finish sprint 3' }))
+        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Bring some vegies!!' }))
+        notes.push(_createNote('noteTodo', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
+        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Play Elden Ring' }))
+        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Improvise, Adapt, Overcome.., you should never give up' }))
         utilService.saveToStorage(STORAGE_KEY, notes)
     }
     return notes

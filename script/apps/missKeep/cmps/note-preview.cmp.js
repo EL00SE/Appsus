@@ -1,10 +1,11 @@
-import noteText from "./note-text.cmp.js"
+import noteText from './note-text.cmp.js'
+import noteTodo from './note-todo.cmp.js'
 
 export default {
     props: ['note'],
     template: `
         <section class="note-preview">
-           <component :is="note.type" :note="note"></component>
+           <component :is="note.type" :note="note" class="note-content"></component>
         </section>
     `,
     data() {
@@ -12,9 +13,10 @@ export default {
             cmpType: this.note.type
         }
     },
-    created() { },
+    created() {},
     components: {
-        noteText
+        noteText,
+        noteTodo
     },
     methods: {},
     computed: {}

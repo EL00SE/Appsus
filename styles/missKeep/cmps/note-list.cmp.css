@@ -13,25 +13,37 @@
     background-color: lightpink;
     color: black;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
     text-align: left;
-    border-radius: 10%;
+    /* border-radius: 5%; */
     width: 238px;
     letter-spacing: .01428571em;
     font-family: Roboto, Arial, sans-serif;
     font-size: .875rem;
     font-weight: 400;
     line-height: 1.25rem;
+    height: fit-content;
     min-height: 150px;
     padding: 12px 16px;
+}
+
+.note-content {
+    padding-bottom: 20px;
 }
 
 .note-preview-container:hover {
     transition: all 0.2s ease-in-out;
     overflow: hidden;
     box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.29);
+    cursor: pointer;
+}
+
+.neat-p {
+    margin-top: 7px;
+    margin-bottom: 0;
 }
 
 .note-preview-container:hover>.actions {
@@ -40,8 +52,9 @@
 }
 
 .note-preview-container .actions {
+    /* margin-top: 20px; */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     opacity: 0%;
     transition: all 0.2s ease-in-out;
 }

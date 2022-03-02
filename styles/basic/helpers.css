@@ -33,8 +33,10 @@
 
 .clean-list {
     list-style-type: none;
+    text-decoration: none;
+    padding: 0;
 }
 
-.grid{
+.grid {
     display: grid;
 }

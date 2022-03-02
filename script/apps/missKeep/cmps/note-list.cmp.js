@@ -5,11 +5,10 @@ export default {
     template: `
         <section class="note-list">
             <ul>
-                <li v-for="note in notes" :key="note.id" class="note-preview-container" >
+                <li v-for="note in notes" :key="note.id" class="note-preview-container" @click="expand(note.id)" >
                    <note-preview :note="note"></note-preview>
                    <div class="actions">
                        <button @click="remove(note.id)">X</button>
-                       <router-link :to="'/note/edit/'+note.id">Edit</router-link>
                    </div>
                 </li>
             </ul>
@@ -22,8 +21,8 @@ export default {
         remove(id) {
             this.$emit('remove', id);
         },
-        select(note) {
-            this.$emit('selected', note);
+        expand(id) {
+            this.$router.push('/edit/' + id)
         }
     },
     computed: {}
