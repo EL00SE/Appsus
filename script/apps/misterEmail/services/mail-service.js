@@ -14,6 +14,7 @@ export const mailService = {
     getEmptyMail,
     trashMail,
     markRead,
+    archiveMail,
 }
 
 function query() {
@@ -66,6 +67,7 @@ function getEmptyMail() {
         isStar: false,
         isTrash: false,
         isRemoved: false,
+        isArchived: false,
         label: ''
     }
 }
@@ -147,6 +149,15 @@ function markRead(mail, isRead) {
     return new Promise((resolve) => {
         console.log(isRead);
         mail.isRead = isRead
+        save(mail)
+        resolve(mail)
+    })
+}
+
+function archiveMail(mail, isArchived) {
+    return new Promise((resolve) => {
+        // console.log(isRead);
+        mail.isArchived = isArchived
         save(mail)
         resolve(mail)
     })
