@@ -15,7 +15,8 @@ export default {
     data() {
         return {
             noteType: "noteText",
-            openPallete: false
+            openPallete: false,
+
         }
     },
     created() {
@@ -28,11 +29,9 @@ export default {
     methods: {
         openColorPallete() {
             this.openPallete = !this.openPallete
-        }
+        },
     },
-    computed: {
-
-    },
+    computed: {},
     watch: {
 
     }

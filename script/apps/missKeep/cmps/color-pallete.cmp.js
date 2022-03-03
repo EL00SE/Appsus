@@ -30,7 +30,7 @@ export default {
     },
     methods: {
         changeColor(color) {
-            eventBus.emit('colorChange', { color })
+            eventBus.emit('colorChange', color)
         }
     },
     computed: {

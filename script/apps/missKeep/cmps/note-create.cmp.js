@@ -12,10 +12,12 @@ export default {
     `,
     data() {
         return {
-            noteToCreate: noteService.getEmptyNote()
+            noteToCreate: noteService.getEmptyNote(),
+            color: "--color-def",
         }
     },
     created() {
+        this.unsubscribe = eventBus.on('changeColor', this.colorChange)
 
     },
     mounted() {
@@ -32,14 +34,19 @@ export default {
             noteService.save(this.noteToCreate)
                 .then(note => {
                     eventBus.emit('show-msg', { txt: 'Note created', type: "success" })
-                    eventBus.emit('saved', { key: 'val' })
+                        // eventBus.emit('saved', { note: noteToCreate })
                 })
+        },
+        colorChange(color) {
+            this.noteToCreate = color;
         }
     },
-    computed: {
-
-    },
+    computed: {},
     watch: {
 
+    },
+    unmounted() {
+        this.unsubscribe()
     }
+
 }

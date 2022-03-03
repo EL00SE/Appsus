@@ -42,12 +42,13 @@ function _setNextPrevNoteId(note) {
 }
 
 // Factory Method:
-function getEmptyNote(type = 'noteText', info = '') {
+function getEmptyNote(type = 'noteText', color = 'var(--color-def)', info = '') {
     return {
         id: '',
         type,
         isPinned: '',
-        info
+        info,
+        color
     };
 }
 
@@ -55,20 +56,20 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(STORAGE_KEY);
     if (!notes || !notes.length) {
         notes = [];
-        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Dont forget to finish sprint 3' }))
-        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Bring some vegies!!' }))
-        notes.push(_createNote('noteTodo', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
-        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Play Elden Ring' }))
-        notes.push(_createNote('noteImg', { title: 'Funny meme', imgType: "jpg" }))
-        notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Improvise, Adapt, Overcome.., you should never give up' }))
-        notes.push(_createNote('noteVid', { title: 'Reminder', url: "https://www.youtube.com/embed/5qap5aO4i9A" }))
+        notes.push(_createNote('noteText', 'var(--color-red)', { title: 'Reminder', txt: 'Dont forget to finish sprint 3' }))
+        notes.push(_createNote('noteText', 'var(--color-orange)', { title: 'Reminder', txt: 'Bring some vegies!!' }))
+        notes.push(_createNote('noteTodo', 'var(--color-yellow)', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
+        notes.push(_createNote('noteText', 'var(--color-def)', { title: 'Reminder', txt: 'Play Elden Ring' }))
+        notes.push(_createNote('noteImg', 'var(--color-def)', { title: 'Funny meme', imgType: "jpg" }))
+        notes.push(_createNote('noteText', 'var(--color-def)', { title: 'Reminder', txt: 'Improvise, Adapt, Overcome.., you should never give up' }))
+        notes.push(_createNote('noteVid', 'var(--color-def)', { title: 'Reminder', url: "https://www.youtube.com/embed/5qap5aO4i9A" }))
         utilService.saveToStorage(STORAGE_KEY, notes)
     }
     return notes
 }
 
-function _createNote(type, info) {
-    const note = getEmptyNote(type, info)
+function _createNote(type, color, info) {
+    const note = getEmptyNote(type, color, info)
     note.isPinned = false;
     note.id = utilService.makeId()
     if (note.type === "noteImg") {
