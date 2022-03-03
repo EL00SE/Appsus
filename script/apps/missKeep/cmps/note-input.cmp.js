@@ -1,8 +1,9 @@
+import { eventBus } from '../../../services/eventBus-service.js'
 import noteCreate from './note-create.cmp.js'
 
 export default {
     template: `
-    <section class="note-input">
+    <section ref="noteInput" class="note-input">
         <p v-if="isClosed" @click="expand()" >take a note...</p>
         <section v-if="isOpen" class="note-create-container">
             <note-create></note-create>
@@ -14,6 +15,7 @@ export default {
             isOpen: false
         }
     },
+    created() {},
     components: {
         noteCreate
     },
@@ -23,5 +25,6 @@ export default {
             this.isOpen = !this.isOpen
         }
     },
-    computed: {}
+    updated() {},
+    unmounted() {}
 }

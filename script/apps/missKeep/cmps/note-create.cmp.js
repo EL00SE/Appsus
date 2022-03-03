@@ -3,9 +3,9 @@ import { noteService } from '../services/note-service.js'
 import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     template: `
-        <form @submit.prevent="save" class="note-create">
+        <form ref="noteForm" @submit.prevent="save" class="note-create">
             <input type="text" v-model="noteToCreate.title" id="note-input-title" placeholder="Title" class="form-element"/>
-            <textarea required v-model="noteToCreate.info.txt" id="note-input-text" cols="30" rows="10" placeholder="Take a note..." class="form-element"></textarea>
+            <textarea v-model="noteToCreate.info.txt" id="note-input-text" cols="30" rows="10" placeholder="Take a note..." class="form-element"></textarea>
             <note-actions></note-actions>
             <button class="form-element save-btn">Create note</button>
         </form>
@@ -17,7 +17,7 @@ export default {
         }
     },
     created() {
-        this.unsubscribe = eventBus.on('changeColor', this.colorChange)
+        this.unsubscribe = eventBus.on('colorChange', this.colorChange)
 
     },
     mounted() {
@@ -34,19 +34,17 @@ export default {
             noteService.save(this.noteToCreate)
                 .then(note => {
                     eventBus.emit('show-msg', { txt: 'Note created', type: "success" })
-                        // eventBus.emit('saved', { note: noteToCreate })
                 })
         },
         colorChange(color) {
-            this.noteToCreate = color;
+            this.noteToCreate.color = color
+            this.$refs.noteForm.style.backgroundColor = color
         }
     },
     computed: {},
     watch: {
 
     },
-    unmounted() {
-        this.unsubscribe()
-    }
+    unmounted() {}
 
 }
