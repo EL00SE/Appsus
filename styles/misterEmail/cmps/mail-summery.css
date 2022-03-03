@@ -1,0 +1,38 @@
+.mail-summery, .summery-container>*{
+    margin: 0;
+    padding: 0;
+}
+
+.mail-summery .summery-container{
+    height: 250px;
+    padding-inline-start: 20px;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+
+.sum-subject{
+    margin: 20px 0px 5px 0px;
+    text-transform: capitalize;
+    font-size: 30px;
+    font-weight: 550;
+}
+
+.sum-from-name{
+    text-transform: capitalize;
+    margin-inline-end: 5px;
+}
+
+.sum-from-address, .sum-from-name{
+    font-weight: 600;
+    
+}
+
+.sum-to{
+    margin-top: -5px;
+}
+
+.sum-body{
+    width: 80vw;
+    min-width: 300px;
+    margin: 20px auto;
+}

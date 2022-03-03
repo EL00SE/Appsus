@@ -8,26 +8,28 @@ _createMails()
 
 export const mailService = {
     query,
-    remove,
+    removeMail,
     save,
     get,
     getEmptyMail,
     trashMail,
     markRead,
     archiveMail,
+    markStar,
 }
 
 function query() {
     // return
-    return storageService.query(STORAGE_KEY).then(mails => {
-        console.log(mails)
-        return mails.filter(mail => {
-            return mail.isTrash === false
-        })
-    })
+    return storageService.query(STORAGE_KEY)
+    // .then(mails => {
+    //     console.log(mails)
+    //     return mails.filter(mail => {
+    //         return mail.isTrash === false
+    //     })
+    // })
 }
 
-function remove(mailId) {
+function removeMail(mailId) {
     return storageService.remove(STORAGE_KEY, mailId)
 }
 
@@ -73,16 +75,31 @@ function getEmptyMail() {
 }
 
 function _createMails() {
+    const loggedinUser = {
+        email: 'amitmiz@gmail.com',
+        name: 'Amit Miz'
+    }
     let mails = utilService.loadFromStorage(STORAGE_KEY)
     if (!mails || !mails.length) {
         mails = []
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 15; i++) {
             mails.push(_createMail())
         }
+        mails[1].isStar = true
         mails[2].isRead = true
+        mails[2].isStar = true
         mails[3].isRead = true
         mails[5].isRead = true
         mails[7].isRead = true
+        mails[7].isStar = true
+        mails[10].fromEmail = loggedinUser.email
+        mails[10].fromName = loggedinUser.name
+        mails[11].fromEmail = loggedinUser.email
+        mails[11].fromName = loggedinUser.name
+        mails[12].fromEmail = loggedinUser.email
+        mails[12].fromName = loggedinUser.name
+        mails[13].fromEmail = loggedinUser.email
+        mails[13].fromName = loggedinUser.name
         utilService.saveToStorage(STORAGE_KEY, mails)
     }
     return mails
@@ -96,6 +113,7 @@ function _createMail() {
     var senderIdx = _getSenderIdx()
     mail.fromName = _createSenderEmail(senderIdx).name
     mail.fromEmail = _createSenderEmail(senderIdx).email[mail.fromName] + '@gmail.com'
+    mail.to = 'Me'
     // console.log(_createSenderEmail(senderIdx).email[mail.fromName]);
 
     return mail
@@ -110,7 +128,7 @@ function _createMailSubject() {
 }
 
 function _createMailBody() {
-    return utilService.makeLorem(utilService.getRndIntInc(50, 150))
+    return utilService.makeLorem(utilService.getRndIntInc(100, 300))
 }
 
 function _createMailId() {
@@ -156,8 +174,17 @@ function markRead(mail, isRead) {
 
 function archiveMail(mail, isArchived) {
     return new Promise((resolve) => {
-        // console.log(isRead);
+        // console.log(isArchived);
         mail.isArchived = isArchived
+        save(mail)
+        resolve(mail)
+    })
+}
+
+function markStar(mail, isStar) {
+    return new Promise((resolve) => {
+        console.log(isStar)
+        mail.isStar = isStar
         save(mail)
         resolve(mail)
     })
