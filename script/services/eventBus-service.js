@@ -9,6 +9,7 @@ function on(eventName, listener) {
 }
 
 function emit(eventName, data) {
+    console.log(data);
     window.dispatchEvent(new CustomEvent(eventName, { detail: data }));
 }
 
@@ -28,7 +29,7 @@ export function showSuccessMsg(txt) {
 
 
 
-eventBus.on('puk', (data)=>{
+eventBus.on('puk', (data) => {
     console.log('Puk happened', data);
 })
 // eventBus.on('puk', (data)=>{

@@ -12,10 +12,17 @@ export const mailService = {
     save,
     get,
     getEmptyMail,
+    trashMail,
 }
 
 function query() {
-    return storageService.query(STORAGE_KEY)
+    // return
+    return storageService.query(STORAGE_KEY).then(mails => {
+        console.log(mails)
+        return mails.filter(mail => {
+            return mail.isTrash === false
+        })
+    })
 }
 
 function remove(mailId) {
@@ -120,4 +127,13 @@ function _createSenderEmail(userIdx) {
 
 function _getSenderIdx() {
     return utilService.getRndIntInc(0, 4)
+}
+
+function trashMail(mail) {
+    return new Promise((resolve) => {
+        mail.isTrash = true
+        mail.removedAt = Date.now()
+        save(mail)
+        resolve(mail)
+    })
 }

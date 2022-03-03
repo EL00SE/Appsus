@@ -10,11 +10,27 @@
 }
 
 .mail-star{
-    margin-top: 18px;
+    color: rgb(78, 78, 78);
+    grid-column: 1 / span 1;
+    /* width: 0vw; */
+    text-align: center;
+}
+
+.mail-actions div{
+    /* width: 10vw; */
+      
+}
+
+.mail-archive, .mail-read, .mail-trash{
+    color: rgb(78, 78, 78);
+    margin: 0 10px;
+    padding: 7px;
+    /* background-color: gray; */
+    border-radius: 30%;
 }
 
 .mail-star:hover{
-    color: gold;
+    color: goldenrod;
 }
 
 .mail-preview:hover{
@@ -33,25 +49,26 @@
 
 .mail-body{
     /* white-space: nowrap;  */
-    width: 50vw; 
+    /* width: 40vw;  */
     /* overflow: hidden;
     text-overflow: ellipsis; */
     /* margin-inline-start: 20px; */
-    grid-column: 4 / span 4 ;
+    grid-column: 5 / span 4 ;
 }
 
 .mail-subject{
     /* margin-inline-end: 20px; */
     /* text-align: center; */
-    width: 20vw;
-    grid-column: 3 / span 1 ;
+    /* width: 20vw; */
+    grid-column: 3 / span 2 ;
    
 }
 
 .mail-from{
-    width: 10vw;
+    /* width: 10vw; */
     /* margin-inline-start: 200px; */
     grid-column: 2 / span 1 ;
+    text-transform: capitalize;
 }
 .mail-body, .mail-subject, .mail-from{
     overflow: hidden;
@@ -62,9 +79,10 @@
 
 }
 
-.mail-date{
-    grid-column: 9/ span 1;
-    width: 10vw;
+.mail-date, .mail-actions{
+    grid-column: 9/ span 2;
+    text-align: center;
+    /* width: 10vw; */
 }
 .unread{
     font-weight: bold;
@@ -72,4 +90,19 @@
 
 .read{
     font-weight: lighter;
+}
+
+.mail-archive:hover{
+    color: white;
+    background-color: rgb(150, 75, 14);
+}
+
+.mail-read:hover{
+    color: white;
+    background-color: rgb(66, 102, 219);
+}
+
+.mail-trash:hover{
+    color: white;
+    background-color: rgb(204, 4, 4);
 }

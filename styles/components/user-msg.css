@@ -1,0 +1,23 @@
+.user-msg{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    z-index: 10;
+    border-radius: 10px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success {
+    background-color: var(--clr1);
+}
+
+.error {
+    background-color: red;
+    color: var(--clr2);
+}
