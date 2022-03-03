@@ -2,7 +2,136 @@
     justify-content: space-between;
 }
 
+.color-pallete {
+    position: fixed;
+    width: 420px;
+    height: 40px;
+    background-color: gray;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    z-index: 2;
+}
+
+.note-to-text-btn {
+    background: url(/lib/assets/images/icons/txt.svg);
+}
+
+.note-to-todo-btn {
+    background: url(/lib/assets/images/icons/todo.svg);
+}
+
+.note-to-img-btn {
+    background: url(/lib/assets/images/icons/img.svg);
+}
+
+.note-to-vid-btn {
+    background: url(/lib/assets/images/icons/yt.svg);
+}
+
+.color-btn {
+    background: url(/lib/assets/images/icons/color-palette.svg);
+}
+
+.save-btn {
+    background: url(/lib/assets/images/icons/save.svg);
+}
+
 .actions-btn {
     height: 50px;
     width: 50px;
+    background-repeat: no-repeat;
+    border: 0px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.actions-btn:hover {
+    background-color: gray;
+}
+
+.color-pallete button {
+    height: 30px;
+    width: 30px;
+    border-style: solid;
+}
+
+.color-pallete button:hover {
+    border-color: black;
+}
+
+.btn-def {
+    background-color: var(--color-def);
+    border-color: var(--color-def);
+    border-radius: 50%;
+}
+
+.btn-red {
+    background-color: var(--color-red);
+    border-color: var(--color-red);
+    border-radius: 50%;
+}
+
+.btn-orange {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+    border-radius: 50%;
+}
+
+.btn-yellow {
+    background-color: var(--color-yellow);
+    border-color: var(--color-yellow);
+    border-radius: 50%;
+}
+
+.btn-green {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+    border-radius: 50%;
+}
+
+.btn-blue {
+    background-color: var(--color-blue);
+    border-color: var(--color-blue);
+    border-radius: 50%;
+}
+
+.btn-lightblue {
+    background-color: var(--color-lightblue);
+    border-color: var(--color-lightblue);
+    border-radius: 50%;
+}
+
+.btn-darkblue {
+    background-color: var(--color-darkblue);
+    border-color: var(--color-darkblue);
+    border-radius: 50%;
+}
+
+.btn-purple {
+    background-color: var(--color-purple);
+    border-color: var(--color-purple);
+    border-radius: 50%;
+}
+
+.btn-pink {
+    background-color: var(--color-pink);
+    border-color: var(--color-pink);
+    border-radius: 50%;
+}
+
+.btn-brown {
+    background-color: var(--color-brown);
+    border-color: var(--color-brown);
+    border-radius: 50%;
+}
+
+.btn-gray {
+    background-color: var(--color-gray);
+    border-color: var(--color-gray);
+    border-radius: 50%;
 }

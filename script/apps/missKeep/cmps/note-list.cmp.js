@@ -5,7 +5,7 @@ export default {
     template: `
         <section class="note-list">
                 <div v-for="note in notes" :key="note.id" class="note-preview-container" 
-                :style="{width: (note.type === 'noteVid')? '350px': '238px'}" @click="expand(note.id)" >
+                :style="{width: (note.type === 'noteVid')? '350px': '238px' ,backgroundColor:(note.color !== 'var(--color-def)')? note.color: 'white',borderColor:note.color}" >
                    <note-preview :note="note" ></note-preview>
                    <div class="actions">
                        <button @click="remove(note.id)">X</button>
@@ -27,5 +27,7 @@ export default {
             this.$router.push('/edit/' + id)
         }
     },
-    computed: {}
+    computed: {
+
+    }
 }

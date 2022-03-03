@@ -8,7 +8,7 @@ export default {
     `,
     data() {
         return {
-            img: "script/apps/missKeep/note-images/" + this.note.id
+            img: "lib/assets/images/note-images/" + this.note.id
         }
     },
     created() {},

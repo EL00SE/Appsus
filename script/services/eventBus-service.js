@@ -9,7 +9,6 @@ function on(eventName, listener) {
 }
 
 function emit(eventName, data) {
-    console.log(data);
     window.dispatchEvent(new CustomEvent(eventName, { detail: data }));
 }
 
@@ -30,9 +29,9 @@ export function showSuccessMsg(txt) {
 
 
 eventBus.on('puk', (data) => {
-    console.log('Puk happened', data);
-})
-// eventBus.on('puk', (data)=>{
-//     console.log('Mee too:', data);
-// })
-// eventBus.emit('puk', {level: 3})
+        console.log('Puk happened', data);
+    })
+    // eventBus.on('puk', (data)=>{
+    //     console.log('Mee too:', data);
+    // })
+    // eventBus.emit('puk', {level: 3})
