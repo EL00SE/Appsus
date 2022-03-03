@@ -70,6 +70,9 @@ function _createNote(type, info) {
     const note = getEmptyNote(type, info)
     note.isPinned = false;
     note.id = utilService.makeId()
-    if (note.type === "noteImg") note.id += "." + note.info.imgType;
+    if (note.type === "noteImg") {
+        note.id = "m0BJsiHT"
+        note.id += "." + note.info.imgType;
+    }
     return note
 }
