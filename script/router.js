@@ -10,26 +10,22 @@ import emailApp from './apps/misterEmail/pages/email-app.cmp.js'
 // import noteCreate from './cmps-notes/note-create.cmp.js'
 
 const routes = [{
-    path: "/",
-    component: homePage,
-},
-{
-    path: "/note",
-    name: 'note',
-    component: noteApp,
-},
-{
-    path: "/note/:noteId?/edit",
-    component: noteEdit,
-},
-{
-    path: "/note/:noteId?/new",
-    component: noteCreate,
-},
-{
-    path: "/email",
-    component: emailApp,
-},
+        path: "/",
+        component: homePage,
+    },
+    {
+        path: "/note",
+        name: 'note',
+        component: noteApp,
+    },
+    {
+        path: "/note/:noteId?/edit",
+        component: noteEdit,
+    },
+    {
+        path: "/email",
+        component: emailApp,
+    },
     // {
     //     path: "/email/:emailId?",
     //     component: emailDetails,
