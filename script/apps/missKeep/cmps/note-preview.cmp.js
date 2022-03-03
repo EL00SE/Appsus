@@ -1,6 +1,7 @@
 import noteText from './note-text.cmp.js'
 import noteTodo from './note-todo.cmp.js'
 import noteImg from './note-img.cmp.js'
+import noteVid from './note-vid.cmp.js'
 
 export default {
     props: ['note'],
@@ -11,14 +12,15 @@ export default {
     `,
     data() {
         return {
-            cmpType: this.note.type
+
         }
     },
     created() {},
     components: {
         noteText,
         noteTodo,
-        noteImg
+        noteImg,
+        noteVid
     },
     methods: {},
     computed: {}
