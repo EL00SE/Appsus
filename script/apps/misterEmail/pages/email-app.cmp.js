@@ -20,9 +20,10 @@ export default {
         this.unsubscribe1 = eventBus.on('removed',
             (mail) => { this.trashMail(mail) }
         )
-        this.unsubscribe2 = eventBus.on('read',
-            (mail) => { this.markRead(mail) }
-        )
+        this.unsubscribe2 = eventBus.on(('read'), (mail) => {
+            // console.log(mail.state);
+            this.markRead(mail.mail, mail.state)
+        })
     },
     components: {
         mailList,
@@ -37,11 +38,13 @@ export default {
                         return this.mails = res
                     }))
         },
-        markRead(mail) {
-            mailService.markRead(mail)
+        markRead(mail, isRead) {
+            console.log(isRead);
+            mailService.markRead(mail, isRead)
                 .then(() => mailService.query()
                     .then(res => {
-                        eventBus.emit('show-msg', 'Marked as read')
+                        if (isRead) eventBus.emit('show-msg', 'Marked as read')
+                        else eventBus.emit('show-msg', 'Marked as unread')
                         return this.mails = res
                     }
                     ))

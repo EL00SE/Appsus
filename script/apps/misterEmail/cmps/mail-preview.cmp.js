@@ -10,11 +10,11 @@ export default {
             </div>
             <p class="mail-from">{{ mail.fromName }}</p>
             <p class="mail-subject">{{ mail.subject }}</p>
-            <p class="mail-body read">{{ mail.body }}</p>
-            <p v-if="!hover" class="mail-date read">{{ formatDate }}</p>
+            <p class="mail-body">{{ mail.body }}</p>
+            <p v-if="!hover" class="mail-date">{{ formatDate }}</p>
             <div v-if="hover" class="mail-actions flex center align-center">
             <div class="mail-archive"><i class="fa-solid fa-box-archive "></i></div>
-            <div @click="e => !mail.isRead && markRead(mail)" class="mail-read"><i :class="btnRead.icon" ></i></div>
+            <div @click="markRead(mail, !mail.isRead)" class="mail-read"><i :class="btnRead.icon" ></i></div>
             <div @click="trashMail(mail)" class="mail-trash"><i class="fa-solid fa-trash "></i></div>
             </div>
             </div>
@@ -35,8 +35,9 @@ export default {
         trashMail(mail) {
             eventBus.emit('removed', mail)
         },
-        markRead(mail) {
-            eventBus.emit('read', mail)
+        markRead(mail, isRead) {
+            // console.log(isRead);
+            eventBus.emit('read', { mail: mail, state: isRead })
         }
 
     },

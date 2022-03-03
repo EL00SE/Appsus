@@ -139,9 +139,10 @@ function trashMail(mail) {
     })
 }
 
-function markRead(mail) {
+function markRead(mail, isRead) {
     return new Promise((resolve) => {
-        mail.isRead = true
+        console.log(isRead);
+        mail.isRead = isRead
         save(mail)
         resolve(mail)
     })
