@@ -1,14 +1,17 @@
 import noteList from '../cmps/note-list.cmp.js'
+import noteInput from '../cmps/note-input.cmp.js'
 import { noteService } from '../services/note-service.js'
 
 export default {
     template: `
         <section class="note-app main">
+        <note-input></note-input>
         <note-list :notes="notes"></note-list>
         </section>
     `,
     components: {
-        noteList
+        noteList,
+        noteInput
     },
     data() {
         return {
