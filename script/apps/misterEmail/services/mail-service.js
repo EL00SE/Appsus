@@ -77,6 +77,10 @@ function _createMails() {
         for (var i = 0; i < 10; i++) {
             mails.push(_createMail())
         }
+        mails[2].isRead = true
+        mails[3].isRead = true
+        mails[5].isRead = true
+        mails[7].isRead = true
         utilService.saveToStorage(STORAGE_KEY, mails)
     }
     return mails
@@ -85,7 +89,7 @@ function _createMails() {
 function _createMail() {
     const mail = getEmptyMail()
     mail.subject = _createMailSubject()
-    mail.body = _createMailBody()
+    mail.body = `The ${mail.subject} ` + _createMailBody()
     mail.sentAt = _createMailTimeStamp()
     var senderIdx = _getSenderIdx()
     mail.fromName = _createSenderEmail(senderIdx).name
@@ -100,11 +104,11 @@ function _createMailTimeStamp() {
 }
 
 function _createMailSubject() {
-    return utilService.makeLorem(utilService.getRndIntInc(2, 4)).trim()
+    return utilService.makeLorem(utilService.getRndIntInc(2, 4))
 }
 
 function _createMailBody() {
-    return utilService.makeLorem(utilService.getRndIntInc(50, 150)).trim()
+    return utilService.makeLorem(utilService.getRndIntInc(50, 150))
 }
 
 function _createMailId() {
