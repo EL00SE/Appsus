@@ -21,3 +21,7 @@
     background-color: red;
     color: var(--clr2);
 }
+
+.animate__animated.animate__fadeInUp {
+    --animate-duration: .5s;
+  }
