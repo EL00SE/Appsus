@@ -1,5 +1,6 @@
 import noteText from './note-text.cmp.js'
 import noteTodo from './note-todo.cmp.js'
+import noteImg from './note-img.cmp.js'
 
 export default {
     props: ['note'],
@@ -16,7 +17,8 @@ export default {
     created() {},
     components: {
         noteText,
-        noteTodo
+        noteTodo,
+        noteImg
     },
     methods: {},
     computed: {}

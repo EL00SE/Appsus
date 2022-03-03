@@ -59,6 +59,7 @@ function _createNotes() {
         notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Bring some vegies!!' }))
         notes.push(_createNote('noteTodo', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
         notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Play Elden Ring' }))
+        notes.push(_createNote('noteImg', { title: 'Funny meme', imgType: "jpg" }))
         notes.push(_createNote('noteText', { title: 'Reminder', txt: 'Improvise, Adapt, Overcome.., you should never give up' }))
         utilService.saveToStorage(STORAGE_KEY, notes)
     }
@@ -69,5 +70,6 @@ function _createNote(type, info) {
     const note = getEmptyNote(type, info)
     note.isPinned = false;
     note.id = utilService.makeId()
+    if (note.type === "noteImg") note.id += "." + note.info.imgType;
     return note
 }
