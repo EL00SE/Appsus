@@ -4,7 +4,6 @@
     width: fit-content;
     height: fit-content;
     /* border: 3px solid black; */
-    border-radius: 5px;
 }
 
 .note-input p {
@@ -19,21 +18,16 @@
 
 .form-element {
     width: 500px;
+    margin: 12px 16px 0px 16px;
     /* width: 60%; */
     letter-spacing: .01428571em;
     font-family: roboto, Arial, sans-serif;
     font-size: .875rem;
     font-weight: 400;
     line-height: 1.25rem;
-    /* border-radius: 3px;
-    border-color: black;
-    border-width: 1px;
-    border: 0px; */
     border: none;
     outline: none;
 }
-
-.form-element:hover {}
 
 .form-element:target {
     border-color: var(--color-red);
