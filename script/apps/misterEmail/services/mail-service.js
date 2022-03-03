@@ -13,6 +13,7 @@ export const mailService = {
     get,
     getEmptyMail,
     trashMail,
+    markRead,
 }
 
 function query() {
@@ -133,6 +134,14 @@ function trashMail(mail) {
     return new Promise((resolve) => {
         mail.isTrash = true
         mail.removedAt = Date.now()
+        save(mail)
+        resolve(mail)
+    })
+}
+
+function markRead(mail) {
+    return new Promise((resolve) => {
+        mail.isRead = true
         save(mail)
         resolve(mail)
     })

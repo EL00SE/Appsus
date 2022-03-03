@@ -4,7 +4,7 @@ export default {
     props: ['mail'],
     template: `
         <section class="mail-preview" @mouseenter="hover=true" @mouseleave="hover=false">
-            <div class="grid mail-container unread">
+            <div class="grid mail-container" :class="btnRead.class">
             <div class="flex center align-center">
             <i :class="setStar" @mouseenter="starHover=true" @mouseleave="starHover=false"></i>
             </div>
@@ -14,8 +14,8 @@ export default {
             <p v-if="!hover" class="mail-date read">{{ formatDate }}</p>
             <div v-if="hover" class="mail-actions flex center align-center">
             <div class="mail-archive"><i class="fa-solid fa-box-archive "></i></div>
-            <div class="mail-read"><i :class="btnRead" ></i></div>
-            <div @click="removeMail(mail)" class="mail-trash"><i class="fa-solid fa-trash "></i></div>
+            <div @click="e => !mail.isRead && markRead(mail)" class="mail-read"><i :class="btnRead.icon" ></i></div>
+            <div @click="trashMail(mail)" class="mail-trash"><i class="fa-solid fa-trash "></i></div>
             </div>
             </div>
             <!-- <hr> -->
@@ -32,9 +32,11 @@ export default {
 
     },
     methods: {
-        removeMail(mail) {
+        trashMail(mail) {
             eventBus.emit('removed', mail)
-            // this.$emit('removed', mail)
+        },
+        markRead(mail) {
+            eventBus.emit('read', mail)
         }
 
     },
@@ -43,7 +45,14 @@ export default {
             return moment(this.mail.sentAt).format('MMM DD')
         },
         btnRead() {
-            return this.mail.isRead ? 'fas fa-envelope-open-text' : 'fas fa-envelope'
+            return this.mail.isRead ? {
+                icon: 'fas fa-envelope-open-text',
+                class: 'read'
+            } :
+                {
+                    icon: 'fas fa-envelope',
+                    class: 'unread'
+                }
         },
         setStar() {
             return this.starHover ? 'fa-solid fa-star mail-star' : 'fa-regular fa-star mail-star'
