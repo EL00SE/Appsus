@@ -13,7 +13,7 @@ export default {
             <p class="mail-body">{{ mail.body }}</p>
             <p v-if="!hover" class="mail-date">{{ formatDate }}</p>
             <div v-if="hover" class="mail-actions flex center align-center">
-            <div class="mail-archive"><i class="fa-solid fa-box-archive "></i></div>
+            <div @click="archiveMail(mail, !mail.isArchived)" class="mail-archive"><i class="fa-solid fa-box-archive "></i></div>
             <div @click="markRead(mail, !mail.isRead)" class="mail-read"><i :class="btnRead.icon" ></i></div>
             <div @click="trashMail(mail)" class="mail-trash"><i class="fa-solid fa-trash "></i></div>
             </div>
@@ -38,7 +38,10 @@ export default {
         markRead(mail, isRead) {
             // console.log(isRead);
             eventBus.emit('read', { mail: mail, state: isRead })
-        }
+        },
+        archiveMail(mail, isArchived) {
+            eventBus.emit('archived', { mail: mail, state: isArchived })
+        },
 
     },
     computed: {

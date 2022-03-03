@@ -24,6 +24,10 @@ export default {
             // console.log(mail.state);
             this.markRead(mail.mail, mail.state)
         })
+        this.unsubscribe3 = eventBus.on(('archives'), (mail) => {
+            // console.log(mail.state);
+            this.archiveMail(mail.mail, mail.state)
+        })
     },
     components: {
         mailList,
@@ -49,6 +53,16 @@ export default {
                     }
                     ))
         },
+        archiveMail(mail, isArchived) {
+            mailService.archiveMail(mail, isArchived)
+                .then(() => mailService.query()
+                    .then(res => {
+                        if (isArchived) eventBus.emit('show-msg', 'Moved to archive')
+                        else eventBus.emit('show-msg', 'Moved to inbox')
+                        return this.mails = res
+                    }
+                    ))
+        }
     },
     computed: {
         mailsForDisplay() {
