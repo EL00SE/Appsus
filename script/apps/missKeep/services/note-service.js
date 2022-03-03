@@ -42,7 +42,7 @@ function _setNextPrevNoteId(note) {
 }
 
 // Factory Method:
-function getEmptyNote(type = 'noteText', info = { title: '', txt: '' }) {
+function getEmptyNote(type = 'noteText', info = '') {
     return {
         id: '',
         type,
