@@ -17,15 +17,18 @@ export default {
     created() {
         mailService.query()
             .then(mails => this.mails = mails)
-        this.unsubscribe = eventBus.on('removed',
-            (mail) => { this.removeMail(mail) }
+        this.unsubscribe1 = eventBus.on('removed',
+            (mail) => { this.trashMail(mail) }
+        )
+        this.unsubscribe2 = eventBus.on('read',
+            (mail) => { this.markRead(mail) }
         )
     },
     components: {
         mailList,
     },
     methods: {
-        removeMail(mail) {
+        trashMail(mail) {
             mailService.trashMail(mail)
                 .then(() => mailService.query()
                     .then(res => {
@@ -33,6 +36,15 @@ export default {
                         console.log(res)
                         return this.mails = res
                     }))
+        },
+        markRead(mail) {
+            mailService.markRead(mail)
+                .then(() => mailService.query()
+                    .then(res => {
+                        eventBus.emit('show-msg', 'Marked as read')
+                        return this.mails = res
+                    }
+                    ))
         },
     },
     computed: {
@@ -42,7 +54,7 @@ export default {
 
     },
     unmounted() {
-        this.unsubscribe();
+        this.unsubscribe1();
     },
     watch: {
 
