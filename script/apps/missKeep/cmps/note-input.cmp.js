@@ -4,22 +4,23 @@ export default {
     template: `
     <section class="note-input">
         <p v-if="isClosed" @click="expand()" >take a note...</p>
-        <section v-if="!isClosed">
+        <section v-if="isOpen" class="note-create-container">
             <note-create></note-create>
         </section>    
     </section>`,
+    data() {
+        return {
+            isClosed: true,
+            isOpen: false
+        }
+    },
     components: {
         noteCreate
     },
-    data() {
-        return {
-            isClosed: true
-        }
-    },
-    components: {},
     methods: {
         expand() {
             this.isClosed = !this.isClosed
+            this.isOpen = !this.isOpen
         }
     },
     computed: {}

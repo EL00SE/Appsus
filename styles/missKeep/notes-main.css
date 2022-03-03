@@ -4,6 +4,7 @@
 
 /* COMPONENTS */
 
+@import 'cmps/note-input.cmp.css';
 @import 'cmps/note-list.cmp.css';
 @import 'cmps/note-preview.cmp.css';
 @import 'cmps/note-img.cmp.css';
