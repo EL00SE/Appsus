@@ -2,11 +2,6 @@
     justify-content: space-between;
 }
 
-.actions-btn {
-    height: 50px;
-    width: 15%;
-}
-
 .color-pallete {
     position: fixed;
     width: 420px;
@@ -19,6 +14,43 @@
     border-width: 1px;
     border-style: solid;
     border-color: black;
+}
+
+.note-to-text-btn {
+    background: url(/lib/assets/images/icons/txt.svg);
+}
+
+.note-to-todo-btn {
+    background: url(/lib/assets/images/icons/todo.svg);
+}
+
+.note-to-img-btn {
+    background: url(/lib/assets/images/icons/img.svg);
+}
+
+.note-to-vid-btn {
+    background: url(/lib/assets/images/icons/yt.svg);
+}
+
+.color-btn {
+    background: url(/lib/assets/images/icons/color-palette.svg);
+}
+
+.save-btn {
+    background: url(/lib/assets/images/icons/save.svg);
+}
+
+.actions-btn {
+    height: 50px;
+    width: 50px;
+    background-repeat: no-repeat;
+    border: 0px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.actions-btn:hover {
+    background-color: gray;
 }
 
 .color-pallete button {

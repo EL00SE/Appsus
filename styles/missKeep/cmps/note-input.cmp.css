@@ -1,22 +1,42 @@
 .note-input {
+    margin: auto;
     margin-bottom: 30px;
+    width: fit-content;
+    height: fit-content;
+    /* border: 3px solid black; */
+    border-radius: 5px;
+}
+
+.note-input p {
+    cursor: pointer;
 }
 
 .note-create {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .form-element {
-    width: 60%;
+    width: 500px;
+    /* width: 60%; */
     letter-spacing: .01428571em;
     font-family: roboto, Arial, sans-serif;
     font-size: .875rem;
     font-weight: 400;
     line-height: 1.25rem;
-    margin-bottom: 5px;
+    /* border-radius: 3px;
+    border-color: black;
+    border-width: 1px;
+    border: 0px; */
+    border: none;
+    outline: none;
+}
+
+.form-element:hover {}
+
+.form-element:target {
+    border-color: var(--color-red);
 }
 
 .note-create textarea {

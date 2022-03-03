@@ -23,6 +23,9 @@ export default {
         expand() {
             this.isClosed = !this.isClosed
             this.isOpen = !this.isOpen
+            this.$refs.noteInput.style.borderColor = 'black'
+            this.$refs.noteInput.style.borderWidth = '3px'
+            this.$refs.noteInput.style.borderStyle = 'solid'
         }
     },
     updated() {},

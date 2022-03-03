@@ -8,7 +8,7 @@ export default {
             <button class="actions-btn note-to-todo-btn" @click="changeType(noteTodo)"></button>
             <button class="actions-btn note-to-img-btn" @click="changeType(noteImg)"></button>
             <button class="actions-btn note-to-vid-btn" @click="changeType(noteVid)"></button>
-            <button class="actions-btn"></button>
+            <button class="actions-btn save-btn" @click="save()"></button>
             <color-pallete ref="ElColorPallete" v-if="openPallete" :style="{top: distanceY+'px',left:distanceX+'px'}"></color-pallete>
         </section>
     `,
@@ -35,6 +35,9 @@ export default {
         },
         closeColorPallete() {
             this.openPallete = !this.openPallete
+        },
+        save() {
+            eventBus.emit('save')
         }
     },
     computed: {},

@@ -4,10 +4,9 @@ import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     template: `
         <form ref="noteForm" @submit.prevent="save" class="note-create">
-            <input type="text" v-model="noteToCreate.title" id="note-input-title" placeholder="Title" class="form-element"/>
-            <textarea v-model="noteToCreate.info.txt" id="note-input-text" cols="30" rows="10" placeholder="Take a note..." class="form-element"></textarea>
+            <input ref="noteTitleInput" type="text" v-model="noteToCreate.title" id="note-input-title" placeholder="Title" class="form-element"/>
+            <textarea ref="noteTextArea" v-model="noteToCreate.info.txt" id="note-input-text" cols="30" rows="10" placeholder="Take a note..." class="form-element"></textarea>
             <note-actions></note-actions>
-            <button class="form-element save-btn">Create note</button>
         </form>
     `,
     data() {
@@ -18,6 +17,7 @@ export default {
     },
     created() {
         this.unsubscribe = eventBus.on('colorChange', this.colorChange)
+        this.unsub = eventBus.on('save', this.save)
 
     },
     mounted() {
@@ -39,12 +39,17 @@ export default {
         colorChange(color) {
             this.noteToCreate.color = color
             this.$refs.noteForm.style.backgroundColor = color
+            this.$refs.noteTitleInput.style.backgroundColor = color
+            this.$refs.noteTextArea.style.backgroundColor = color
         }
     },
     computed: {},
     watch: {
 
     },
-    unmounted() {}
+    unmounted() {
+        this.unsub()
+        this.unsubscribe()
+    }
 
 }
