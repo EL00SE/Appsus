@@ -7,23 +7,26 @@ export default {
         <form ref="noteForm" @submit.prevent="save" class="note-create">
             <input ref="noteTitleInput" type="text" v-model="noteToCreate.title" id="note-input-title" placeholder="Title" class="form-element"/>
             <textarea v-if="noteType === 'noteText'" ref="noteInfo" v-model="noteToCreate.info.txt" id="note-input-text" cols="30" rows="10" placeholder="Take a note..." class="form-element"></textarea>
-            <note-list-item v-if="noteType === 'noteTodo'" ref="noteInfo"></note-list-item>
+            <ul  v-if="noteType === 'noteTodo'" >
+                <note-list-item v-for="(item, index) in listItems" :key="index" :index="index" ref="noteInfo"></note-list-item>
+                <button @click="addListItem()">Add</button>
+            </ul>
             <note-actions></note-actions>
         </form>
     `,
     data() {
         return {
             noteToCreate: noteService.getEmptyNote(),
-            noteType: 'noteText'
-
-
+            noteType: 'noteText',
+            listItems: [''],
+            // currIdx: 0
         }
     },
     created() {
         this.colorUnsub = eventBus.on('colorChange', this.changeColor)
         this.saveUnsub = eventBus.on('save', this.save)
         this.typeUnsub = eventBus.on('typeChange', this.changeType)
-        this.listUnsub = eventBus.on('addListItem', this.addListItem)
+        this.itemEditUnsub = eventBus.on('itemEdit', this.editItem)
     },
     mounted() {},
     components: {
@@ -50,9 +53,13 @@ export default {
             this.noteToCreate.type = type
             this.noteType = type
         },
+        editItem(data) {
+            this.listItems[data.index] = data.text
+            console.log(this.listItems)
+        },
         addListItem() {
-
-        }
+            this.listItems.push('')
+        },
     },
     mounted() {
         this.$refs.noteTitleInput.focus()
@@ -65,6 +72,7 @@ export default {
         this.colorUnsub()
         this.saveUnsub()
         this.typeUnsub()
+        this.itemEditUnsub()
     }
 
 }

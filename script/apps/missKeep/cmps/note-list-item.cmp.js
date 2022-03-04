@@ -1,27 +1,30 @@
 import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
-    props: ['idx'],
+    props: ['index'],
     template: `
         <section class="note-list-item">
-            <input type="text" id="idx" placeholder="Add list item..">
-            <button class="list-btn" @click="addListItem()"></button>
+            <input v-model="text" type="text" placeholder="Add list item.." @input="updateCurrItem()" >
         </section>
     `,
     data() {
         return {
-
+            text: '',
+            data: {}
         }
     },
     created() {
 
     },
+    mounted() {},
     components: {
         eventBus
     },
     methods: {
-        addListItem() {
-            eventBus.emit('addListItem')
+        updateCurrItem() {
+            this.data.text = this.text
+            this.data.index = this.index
+            eventBus.emit('itemEdit', this.data)
         }
     },
     computed: {
