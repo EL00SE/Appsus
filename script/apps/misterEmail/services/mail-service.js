@@ -17,6 +17,7 @@ export const mailService = {
     archiveMail,
     markStar,
     getLoggedInUser,
+    getUnreadAmount,
 }
 
 function query() {
@@ -265,4 +266,16 @@ function _prepareData(mails) {
     mails[13].toName = 'luki dom'
     mails[13].isSent = true
     mails[13].isRead = true
+}
+
+function getUnreadAmount(mails) {
+    var count = 0
+
+    mails.forEach(mail => {
+        // console.log(mail);
+        if (!mail.isRead && !mail.isArchived && !mail.isTrash) count++
+
+        // console.log(Promise.resolve(count))
+    })
+    return Promise.resolve(count)
 }

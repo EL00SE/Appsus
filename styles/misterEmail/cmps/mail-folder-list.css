@@ -21,13 +21,21 @@
 
 }
 
-.folder-list-container p:hover{
+.folder-list-container p:not(:nth-child(2)):hover{
     background-color: var(--clr-mail-read-mail) ;
+    /* transition: background-color .2s ease-in-out; */
+}
+
+.folder-list-container p:nth-child(2):hover{
+    background-color: var(--clr-mail-folder-active-bg);
+    color: var(--clr-mail-folder-active-font);
     /* transition: background-color .2s ease-in-out; */
 }
 
 .folder-list-container i{
     margin: 0 10px;
+    transition: all .3 ease-in-out;
+
 }
 
 .folder-list-container p{
@@ -38,8 +46,33 @@
 
 .folder-list-container i{
     color: var(--clr-mail-icon);
+
 }
 
 .folder-list-container p:nth-child(2){
     font-family: sansBold;
+}
+
+.folder-list-container .active{
+    background-color: var(--clr-mail-read-mail);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);    
+    font-family: sansBold;
+}
+
+.folder-list-container .active-inbox{
+    background-color: var(--clr-mail-folder-active-bg);
+    color: var(--clr-mail-folder-active-font);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);    
+}
+
+.folder-list-container .active-inbox-icon{
+    color: var(--clr-mail-folder-active-font);
+}
+
+.mail-unread-icon{
+    /* transition: all .3 ease-in-out; */
+}
+
+.mail-unread-amount{
+    margin-inline-start: 90px;
 }

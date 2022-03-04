@@ -7,19 +7,28 @@ export default {
     template: `
         <section class="email-app flex" style="font-family:sansRegular">
             <!-- <h1>hello</h1> -->
-            <mail-folder-list @openFolder="setMailsForDisply" v-if="mails"/>
+            <mail-folder-list :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" v-if="mails"/>
             <mail-list :mails="mailsForDisplay"/>
         </section>
     `,
     data() {
         return {
             mails: null,
-            filterBy: null,
+            filterBy: 'inbox',
+            unreadAmount: null,
         }
     },
     created() {
         mailService.query()
-            .then(mails => this.mails = mails)
+            .then(mails => {
+                this.mails = mails
+                console.log(this.mails)
+                mailService.getUnreadAmount(this.mails)
+                    .then(res => {
+                        this.unreadAmount = res
+                        console.log(this.unreadAmount);
+                    })
+            })
 
         this.unsubscribe1 = eventBus.on('trashed',
             (mail) => { this.trashMail(mail) }
@@ -48,6 +57,7 @@ export default {
                 .then(() => mailService.query()
                     .then(res => {
                         eventBus.emit('show-msg', 'Moved to trash')
+
                         return this.mails = res
                     }))
         },
@@ -55,8 +65,11 @@ export default {
             mailService.markRead(mail, isRead)
                 .then(() => mailService.query()
                     .then(res => {
+                        if (isRead) this.unreadAmount--
+                        else this.unreadAmount++
                         // if (isRead) eventBus.emit('show-msg', 'Marked as read')
                         // else eventBus.emit('show-msg', 'Marked as unread')
+
                         return this.mails = res
                     }))
         },
@@ -67,6 +80,7 @@ export default {
                     .then(res => {
                         if (isArchived) eventBus.emit('show-msg', 'Moved to archive')
                         else eventBus.emit('show-msg', 'Moved to inbox')
+
                         return this.mails = res
                     }))
         },
@@ -104,7 +118,16 @@ export default {
             else if (this.filterBy === 'trash') return this.mails.filter(mail => mail.isTrash)
             else if (this.filterBy === 'read') return this.mails.filter(mail => mail.isRead && !mail.isArchived && !mail.isTrash)
             else if (this.filterBy === 'unread') return this.mails.filter(mail => !mail.isRead && !mail.isArchived && !mail.isTrash)
-
+        },
+        unreadAmount() {
+            mailService.query()
+                .then(mails => {
+                    mailService.getUnreadAmount(mails)
+                        .then(res => {
+                            this.unreadAmount = res
+                            return this.unreadAmount
+                        })
+                })
 
         }
 
