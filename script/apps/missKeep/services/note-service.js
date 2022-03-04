@@ -42,10 +42,11 @@ function _setNextPrevNoteId(note) {
 }
 
 // Factory Method:
-function getEmptyNote(type = 'noteText', color = 'var(--color-def)', info = '') {
+function getEmptyNote(type = 'noteText', color = 'var(--color-def)', title = '', info = {}) {
     return {
         id: '',
         type,
+        title,
         isPinned: '',
         info,
         color
@@ -56,25 +57,21 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(STORAGE_KEY);
     if (!notes || !notes.length) {
         notes = [];
-        notes.push(_createNote('noteText', 'var(--color-red)', { title: 'Reminder', txt: 'Dont forget to finish sprint 3' }))
-        notes.push(_createNote('noteText', 'var(--color-orange)', { title: 'Reminder', txt: 'Bring some vegies!!' }))
-        notes.push(_createNote('noteTodo', 'var(--color-yellow)', { title: 'Workouts', items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
-        notes.push(_createNote('noteText', 'var(--color-orange)', { title: 'Reminder', txt: 'Play Elden Ring' }))
-        notes.push(_createNote('noteImg', 'var(--color-green)', { title: 'Funny meme', imgType: "jpg" }))
-        notes.push(_createNote('noteText', 'var(--color-def)', { title: 'Reminder', txt: 'Improvise, Adapt, Overcome.., you should never give up' }))
-        notes.push(_createNote('noteVid', 'var(--color-lightblue)', { title: 'Reminder', url: "https://www.youtube.com/embed/5qap5aO4i9A" }))
+        notes.push(_createNote('noteText', 'var(--color-red)', 'Reminder', { txt: 'Dont forget to finish sprint 3' }))
+        notes.push(_createNote('noteText', 'var(--color-orange)', 'Reminder', { txt: 'Bring some vegies!!' }))
+        notes.push(_createNote('noteTodo', 'var(--color-yellow)', 'Workouts', { items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
+        notes.push(_createNote('noteText', 'var(--color-orange)', 'Reminder', { txt: 'Play Elden Ring' }))
+        notes.push(_createNote('noteImg', 'var(--color-green)', 'Funny meme', { url: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg' }))
+        notes.push(_createNote('noteText', 'var(--color-def)', 'Reminder', { txt: 'Improvise, Adapt, Overcome.., you should never give up' }))
+        notes.push(_createNote('noteVid', 'var(--color-lightblue)', 'Reminder', { url: 'https://www.youtube.com/embed/5qap5aO4i9A' }))
         utilService.saveToStorage(STORAGE_KEY, notes)
     }
     return notes
 }
 
-function _createNote(type, color, info) {
-    const note = getEmptyNote(type, color, info)
+function _createNote(type, color, title, info) {
+    const note = getEmptyNote(type, color, title, info)
     note.isPinned = false;
     note.id = utilService.makeId()
-    if (note.type === "noteImg") {
-        note.id = "m0BJsiHT" //tester only
-        note.id += "." + note.info.imgType;
-    }
     return note
 }

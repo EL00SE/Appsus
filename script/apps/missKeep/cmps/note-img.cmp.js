@@ -2,13 +2,13 @@ export default {
     props: ['note'],
     template: `
         <section class="note-img">
-            {{note.info.title}}
-        <img :src=this.img alt="x">
+            {{note.title}}
+        <img :src="url" alt="x">
         </section>
     `,
     data() {
         return {
-            img: "lib/assets/images/note-images/" + this.note.id
+            url: this.note.info.url
         }
     },
     created() {},

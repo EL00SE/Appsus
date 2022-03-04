@@ -5,6 +5,7 @@ export default {
     template: `
         <section class="note-list-item">
             <input v-model="text" type="text" placeholder="Add list item.." @input="updateCurrItem()" >
+            <button type="button"></button>
         </section>
     `,
     data() {
