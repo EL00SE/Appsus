@@ -2,3 +2,23 @@
     font-family: roboto;
     src: url(/lib/assets/fonts/roboto/Roboto-Bold.ttf);
 }
+
+@font-face {
+    font-family: sansLight;
+    src: url(../../lib/assets/fonts/OpenSans/OpenSans-Light.ttf);
+}
+
+@font-face {
+    font-family: sansRegular;
+    src: url(../../lib/assets/fonts/OpenSans/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: sansBold;
+    src: url(../../lib/assets/fonts/OpenSans/OpenSans-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: sansExtraBold;
+    src: url(../../lib/assets/fonts/OpenSans/OpenSans-ExtraBold.ttf);
+}

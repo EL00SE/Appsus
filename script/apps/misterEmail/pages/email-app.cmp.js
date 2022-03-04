@@ -5,7 +5,7 @@ import mailFolderList from '../cmps/mail-folder-list.cmp.js'
 
 export default {
     template: `
-        <section class="email-app flex">
+        <section class="email-app flex" style="font-family:sansRegular">
             <!-- <h1>hello</h1> -->
             <mail-folder-list @openFolder="setMailsForDisply" v-if="mails"/>
             <mail-list :mails="mailsForDisplay"/>
