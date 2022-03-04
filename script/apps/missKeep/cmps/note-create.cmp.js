@@ -19,7 +19,6 @@ export default {
             noteToCreate: noteService.getEmptyNote(),
             noteType: 'noteText',
             listItems: [''],
-            // currIdx: 0
         }
     },
     created() {
@@ -55,7 +54,6 @@ export default {
         },
         editItem(data) {
             this.listItems[data.index] = data.text
-            console.log(this.listItems)
         },
         addListItem() {
             this.listItems.push('')
