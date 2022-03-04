@@ -1,1 +1,4 @@
-@import 'styles/misterEmail/cmps/mail-preview.css'
+/* @import 'styles/misterEmail/cmps/mail-preview.css'; */
+@import '../../styles/misterEmail/cmps/mail-preview.css';
+@import '../../styles/misterEmail/cmps/mail-summery.css';
+@import '../../styles/misterEmail/cmps/mail-folder-list.css';

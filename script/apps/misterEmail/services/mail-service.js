@@ -16,6 +16,7 @@ export const mailService = {
     markRead,
     archiveMail,
     markStar,
+    getLoggedInUser,
 }
 
 function query() {
@@ -61,45 +62,78 @@ function getEmptyMail() {
         subject: '',
         body: '',
         to: '',
+        toName: '',
         fromName: '',
-        fromEmail: '',
+        fromEmail: getLoggedInUser().email,
         isRead: false,
         sentAt: null,
         isSent: false,
         isStar: false,
         isTrash: false,
-        isRemoved: false,
         isArchived: false,
         label: ''
     }
 }
 
-function _createMails() {
+function getLoggedInUser() {
     const loggedinUser = {
         email: 'amitmiz@gmail.com',
         name: 'Amit Miz'
     }
+    return loggedinUser
+}
+
+function _createMails() {
+    // const loggedinUser = {
+    //     email: 'amitmiz@gmail.com',
+    //     name: 'Amit Miz'
+    // }
     let mails = utilService.loadFromStorage(STORAGE_KEY)
     if (!mails || !mails.length) {
         mails = []
-        for (var i = 0; i < 15; i++) {
+        for (var i = 0; i < 20; i++) {
             mails.push(_createMail())
         }
-        mails[1].isStar = true
-        mails[2].isRead = true
-        mails[2].isStar = true
-        mails[3].isRead = true
-        mails[5].isRead = true
-        mails[7].isRead = true
-        mails[7].isStar = true
-        mails[10].fromEmail = loggedinUser.email
-        mails[10].fromName = loggedinUser.name
-        mails[11].fromEmail = loggedinUser.email
-        mails[11].fromName = loggedinUser.name
-        mails[12].fromEmail = loggedinUser.email
-        mails[12].fromName = loggedinUser.name
-        mails[13].fromEmail = loggedinUser.email
-        mails[13].fromName = loggedinUser.name
+        _prepareData(mails)
+        // mails[1].isStar = true
+        // mails[2].isRead = true
+        // mails[2].isStar = true
+        // mails[3].isRead = true
+        // mails[5].isRead = true
+        // mails[7].isRead = true
+        // mails[7].isStar = true
+        // mails[14].isTrash = true
+        // mails[15].isTrash = true
+        // mails[8].isArchived = true
+        // mails[9].isArchived = true
+        // mails[10].fromEmail = getLoggedInUser().email
+        // mails[10].fromName = getLoggedInUser().name
+        // mails[10].to = 'puki205@gmail.com'
+        // mails[10].toName = 'puki atrr'
+        // mails[10].isSent = true
+        // mails[10].isRead = true
+
+        // mails[11].fromEmail = getLoggedInUser().email
+        // mails[11].fromName = getLoggedInUser().name
+        // mails[11].to = 'popo385@gmail.com'
+        // mails[11].toName = 'popo div'
+        // mails[11].isSent = true
+        // mails[11].isRead = true
+
+        // mails[12].fromEmail = getLoggedInUser().email
+        // mails[12].fromName = getLoggedInUser().name
+        // mails[12].to = 'muki391@gmail.com'
+        // mails[12].toName = 'muki bind'
+        // mails[12].isSent = true
+        // mails[12].isRead = true
+
+        // mails[13].fromEmail = getLoggedInUser().email
+        // mails[13].fromName = getLoggedInUser().name
+        // mails[13].to = 'luki012@gmail.com'
+        // mails[13].toName = 'luki dom'
+        // mails[13].isSent = true
+        // mails[13].isRead = true
+
         utilService.saveToStorage(STORAGE_KEY, mails)
     }
     return mails
@@ -157,6 +191,7 @@ function _getSenderIdx() {
 function trashMail(mail) {
     return new Promise((resolve) => {
         mail.isTrash = true
+        mail.isArchived = true
         mail.removedAt = Date.now()
         save(mail)
         resolve(mail)
@@ -176,6 +211,7 @@ function archiveMail(mail, isArchived) {
     return new Promise((resolve) => {
         // console.log(isArchived);
         mail.isArchived = isArchived
+        mail.isTrash = false
         save(mail)
         resolve(mail)
     })
@@ -188,4 +224,45 @@ function markStar(mail, isStar) {
         save(mail)
         resolve(mail)
     })
+}
+
+function _prepareData(mails) {
+    mails[1].isStar = true
+    mails[2].isRead = true
+    mails[2].isStar = true
+    mails[3].isRead = true
+    mails[5].isRead = true
+    mails[7].isRead = true
+    mails[7].isStar = true
+    mails[14].isTrash = true
+    mails[15].isTrash = true
+    mails[8].isArchived = true
+    mails[9].isArchived = true
+    mails[10].fromEmail = getLoggedInUser().email
+    mails[10].fromName = getLoggedInUser().name
+    mails[10].to = 'puki205@gmail.com'
+    mails[10].toName = 'puki atrr'
+    mails[10].isSent = true
+    mails[10].isRead = true
+
+    mails[11].fromEmail = getLoggedInUser().email
+    mails[11].fromName = getLoggedInUser().name
+    mails[11].to = 'popo385@gmail.com'
+    mails[11].toName = 'popo div'
+    mails[11].isSent = true
+    mails[11].isRead = true
+
+    mails[12].fromEmail = getLoggedInUser().email
+    mails[12].fromName = getLoggedInUser().name
+    mails[12].to = 'muki391@gmail.com'
+    mails[12].toName = 'muki bind'
+    mails[12].isSent = true
+    mails[12].isRead = true
+
+    mails[13].fromEmail = getLoggedInUser().email
+    mails[13].fromName = getLoggedInUser().name
+    mails[13].to = 'luki012@gmail.com'
+    mails[13].toName = 'luki dom'
+    mails[13].isSent = true
+    mails[13].isRead = true
 }

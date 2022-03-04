@@ -5,21 +5,25 @@ export default {
     props: ['mail'],
     template: `
         <section>
-            <div class="mail-preview grid mail-container" @mouseenter="hover=true" @mouseleave="hover=false" @click="summeryOpen=!summeryOpen; mail.isRead=true" :class="btnRead.class">
+            <div class="mail-preview grid mail-container" @mouseenter="hover=true" @mouseleave="hover=false" @click.stop="toggleSummery" :class="btnRead.class">
             <div class="flex center align-center">
             <div @click.stop="starMail(mail, !mail.isStar)" ><i :class="setStar" @mouseenter="starHover=true" @mouseleave="starHover=false"></i></div>
             </div>
-            <p class="mail-from">{{ mail.fromName }}</p>
+            <p class="mail-from">{{ formatName }}</p>
             <p class="mail-subject">{{ mail.subject }}</p>
             <p class="mail-body">{{ mail.body }}</p>
             <p v-if="!hover" class="mail-date">{{ formatDate }}</p>
             <div v-if="hover" class="mail-actions flex center align-center">
-            <div @click.stop="archiveMail(mail, !mail.isArchived)" class="mail-archive"><i class="fa-solid fa-box-archive "></i></div>
+            <div @click.stop.prevent="archiveMail(mail, !mail.isArchived)" class="mail-archive"><i class="fa-solid fa-box-archive "></i></div>
             <div @click.stop="markRead(mail, !mail.isRead)" class="mail-read"><i :class="btnRead.icon" ></i></div>
             <div @click.stop="trashMail(mail, mail.isTrash)" class="mail-trash"><i class="fa-solid fa-trash "></i></div>
             </div>
             </div>
+            <transition name="fade" enter-active-class="animate__animated animate__fadeIn"
+    leave-active-class="animate__animated animate__fadeOutUp animate__faster">
             <mail-summery :mail="mail" v-if="summeryOpen"></mail-summery>
+            </transition>
+
             <!-- <hr> -->
         </section>
     `,
@@ -43,7 +47,10 @@ export default {
             isTrash ? eventBus.emit('removed', mail) : eventBus.emit('trashed', mail)
         },
         markRead(mail, isRead) {
+            // console.log('now');
             eventBus.emit('read', { mail: mail, state: isRead })
+            if (isRead) eventBus.emit('show-msg', 'Marked as read')
+            else eventBus.emit('show-msg', 'Marked as unread')
         },
         archiveMail(mail, isArchived) {
             eventBus.emit('archived', { mail: mail, state: isArchived })
@@ -51,15 +58,23 @@ export default {
         starMail(mail, isStar) {
             eventBus.emit('starred', { mail: mail, state: isStar })
         },
-        openSummery() {
+        toggleSummery() {
             this.summeryOpen = !this.summeryOpen
-            this.$emit('summeryOpen', this.summeryOpen)
+            if (this.mail.isRead) return
+            this.mail.isRead = true
+            // if()
+            this.markRead(this.mail, this.mail.isRead)
+            // this.summeryOpen = !this.summeryOpen
+            // this.$emit('summeryOpen', this.summeryOpen)
         }
 
     },
     computed: {
         formatDate() {
             return moment(this.mail.sentAt).format('MMM DD')
+        },
+        formatName() {
+            return this.mail.isSent ? 'to: ' + this.mail.toName : this.mail.fromName
         },
         btnRead() {
             return this.mail.isRead ? {

@@ -10,7 +10,7 @@
 @import 'components/main-header.css';
 @import 'components/main-footer.css';
 @import 'components/user-msg.css';
-@import 'misterEmail/cmps/mail-summery.css';
+/* @import 'misterEmail/cmps/mail-summery.css'; */
 
 /* BASE */
 
@@ -22,4 +22,4 @@
 /* APPS */
 
 @import 'missKeep/notes-main.css';
-@import 'misterEmail/cmps/mail-preview.css'
+@import 'misterEmail/mails-main.css';

@@ -4,12 +4,13 @@ import longText from '../../../cmps/long-text.cmp.js'
 export default {
     props: ['mail'],
     template: `
+   
         <section class="mail-summery">
         <div class="summery-container">
         <p class="sum-subject">{{ mail.subject }}</p>
         <div class="flex align-center">
         <p class="sum-from-name">{{ mail.fromName }}</p>
-        <p class="sum-from-address"><{{ mail.fromEmail }}></p>
+        <p class="sum-from-address">&lt{{ mail.fromEmail }}&gt</p>
         </div>
         <p class="sum-to">to: {{mail.to}}</p>
         <long-text class="sum-body" :txt="mail.body"></long-text>

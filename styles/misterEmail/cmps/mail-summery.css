@@ -5,30 +5,47 @@
 
 .mail-summery .summery-container{
     height: 250px;
-    padding-inline-start: 20px;
-    border: 1px solid black;
+    /* padding-inline-start: 20px; */
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.151); */
     overflow-y: scroll;
+    background-color: rgba(211, 211, 211, 0.25);
+    /* box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.75); */
+    box-shadow: 0px 5px 10px -1px rgba(0,0,0,0.75);
+
+    /* box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.25); */
+
 }
 
 .sum-subject{
-    margin: 20px 0px 5px 0px;
+    /* position: absolute; */
+    /* margin: 20px; */
+    /* padding-inline-start: 20px; */
+    padding: 15px;
+    /* padding-inline-start: 5px; */
     text-transform: capitalize;
     font-size: 30px;
     font-weight: 550;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.164);
+    width: 100%;
 }
 
 .sum-from-name{
     text-transform: capitalize;
-    margin-inline-end: 5px;
+    /* margin-inline-end: 5px; */
+    padding-inline-start: 20px;
+    padding-inline-end: 5px;
 }
 
 .sum-from-address, .sum-from-name{
     font-weight: 600;
-    
+    /* margin-top: 100px; */
+
 }
 
 .sum-to{
     margin-top: -5px;
+    padding-inline-start: 20px;
+
 }
 
 .sum-body{

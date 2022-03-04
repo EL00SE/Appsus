@@ -1,22 +1,26 @@
 import { mailService } from '../services/mail-service.js'
 import mailList from '../cmps/mail-list.cmp.js'
 import { eventBus } from '../../../services/eventBus-service.js'
+import mailFolderList from '../cmps/mail-folder-list.cmp.js'
 
 export default {
     template: `
-        <section class="email-app">
-            <h1>hello</h1>
-            <mail-list :mails="mails"></mail-list>
+        <section class="email-app flex">
+            <!-- <h1>hello</h1> -->
+            <mail-folder-list @openFolder="setMailsForDisply" v-if="mails"/>
+            <mail-list :mails="mailsForDisplay"/>
         </section>
     `,
     data() {
         return {
             mails: null,
+            filterBy: null,
         }
     },
     created() {
         mailService.query()
             .then(mails => this.mails = mails)
+
         this.unsubscribe1 = eventBus.on('trashed',
             (mail) => { this.trashMail(mail) }
         )
@@ -31,12 +35,12 @@ export default {
             this.starMail(mail.mail, mail.state)
         })
         this.unsubscribe5 = eventBus.on(('removed'), (mail) => {
-            // console.log(mail.state);
             this.removeMail(mail)
         })
     },
     components: {
         mailList,
+        mailFolderList
     },
     methods: {
         trashMail(mail) {
@@ -51,8 +55,8 @@ export default {
             mailService.markRead(mail, isRead)
                 .then(() => mailService.query()
                     .then(res => {
-                        if (isRead) eventBus.emit('show-msg', 'Marked as read')
-                        else eventBus.emit('show-msg', 'Marked as unread')
+                        // if (isRead) eventBus.emit('show-msg', 'Marked as read')
+                        // else eventBus.emit('show-msg', 'Marked as unread')
                         return this.mails = res
                     }))
         },
@@ -83,11 +87,25 @@ export default {
                         eventBus.emit('show-msg', 'Successfully deleted')
                         return this.mails = res
                     }))
+        },
+        setMailsForDisply(type) {
+            console.log(type);
+            this.filterBy = type
         }
     },
     computed: {
         mailsForDisplay() {
-            return this.mails
+            if (!this.filterBy) return this.mails
+            else if (this.filterBy === 'star') return this.mails.filter(mail => mail.isStar && !mail.isTrash && !mail.isArchived)
+            else if (this.filterBy === 'inbox') return this.mails.filter(mail => !mail.isSent && !mail.isArchived && !mail.isTrash)
+            else if (this.filterBy === 'sent') return this.mails.filter(mail => mail.isSent && !mail.isTrash && !mail.isArchived)
+            else if (this.filterBy === 'all') return this.mails
+            else if (this.filterBy === 'archive') return this.mails.filter(mail => mail.isArchived && !mail.isTrash)
+            else if (this.filterBy === 'trash') return this.mails.filter(mail => mail.isTrash)
+            else if (this.filterBy === 'read') return this.mails.filter(mail => mail.isRead && !mail.isArchived && !mail.isTrash)
+            else if (this.filterBy === 'unread') return this.mails.filter(mail => !mail.isRead && !mail.isArchived && !mail.isTrash)
+
+
         }
 
     },
