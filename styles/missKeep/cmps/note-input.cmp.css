@@ -10,10 +10,34 @@
     cursor: pointer;
 }
 
+.note-list-item {
+    margin-bottom: 5px;
+    left: 20px
+}
+
+.delete-btn {
+    border: none;
+    background: url(/lib/assets/images/icons/trash.svg);
+    height: 20px;
+    width: 20px;
+}
+
+.add-btn {
+    margin-bottom: 5px;
+    background: url(/lib/assets/images/icons/plus.svg);
+    height: 50px;
+    width: 50px;
+    border: none;
+}
+
 .note-create {
+    outline: 1px solid black;
+    border-radius: 10px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--color-def);
 }
 
 .form-element {
@@ -29,8 +53,17 @@
     outline: none;
 }
 
-.form-element:target {
-    border-color: var(--color-red);
+.list-item {}
+
+.form-input {
+    outline: none;
+    border: none;
+    font-family: roboto, Arial, sans-serif;
+    width: 400px;
+}
+
+.note-create input {
+    background-color: var(--color-def);
 }
 
 .note-create textarea {
