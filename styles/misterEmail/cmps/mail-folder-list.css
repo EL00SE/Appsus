@@ -1,0 +1,45 @@
+.folder-list-container{
+    width: 200px;
+}
+
+.folder-list-container p{
+    margin: 0;
+    height: 40px;
+    font-size: 14px;
+    /* background-color: var(--clr-mail-folder-active-bg); */
+    /* color: var(--clr-mail-folder-active-font); */
+    display: flex;
+    align-items: center;
+    /* border: 1px solid black; */
+    text-transform: uppercase;
+    /* font-weight: bolder; */
+    cursor: pointer;
+    border-radius: 0px 50px 50px 0px;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.2);    
+    /* transition: background-color .3s ease-in-out; */
+    transition: all .3s ease-in-out;    
+
+}
+
+.folder-list-container p:hover{
+    background-color: var(--clr-mail-read-mail) ;
+    /* transition: background-color .2s ease-in-out; */
+}
+
+.folder-list-container i{
+    margin: 0 10px;
+}
+
+.folder-list-container p{
+    font-family: sansLight;
+    font-size: 16px;
+
+}
+
+.folder-list-container i{
+    color: var(--clr-mail-icon);
+}
+
+.folder-list-container p:nth-child(2){
+    font-family: sansBold;
+}

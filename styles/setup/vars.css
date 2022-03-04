@@ -3,6 +3,14 @@
     --clr2: #313131;
     --clr3: #131313;
     --clr4: #3a3a3a;
+    --clr-mail-unread-mail: #d3d3d344;
+    --clr-mail-read-mail: #d3d3d39c;
+    --clr-mail-icon: #000000bf;
+    --clr-mail-icon-archive: #964b0e;
+    --clr-mail-icon-read: #4266db;
+    --clr-mail-icon-trash: #cc0404;
+    --clr-mail-folder-active-bg: #fce8e6;
+    --clr-mail-folder-active-font: #db3a2f;
     --width: 240px;
     --gap: 16px;
     --padding: 32px;
