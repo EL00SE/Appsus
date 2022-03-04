@@ -1,8 +1,8 @@
 export default {
     props: ['note'],
     template: `
-        <section class="note-img">
-            {{note.info.title}}
+        <section class="note-vid">
+            {{note.title}}
         <iframe :src="url" frameborder="0" width="100%"></iframe>
         </section>
 

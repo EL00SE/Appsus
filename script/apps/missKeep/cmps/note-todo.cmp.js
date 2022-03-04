@@ -2,7 +2,7 @@ export default {
     props: ['note'],
     template: `
         <section class="note-todo">
-            {{note.info.title}}
+            {{note.title}}
             <p v-for="item in note.info.items" class="neat-p">{{item}}</p>
         </section>
     `,

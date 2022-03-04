@@ -15,7 +15,9 @@ export default {
             isOpen: false
         }
     },
-    created() {},
+    created() {
+        this.unsubscribe = eventBus.on('noteCreate', this.expand)
+    },
     components: {
         noteCreate
     },
@@ -23,10 +25,6 @@ export default {
         expand() {
             this.isClosed = !this.isClosed
             this.isOpen = !this.isOpen
-            this.$refs.noteInput.style.outlineColor = 'black'
-            this.$refs.noteInput.style.outlineWidth = '3px'
-            this.$refs.noteInput.style.outlineStyle = 'solid'
-            this.$refs.noteInput.style.borderRadius = '10px'
         }
     },
     updated() {},

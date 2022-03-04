@@ -1,7 +1,8 @@
+import { eventBus } from '../../../services/eventBus-service.js';
+import { noteService } from '../services/note-service.js';
 import notePreview from './note-preview.cmp.js'
 
 export default {
-    props: ['notes'],
     template: `
         <section class="note-list">
                 <div v-for="note in notes" :key="note.id" class="note-preview-container" 
@@ -14,18 +15,22 @@ export default {
         </section>
     `,
     data() {
-        return {}
+        return {
+            notes: null
+        }
+    },
+    created() {
+        this.unsubscribe = eventBus.on('noteCreate', this.updateList)
+        this.updateList()
     },
     components: {
         notePreview
     },
     methods: {
-        remove(id) {
-            this.$emit('remove', id);
+        updateList() {
+            noteService.query()
+                .then(notes => this.notes = notes)
         },
-        expand(id) {
-            this.$router.push('/edit/' + id)
-        }
     },
     computed: {
 

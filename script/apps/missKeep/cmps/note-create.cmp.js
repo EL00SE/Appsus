@@ -3,16 +3,17 @@ import noteListItem from './note-list-item.cmp.js'
 import noteImgInput from './note-img-input.cmp.js'
 import noteVidInput from './note-vid-input.cmp.js'
 import { noteService } from '../services/note-service.js'
+import { ytService } from '../services/note-youtube-service.js'
 import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
     template: `
-        <form ref="noteForm" @submit.prevent="save" class="note-create">
+        <form ref="noteForm" class="note-create">
             <input ref="noteTitleInput" type="text" v-model="noteToCreate.title" placeholder="Title" class="form-element"/>
-            <textarea ref="noteText" v-if="noteType === 'noteText'"  v-model="noteToCreate.info.txt" cols="30" rows="10" placeholder="Take a note..." class="form-element"></textarea>
+            <textarea ref="noteText" v-if="noteType === 'noteText'"  v-model="text" cols="30" rows="10" placeholder="Take a note..." class="form-element"></textarea>
             <ul ref="noteTodo" v-if="noteType === 'noteTodo'" >
                 <note-list-item ref="noteTodoItem" v-for="(item, index) in listItems" :key="index" :index="index" ></note-list-item>
-                <button @click="addListItem()">Add</button>
+                <button type="button" @click="addListItem()">Add</button>
             </ul>
             <note-img-input ref="noteImg" v-if="noteType === 'noteImg'" ></note-img-input>
             <note-vid-input ref="noteVid" v-if="noteType === 'noteVid'" ></note-vid-input>
@@ -23,7 +24,8 @@ export default {
         return {
             noteToCreate: noteService.getEmptyNote(),
             noteType: 'noteText',
-            listItems: [''],
+            text: '',
+            listItems: [],
             url: '',
         }
     },
@@ -38,6 +40,7 @@ export default {
     mounted() {},
     components: {
         noteService,
+        ytService,
         eventBus,
         noteActions,
         noteListItem,
@@ -46,10 +49,38 @@ export default {
     },
     methods: {
         save() {
-            if (!this.noteToCreate.info) return;
+            if (this.noteType === 'noteText') {
+                if (!this.text) {
+
+                    return
+                }
+                this.noteToCreate.info.txt = this.text
+            }
+            if (this.noteType === 'noteTodo') {
+                if (!this.listItems) {
+
+                    return
+                }
+                this.noteToCreate.info.items = this.listItems
+            }
+            if (this.noteType === 'noteImg') {
+                if (!this.url) {
+
+                    return
+                }
+                this.noteToCreate.info.url = this.url
+            }
+            if (this.noteType === 'noteVid') {
+                if (!this.url) {
+
+                    return
+                }
+                this.noteToCreate.info.url = ytService.createNewUrl(this.url)
+            }
             noteService.save(this.noteToCreate)
                 .then(note => {
-                    eventBus.emit('show-msg', { txt: 'Note created', type: "success" })
+                    eventBus.emit('noteCreate')
+
                 })
         },
         changeColor(color) {
