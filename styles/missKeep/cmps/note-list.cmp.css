@@ -20,6 +20,37 @@
     white-space: pre-wrap;
 }
 
+.pin-btn {
+    background: url(/lib/assets/images/icons/pin.svg);
+}
+
+.remove-btn {
+    background: url(/lib/assets/images/icons/trash.svg);
+}
+
+.send-as-mail-btn {
+    background: url(/lib/assets/images/icons/mail.svg);
+}
+
+.dupe-btn {
+    background: url(/lib/assets/images/icons/copy.svg);
+}
+
+.prev-btn:hover {
+    border: 2px solid black;
+}
+
+.prev-btn {
+    height: 40px;
+    width: 40px;
+    background-position: center;
+    background-size: 32px;
+    background-repeat: no-repeat;
+    border: 0px;
+    border-radius: 6px;
+    margin: 2px
+}
+
 .note-preview-container {
     position: relative;
     break-inside: avoid-column;
