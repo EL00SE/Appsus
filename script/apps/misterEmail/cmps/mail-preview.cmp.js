@@ -4,7 +4,7 @@ import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     props: ['mail'],
     template: `
-        <section>
+        <section class="mail-preview-container">
             <div class="mail-preview grid mail-container" @mouseenter="hover=true" @mouseleave="hover=false" @click.stop="toggleSummery" :class="btnRead.class">
             <div class="flex center align-center">
             <div @click.stop="starMail(mail, !mail.isStar)" class="star-mail"><i :class="setStar" @mouseenter="starHover=true" @mouseleave="starHover=false"></i></div>

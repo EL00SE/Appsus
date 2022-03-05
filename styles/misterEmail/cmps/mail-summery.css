@@ -24,25 +24,33 @@
     /* padding-inline-start: 5px; */
     text-transform: capitalize;
     font-size: 30px;
-    font-weight: 550;
-    padding: 20px;
+    /* font-weight: 550; */
+    /* padding: 20px; */
     /* border-bottom: 1px solid rgba(0, 0, 0, 0.164); */
     /* height: 50px; */
     /* width: 100%; */
+    grid-column: 1 / span 8;
+    margin: 15px;
 }
 
 .summery-container .sent-at{
     /* padding: 15px; */
     /* margin-left: 50vw; */
-    margin-top: 18px;
-    position: absolute;
-    right: 40px ;
+    /* margin-top: 18px; */
+    /* position: absolute; */
+    /* right: 40px ; */
+    grid-column: 9 / span 2;
+    /* margin: 10px auto; */
+    text-align:end ;
+    margin-inline-end: 10px;
 }
 
 .summery-head{
-    height: 75px;
-    position: relative;
+    /* height: 75px; */
+    /* position: relative; */
     border-bottom: 1px solid rgba(0, 0, 0, 0.164);
+    grid-template-rows: 1;
+    grid-template-columns: repeat(10,1fr);
 }
 
 .sum-from-name{
@@ -65,9 +73,9 @@
 }
 
 .sum-body{
-    width: 80vw;
+    /* width: 80vw; */
     margin: 20px;
-    min-width: 300px;
+    /* min-width: 270px; */
 }
 
 .mail-summery .read-more{
