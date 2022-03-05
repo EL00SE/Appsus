@@ -12,7 +12,10 @@
     columns: 238px 10;
 }
 
-.neat-pre {}
+.neat-pre {
+    font-family: roboto, Arial, sans-serif;
+    width: 100%;
+}
 
 .note-preview-container {
     position: relative;
