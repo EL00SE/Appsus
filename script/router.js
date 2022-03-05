@@ -23,7 +23,7 @@ const routes = [{
     component: noteEdit,
 },
 {
-    path: "/email",
+    path: "/email/:folder",
     component: emailApp,
 },
 {
@@ -35,8 +35,8 @@ const routes = [{
     //     component: bookApp
     // },
     // {
-    //     path: '/book/:bookId?',
-    //     component: bookDetails
+    //     path: '/email/:folder?',
+    //     component: emailApp
     // },
 ];
 export const router = VueRouter.createRouter({

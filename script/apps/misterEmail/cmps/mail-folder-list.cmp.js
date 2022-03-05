@@ -50,6 +50,7 @@ export default {
     methods: {
         showFolder(folder) {
             this.$emit('openFolder', folder)
+            this.$router.push(`/email/${folder}`)
             var data = this.$data
             console.log(data);
             for (var dataProp in data) {
