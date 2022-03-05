@@ -22,9 +22,6 @@ function remove(noteId) {
 
 function get(noteId) {
     return storageService.get(STORAGE_KEY, noteId)
-        .then(note => {
-            return _setNextPrevNoteId(note)
-        })
 }
 
 function save(note) {
@@ -32,14 +29,14 @@ function save(note) {
     else return storageService.post(STORAGE_KEY, note)
 }
 
-function _setNextPrevNoteId(note) {
-    return storageService.query(STORAGE_KEY).then(notes => {
-        const noteIdx = notes.findIndex(currNote => currNote.id === note.id)
-        note.nextNoteId = (note[noteIdx + 1]) ? note[noteIdx + 1].id : note[0].id
-        note.prevNoteId = (note[noteIdx - 1]) ? note[noteIdx - 1].id : note[note.length - 1].id
-        return note
-    })
-}
+// function _setNextPrevNoteId(note) {
+//     return storageService.query(STORAGE_KEY).then(notes => {
+//         const noteIdx = notes.findIndex(currNote => currNote.id === note.id)
+//         note.nextNoteId = (note[noteIdx + 1]) ? note[noteIdx + 1].id : note[0].id
+//         note.prevNoteId = (note[noteIdx - 1]) ? note[noteIdx - 1].id : note[note.length - 1].id
+//         return note
+//     })
+// }
 
 // Factory Method:
 function getEmptyNote(type = 'noteText', color = 'var(--color-def)', title = '', info = {}) {
