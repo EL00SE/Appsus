@@ -7,8 +7,9 @@ export default {
     template: `
         <section class="email-app flex" style="font-family:sansRegular">
             <!-- <h1>hello</h1> -->
-            <mail-folder-list :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" v-if="mails"/>
+            <mail-folder-list :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" />
             <mail-list :mails="mailsForDisplay"/>
+            <!-- <router-view></router-view> -->
         </section>
     `,
     data() {
@@ -57,7 +58,9 @@ export default {
                 .then(() => mailService.query()
                     .then(res => {
                         eventBus.emit('show-msg', 'Moved to trash')
-
+                        debugger
+                        if (!mail.isArchived && !mail.isSent && !mail.isRead)
+                            this.unreadAmount--
                         return this.mails = res
                     }))
         },
@@ -65,8 +68,8 @@ export default {
             mailService.markRead(mail, isRead)
                 .then(() => mailService.query()
                     .then(res => {
-                        if (isRead) this.unreadAmount--
-                        else this.unreadAmount++
+                        if (isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) this.unreadAmount--
+                        else if (!isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) this.unreadAmount++
                         // if (isRead) eventBus.emit('show-msg', 'Marked as read')
                         // else eventBus.emit('show-msg', 'Marked as unread')
 
@@ -78,8 +81,18 @@ export default {
             mailService.archiveMail(mail, isArchived)
                 .then(() => mailService.query()
                     .then(res => {
-                        if (isArchived) eventBus.emit('show-msg', 'Moved to archive')
-                        else eventBus.emit('show-msg', 'Moved to inbox')
+                        if (isArchived && !mail.isRead && !mail.isTrash && !mail.isSent) {
+                            this.unreadAmount--
+                        }
+                        if (!isArchived && !mail.isRead && !mail.isTrash && !mail.isSent) {
+                            this.unreadAmount++
+                        }
+                        if (isArchived)
+                            eventBus.emit('show-msg', 'Moved to archive')
+                        else {
+                            eventBus.emit('show-msg', 'Moved to inbox')
+                            // this.unreadAmount++
+                        }
 
                         return this.mails = res
                     }))

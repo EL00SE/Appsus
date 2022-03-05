@@ -7,7 +7,11 @@ export default {
    
         <section class="mail-summery">
         <div class="summery-container">
-        <p class="sum-subject">{{ mail.subject }}</p>
+        <div class="flex align-center summery-head">
+            <p class="sum-subject">{{ mail.subject }}</p>
+            <p class="sent-at">{{ formatDate }}</p>
+        </div>
+        <!-- <button @click="openFull">full</button> -->
         <div class="flex align-center">
         <p class="sum-from-name">{{ mail.fromName }}</p>
         <p class="sum-from-address">&lt{{ mail.fromEmail }}&gt</p>
@@ -34,6 +38,8 @@ export default {
 
     },
     computed: {
-
+        formatDate() {
+            return moment(this.mail.sentAt).format('DD/MM/YYYY HH:MM')
+        },
     }
 }
