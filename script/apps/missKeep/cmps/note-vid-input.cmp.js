@@ -3,7 +3,7 @@ import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     props: ['color'],
     template: `
-        <section class="note-vid-input">
+        <section :style="{backgroundColor: color}" class="note-vid-input">
             <input :style="{backgroundColor: color}" class="form-input" v-model="url" type="text" placeholder="Enter Youtube video url" @input="updateUrl()">
         </section>
     `,

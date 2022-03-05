@@ -3,7 +3,7 @@ import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     props: ['color'],
     template: `
-        <section class="note-img-input">
+        <section :style="{backgroundColor: color}" class="note-img-input">
             <input :style="{backgroundColor: color}" class="form-input" v-model="url" type="text" placeholder="Enter image url" @input="updateUrl()">
         </section>
     `,

@@ -14,7 +14,8 @@ export default {
             <button title="Purple" type="button" class="btn-purple" @click="changeColor('var(--color-purple)')"></button>
             <button title="Pink" type="button" class="btn-pink" @click="changeColor('var(--color-pink)')"></button>
             <button title="Brown" type="button" class="btn-brown" @click="changeColor('var(--color-brown)')"></button>
-            <button title="Gray" type="button" class="btn-gray" @click="changeColor('var(--color-gray)')"></button>
+            <button title="White" type="button" class="btn-gray" @click="changeColor('var(--color-gray)')"></button>
+            <button title="Close color pallete" type="button" class="color-pallete-close-btn" @click="closeColorPallete()"></button>
         </section>
     `,
     data() {
@@ -25,6 +26,7 @@ export default {
     created() {
 
     },
+    mounted() {},
     components: {
 
     },
@@ -32,7 +34,11 @@ export default {
         changeColor(color) {
             eventBus.emit('colorChange', color)
             eventBus.emit('close')
+        },
+        closeColorPallete() {
+            eventBus.emit('closePallete')
         }
+
     },
     computed: {
 

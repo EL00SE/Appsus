@@ -11,13 +11,13 @@ export default {
     template: `
         <form ref="noteForm" class="note-create">
             <input title="Add note title" ref="noteTitleInput" type="text" v-model="noteToCreate.title" placeholder="Title" class="form-element"/>
-            <note-text-input  v-if="noteType === 'noteText'" ref="noteText" class="form-element"></note-text-input> 
+            <note-text-input :color="color" v-if="noteType === 'noteText'" ref="noteText" class="form-element"></note-text-input> 
             <div class="todo-list" ref="noteTodo" v-if="noteType === 'noteTodo'" >
-                <note-list-item ref="noteTodoItem" v-for="(item, index) in listItems" :key="index" :index="index" :color="noteToCreate.color"></note-list-item>
+                <note-list-item ref="noteTodoItem" v-for="(item, index) in listItems" :key="index" :index="index" :color="color"></note-list-item>
             </div>
             <button title="Add list item" v-if="noteType === 'noteTodo'" type="button" class="add-btn" @click="addListItem()"></button>
-            <note-img-input :color="noteToCreate.color" title="Add note content (required)" ref="noteImg" v-if="noteType === 'noteImg'" ></note-img-input>
-            <note-vid-input :color="noteToCreate.color" title="Add note content (required)" ref="noteVid" v-if="noteType === 'noteVid'" ></note-vid-input>
+            <note-img-input :color="color" title="Add note content (required)" ref="noteImg" v-if="noteType === 'noteImg'" ></note-img-input>
+            <note-vid-input :color="color" title="Add note content (required)" ref="noteVid" v-if="noteType === 'noteVid'" ></note-vid-input>
             <note-actions></note-actions>
         </form>
     `,
@@ -28,6 +28,7 @@ export default {
             text: '',
             listItems: [],
             url: '',
+            color: 'var(--color-def)'
         }
     },
     created() {
@@ -52,54 +53,16 @@ export default {
         noteVidInput
     },
     methods: {
-        save() {
-            if (this.noteType === 'noteText') {
-                if (!this.text) {
-
-                    return
-                }
-                this.noteToCreate.info.txt = this.text
-            }
-            if (this.noteType === 'noteTodo') {
-                if (!this.listItems) {
-
-                    return
-                }
-                this.noteToCreate.info.items = []
-                this.listItems.forEach(item => {
-                    if (item !== '') this.noteToCreate.info.items.push(item)
-                });
-            }
-            if (this.noteType === 'noteImg') {
-                if (!this.url) {
-
-                    return
-                }
-                this.noteToCreate.info.url = this.url
-            }
-            if (this.noteType === 'noteVid') {
-                if (!this.url) {
-
-                    return
-                }
-                this.noteToCreate.info.url = ytService.createNewUrl(this.url)
-            }
-            noteService.save(this.noteToCreate)
-                .then(note => {
-                    eventBus.emit('noteCreate')
-
-                })
-        },
         changeColor(color) {
+            this.color = color
             this.noteToCreate.color = color
             this.$refs.noteForm.style.backgroundColor = color
             this.$refs.noteTitleInput.style.backgroundColor = color
         },
         changeType(type) {
-            this.noteToCreate.type = type
+            if (this.noteType === type) return
             this.noteType = type
             this.ResetData()
-            this.changeColor()
         },
         ResetData() {
             this.noteToCreate = noteService.getEmptyNote()
@@ -126,8 +89,45 @@ export default {
         editVidUrl(url) {
             this.url = url
         },
+        save() {
+            this.noteToCreate.type = this.noteType
+            if (this.noteToCreate.type === 'noteText') {
+                if (!this.text) {
 
+                    return
+                }
+                this.noteToCreate.info.txt = this.text
+            }
+            if (this.noteToCreate.type === 'noteTodo') {
+                if (!this.listItems) {
 
+                    return
+                }
+                this.noteToCreate.info.items = []
+                this.listItems.forEach(item => {
+                    if (item !== '') this.noteToCreate.info.items.push(item)
+                });
+            }
+            if (this.noteToCreate.type === 'noteImg') {
+                if (!this.url) {
+
+                    return
+                }
+                this.noteToCreate.info.url = this.url
+            }
+            if (this.noteToCreate.type === 'noteVid') {
+                if (!this.url) {
+
+                    return
+                }
+                this.noteToCreate.info.url = ytService.createNewUrl(this.url)
+            }
+            noteService.save(this.noteToCreate)
+                .then(note => {
+                    eventBus.emit('noteCreate')
+
+                })
+        },
     },
     mounted() {
         this.$refs.noteTitleInput.focus()
