@@ -12,7 +12,11 @@ export default {
                 >
                    <note-preview :note="note" ></note-preview>
                    <div class="actions">
-                       <button @click="remove(note.id)">X</button>
+                       <button type="button">pin</button>
+                       <button type="button">dupe</button>
+                       <button type="button">mail</button>
+                       <button type="button">bgc</button>
+                       <button type="button" @click="remove(note.id)">X</button>
                    </div>
                 </div>
         </section>
