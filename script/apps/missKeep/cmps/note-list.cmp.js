@@ -9,11 +9,11 @@ export default {
                 <div ref="noteCard" :style="{backgroundColor:note.color}" title="Click to edit note" v-for="(note, index) in notes" :key="note.id" class="note-preview-container">
                    <note-preview :note="note" @click="editNote(note.id)" ></note-preview>
                    <div class="actions">
-                       <button type="button" @click="openColorPallete($event)">bgc</button>
-                       <button type="button">pin</button>
-                       <button type="button">dupe</button>
-                       <button type="button">mail</button>
-                       <button type="button" @click="remove(note.id)">X</button>
+                       <button title="Change note color" type="button" class="color-btn prev-btn" @click="openColorPallete($event)"></button>
+                       <button title="Pin to top" type="button" class="prev-btn pin-btn"></button>
+                       <button title="Duplicate" type="button" class="prev-btn dupe-btn"></button>
+                       <button title="Send as mail" type="button" class="prev-btn send-as-mail-btn"></button>
+                       <button title="Delete" type="button" class="prev-btn remove-btn" @click="remove(note.id)"></button>
                     <color-pallete-prev :note="note" type="button" v-if="openPallete" :style="{top: distanceY+'px',left:distanceX+'px'}"></color-pallete-prev>
                     </div>
                 </div>
