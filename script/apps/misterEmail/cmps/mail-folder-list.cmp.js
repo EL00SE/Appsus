@@ -4,7 +4,7 @@ export default {
     props: ['unreadAmount'],
     template: `
         <section class="mail-folder-list">
-            <button @click="compose" class="flex align-center btn-compose"><img src="/lib/assets/images/icons/compose.png" alt=""><span>COMPOSE</span></button>   
+            <button @click="compose" class="flex align-center btn-compose"><img src="../lib/assets/images/icons/compose.png" alt=""><span>COMPOSE</span></button>   
         <div class="folder-list-container"> 
         <p @click="showFolder('all'); onAll = true" :class="allActive"><i class="fa-solid fa-folder"></i><span class="mail-folder-name">All</span></p>
         <p @mouseenter="onInboxHover=true" @mouseleave="onInboxHover=false"  @click="showFolder('inbox'); onInbox = true" :class="inboxActive">
