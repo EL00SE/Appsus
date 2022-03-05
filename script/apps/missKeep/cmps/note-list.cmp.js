@@ -40,7 +40,7 @@ export default {
 
     },
     methods: {
-        changeNoteColor(color) {
+        changeNoteColor() {
             Promise.resolve().then(() => {
                 this.updateList()
                 this.openPallete = false
@@ -60,6 +60,10 @@ export default {
         },
         closeColorPallete() {
             this.openPallete = false
+        },
+        remove(id) {
+            noteService.remove(id)
+            Promise.resolve().then(() => this.updateList())
         },
     },
     computed: {
