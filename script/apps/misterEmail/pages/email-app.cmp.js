@@ -3,16 +3,18 @@ import mailList from '../cmps/mail-list.cmp.js'
 import { eventBus } from '../../../services/eventBus-service.js'
 import mailFolderList from '../cmps/mail-folder-list.cmp.js'
 import mailCompose from '../cmps/mail-compose.cmp.js'
+import mailFilter from '../cmps/mail-filter.cmp.js'
 
 export default {
     template: `
         <section class="email-app flex" style="font-family:sansRegular">
             <!-- <h1>hello</h1> -->
+            <mail-filter @filtered="setFilter"></mail-filter>
             <mail-folder-list @compose="isComposing=!isComposing" :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" />
             <mail-list :mails="mailsForDisplay"/>
             <transition name="fade" enter-active-class="animate__animated animate__fadeInUp"
     leave-active-class="animate__animated animate__fadeOutDown">
-            <mail-compose @composed="updateMails" v-if="isComposing"></mail-compose>
+            <mail-compose @closeCompose="isComposing = false" @composed="updateMails" v-if="isComposing"></mail-compose>
         </transition>
             <!-- <router-view></router-view> -->
         </section>
@@ -22,7 +24,8 @@ export default {
             mails: null,
             filterBy: 'inbox',
             unreadAmount: null,
-            isComposing: false
+            isComposing: false,
+            searchTerm: '',
         }
     },
     created() {
@@ -57,7 +60,8 @@ export default {
     components: {
         mailList,
         mailFolderList,
-        mailCompose
+        mailCompose,
+        mailFilter,
     },
     methods: {
         trashMail(mail) {
@@ -135,19 +139,34 @@ export default {
 
                 })
         },
+        setFilter(searchTerm) {
+            this.searchTerm = searchTerm.searchTerm
+        },
     },
     computed: {
         mailsForDisplay() {
-            if (!this.filterBy) return this.mails
-            else if (this.filterBy === 'star') return this.mails.filter(mail => mail.isStar && !mail.isTrash && !mail.isArchived)
-            else if (this.filterBy === 'inbox') return this.mails.filter(mail => !mail.isSent && !mail.isArchived && !mail.isTrash)
-            else if (this.filterBy === 'sent') return this.mails.filter(mail => mail.isSent && !mail.isTrash && !mail.isArchived)
-            else if (this.filterBy === 'all') return this.mails
-            else if (this.filterBy === 'archive') return this.mails.filter(mail => mail.isArchived && !mail.isTrash)
-            else if (this.filterBy === 'trash') return this.mails.filter(mail => mail.isTrash)
-            else if (this.filterBy === 'read') return this.mails.filter(mail => mail.isRead && !mail.isArchived && !mail.isTrash)
-            else if (this.filterBy === 'unread') return this.mails.filter(mail => !mail.isRead && !mail.isArchived && !mail.isTrash)
+            var filtered
+            if (!this.filterBy) filtered = this.mails
+            else if (this.filterBy === 'star') filtered = this.mails.filter(mail => mail.isStar && !mail.isTrash && !mail.isArchived)
+            else if (this.filterBy === 'inbox') filtered = this.mails.filter(mail => !mail.isSent && !mail.isArchived && !mail.isTrash)
+            else if (this.filterBy === 'sent') filtered = this.mails.filter(mail => mail.isSent && !mail.isTrash && !mail.isArchived)
+            else if (this.filterBy === 'all') filtered = this.mails
+            else if (this.filterBy === 'archive') filtered = this.mails.filter(mail => mail.isArchived && !mail.isTrash)
+            else if (this.filterBy === 'trash') filtered = this.mails.filter(mail => mail.isTrash)
+            else if (this.filterBy === 'read') filtered = this.mails.filter(mail => mail.isRead && !mail.isArchived && !mail.isTrash)
+            else if (this.filterBy === 'unread') filtered = this.mails.filter(mail => !mail.isRead && !mail.isArchived && !mail.isTrash)
+
+            const regex = new RegExp(this.searchTerm, 'i')
+            return filtered.filter(mail => (
+                regex.test(mail.subject) ||
+                regex.test(mail.body) ||
+                regex.test(mail.to) ||
+                regex.test(mail.toName) ||
+                regex.test(mail.fromName) ||
+                regex.test(mail.fromEmail)
+            ))
         },
+
         unreadAmount() {
             mailService.query()
                 .then(mails => {
@@ -158,7 +177,7 @@ export default {
                         })
                 })
 
-        }
+        },
 
     },
     unmounted() {

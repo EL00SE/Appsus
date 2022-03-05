@@ -7,11 +7,11 @@ export default {
         <section v-if="isComposing" class="mail-compose">
             <div class="compose-inner-container">
         <div class="compose-header flex column align-center">
-        <button @click="isComposing = false" class="btn-close-compose">X</button>
+        <button @click="closeCompose" class="btn-close-compose">X</button>
         </div>
         <div class="mail-compose-container">
             <form v-on:submit.prevent="sendMail">
-    <input required v-model="mailTo" class="compose-to" type="text" placeholder="To:">
+    <input required v-model="mailTo" class="compose-to" type="email" placeholder="To:">
     <input required v-model="mailSubject" class="compose-subject" type="text" placeholder="Subject:">
     <textarea required v-model="mailBody" class="compose-body"  style="resize:none" placeholder="Body:">
        </textarea>
@@ -57,6 +57,10 @@ export default {
                 this.$emit('composed')
             })
         },
+        closeCompose() {
+            this.isComposing = false
+            this.$emit('closeCompose')
+        }
 
     },
     computed: {

@@ -32,8 +32,12 @@
   
 }
 
-.mail-actions div{
-    /* width: 10vw; */
+.mail-list{
+    width: calc(100vw - 200px);
+}
+
+.mail-actions, .mail-date{
+    min-width: min-content;
       
 }
 

@@ -7,10 +7,9 @@ export default {
         'summeryOpen'
     ],
     template: `
-   
         <section class="mail-summery">
         <div class="summery-container">
-        <div class="flex align-center summery-head">
+        <div class="grid summery-head">
             <p class="sum-subject">{{ mail.subject }}</p>
             <p class="sent-at">{{ formatDate }}</p>
         </div>
