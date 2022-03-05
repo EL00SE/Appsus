@@ -4,7 +4,8 @@ export default {
     props: ['unreadAmount'],
     template: `
         <section class="mail-folder-list">
-        <div class="folder-list-container">    
+            <button @click="compose" class="flex align-center btn-compose"><img src="/lib/assets/images/icons/compose.png" alt=""><span>COMPOSE</span></button>   
+        <div class="folder-list-container"> 
         <p @click="showFolder('all'); onAll = true" :class="allActive"><i class="fa-solid fa-folder"></i><span class="mail-folder-name">All</span></p>
         <p @mouseenter="onInboxHover=true" @mouseleave="onInboxHover=false"  @click="showFolder('inbox'); onInbox = true" :class="inboxActive">
             <i class="fa-solid fa-inbox mail-unread-icon" :class="inboxActiveIcon"></i>
@@ -30,7 +31,8 @@ export default {
             onTrash: false,
             onRead: false,
             onUnread: false,
-            onInboxHover: false
+            onInboxHover: false,
+            isCompose: false
             // unRead: this.unreadAmount
         }
     },
@@ -65,6 +67,11 @@ export default {
             }
             this[folder] = true
             return this[folder]
+        },
+        compose() {
+            this.isCompose = !this.isCompose
+            this.$emit('compose')
+            console.log(this.isCompose);
         }
     },
     computed: {
