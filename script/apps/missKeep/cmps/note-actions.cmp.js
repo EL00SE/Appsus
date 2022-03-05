@@ -9,7 +9,7 @@ export default {
             <button title="Add image" type="button" class="actions-btn note-to-img-btn" @click="changeType('noteImg')"></button>
             <button title="Add YouTube video" type="button" class="actions-btn note-to-vid-btn" @click="changeType('noteVid')"></button>
             <button title="Save note" type="button" class="actions-btn save-btn" @click="save()"></button>
-            <color-pallete type="button" ref="ElColorPallete" v-if="openPallete" :style="{top: distanceY+'px',left:distanceX+'px'}"></color-pallete>
+            <color-pallete :father="create" type="button" ref="ElColorPallete" v-if="openPallete" :style="{top: distanceY+'px',left:distanceX+'px'}"></color-pallete>
         </section>
     `,
     data() {
@@ -22,7 +22,6 @@ export default {
     },
     created() {
         this.changeColorUnsub = eventBus.on('close', this.closeColorPallete)
-        this.closePalleteUnsub = eventBus.on('closePallete', this.closeColorPallete)
     },
     components: {
         colorPallete,

@@ -1,8 +1,10 @@
+import { noteService } from '../services/note-service.js'
 import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
+    props: ['note'],
     template: `
-        <section class="color-pallete">
+        <section class="color-pallete-prev">
             <button title="Default" type="button" class="btn-def" @click="changeColor('var(--color-def)')"></button>
             <button title="Red" type="button" class="btn-red" @click="changeColor('var(--color-red)')"></button>
             <button title="Orange" type="button" class="btn-orange" @click="changeColor('var(--color-orange)')"></button>
@@ -19,17 +21,24 @@ export default {
         </section>
     `,
     data() {
-        return {}
+        return {
+            noteId: this.note.id
+        }
     },
     created() {},
     mounted() {},
     components: {
-        eventBus
+        eventBus,
+        noteService
     },
     methods: {
         changeColor(color) {
-            eventBus.emit('colorChange', color)
-            eventBus.emit('close')
+            noteService.get(this.noteId)
+                .then(note => {
+                    note.color = color
+                    noteService.save(note)
+                    eventBus.emit('changeColorPrev', color)
+                })
         },
         closeColorPallete() {
             eventBus.emit('close')
