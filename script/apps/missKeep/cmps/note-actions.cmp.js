@@ -3,12 +3,12 @@ import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     template: `
         <section class="note-actions form-element flex">
-            <button type="button" class="actions-btn color-btn" @click="openColorPallete($event)"></button>
-            <button type="button" class="actions-btn note-to-text-btn" @click="changeType('noteText')"></button>
-            <button type="button" class="actions-btn note-to-todo-btn" @click="changeType('noteTodo')"></button>
-            <button type="button" class="actions-btn note-to-img-btn" @click="changeType('noteImg')"></button>
-            <button type="button" class="actions-btn note-to-vid-btn" @click="changeType('noteVid')"></button>
-            <button type="button" class="actions-btn save-btn" @click="save()"></button>
+            <button title="Change note color" type="button" class="actions-btn color-btn" @click="openColorPallete($event)"></button>
+            <button title="Make simple note" type="button" class="actions-btn note-to-text-btn" @click="changeType('noteText')"></button>
+            <button title="Make list" type="button" class="actions-btn note-to-todo-btn" @click="changeType('noteTodo')"></button>
+            <button title="Add image" type="button" class="actions-btn note-to-img-btn" @click="changeType('noteImg')"></button>
+            <button title="Add YouTube video" type="button" class="actions-btn note-to-vid-btn" @click="changeType('noteVid')"></button>
+            <button title="Save note" type="button" class="actions-btn save-btn" @click="save()"></button>
             <color-pallete type="button" ref="ElColorPallete" v-if="openPallete" :style="{top: distanceY+'px',left:distanceX+'px'}"></color-pallete>
         </section>
     `,
