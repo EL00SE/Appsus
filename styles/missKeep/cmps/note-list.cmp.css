@@ -1,28 +1,30 @@
 .main {
-    width: 60vw;
-    height: 70vh;
-    margin: 0 auto;
+    position: relative;
+    align-self: center;
+    margin-left: 10vw;
+    width: 90vw;
+    min-height: 65vh;
+    padding: 20px;
 }
 
 .note-list {
-    align-self: center;
+    position: absolute;
+    width: 100%;
     display: inline-block;
     height: 100%;
-    margin: 0 auto;
-    columns: 238px 10;
+    columns: 350px 4;
 }
 
 .neat-pre {
     font-family: roboto, Arial, sans-serif;
-    width: 100%;
+    white-space: pre-wrap;
 }
 
 .note-preview-container {
     position: relative;
     break-inside: avoid-column;
     transition: all 0.2s ease-in-out;
-    padding: 10px;
-    margin: 0px 0px 10px 0px;
+    margin: 0;
     color: black;
     display: flex;
     flex-wrap: wrap;
@@ -32,20 +34,21 @@
     border-width: 1px;
     border-radius: 10px;
     text-align: left;
-    width: 238px;
     letter-spacing: .01428571em;
     font-family: roboto, Arial, sans-serif;
     font-size: .875rem;
     font-weight: 400;
     line-height: 1.25rem;
+    width: 350px;
     height: fit-content;
-    min-height: 150px;
+    min-height: 120px;
+    margin-bottom: 10px;
     padding: 12px 16px;
-    /* margin-top: 00px; */
 }
 
 .note-content>* {
     margin-top: 10px;
+    max-width: 100%;
 }
 
 .note-content {
@@ -81,4 +84,52 @@
 .note-preview-container .actions a {
     text-decoration: none;
     color: black
+}
+
+.def {
+    background-color: var(--color-def);
+}
+
+.red {
+    background-color: var(--color-red);
+}
+
+.blue {
+    background-color: var(--color-blue);
+}
+
+.orange {
+    background-color: var(--color-orange);
+}
+
+.darkblue {
+    background-color: var(--color-darkblue);
+}
+
+.lightblue {
+    background-color: var(--color-lightblue);
+}
+
+.brown {
+    background-color: var(--color-brown);
+}
+
+.purple {
+    background-color: var(--color-purple);
+}
+
+.pink {
+    background-color: var(--color-pink);
+}
+
+.green {
+    background-color: var(--color-green);
+}
+
+.yellow {
+    background-color: var(--color-yellow);
+}
+
+.gray {
+    background-color: var(--color-gray);
 }
