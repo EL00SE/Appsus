@@ -7,13 +7,14 @@ export default {
         <section>
             <div class="mail-preview grid mail-container" @mouseenter="hover=true" @mouseleave="hover=false" @click.stop="toggleSummery" :class="btnRead.class">
             <div class="flex center align-center">
-            <div @click.stop="starMail(mail, !mail.isStar)" ><i :class="setStar" @mouseenter="starHover=true" @mouseleave="starHover=false"></i></div>
+            <div @click.stop="starMail(mail, !mail.isStar)" class="star-mail"><i :class="setStar" @mouseenter="starHover=true" @mouseleave="starHover=false"></i></div>
             </div>
             <p class="mail-from">{{ formatName }}</p>
             <p class="mail-subject">{{ mail.subject }}</p>
             <p class="mail-body">{{ mail.body }}</p>
             <p v-if="!hover" class="mail-date">{{ formatDate }}</p>
             <div v-if="hover" class="mail-actions flex center align-center">
+            <div @click.stop.prevent="openFull" class="mail-expand"><i class="fa-solid fa-expand"></i></div>
             <div @click.stop.prevent="archiveMail(mail, !mail.isArchived)" class="mail-archive"><i class="fa-solid fa-box-archive "></i></div>
             <div @click.stop="markRead(mail, !mail.isRead)" class="mail-read"><i :class="btnRead.icon" ></i></div>
             <div @click.stop="trashMail(mail, mail.isTrash)" class="mail-trash"><i class="fa-solid fa-trash "></i></div>
@@ -66,7 +67,11 @@ export default {
             this.markRead(this.mail, this.mail.isRead)
             // this.summeryOpen = !this.summeryOpen
             // this.$emit('summeryOpen', this.summeryOpen)
-        }
+        },
+        openFull() {
+            // console.log(this.mail.id);
+            this.$router.push(`/email/${this.mail.id}`)
+        },
 
     },
     computed: {

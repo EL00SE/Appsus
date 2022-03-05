@@ -48,10 +48,11 @@ function save(mail) {
 }
 
 function _setNextPrevMailId(mail) {
+    console.log(mail);
     return storageService.query(STORAGE_KEY).then(mails => {
-        const noteIdx = mails.findIndex(currNote => currNote.id === mail.id)
-        mail.nextNoteId = (mail[noteIdx + 1]) ? mail[noteIdx + 1].id : mail[0].id
-        mail.prevNoteId = (mail[noteIdx - 1]) ? mail[noteIdx - 1].id : mail[mail.length - 1].id
+        const mailIdx = mails.findIndex(currMail => currMail.id === mail.id)
+        mail.nextNoteId = (mails[mailIdx + 1]) ? mails[mailIdx + 1].id : mails[0].id
+        mail.prevNoteId = (mails[mailIdx - 1]) ? mails[mailIdx - 1].id : mails[mails.length - 1].id
         return mail
     })
 }
@@ -85,10 +86,6 @@ function getLoggedInUser() {
 }
 
 function _createMails() {
-    // const loggedinUser = {
-    //     email: 'amitmiz@gmail.com',
-    //     name: 'Amit Miz'
-    // }
     let mails = utilService.loadFromStorage(STORAGE_KEY)
     if (!mails || !mails.length) {
         mails = []
@@ -96,44 +93,6 @@ function _createMails() {
             mails.push(_createMail())
         }
         _prepareData(mails)
-        // mails[1].isStar = true
-        // mails[2].isRead = true
-        // mails[2].isStar = true
-        // mails[3].isRead = true
-        // mails[5].isRead = true
-        // mails[7].isRead = true
-        // mails[7].isStar = true
-        // mails[14].isTrash = true
-        // mails[15].isTrash = true
-        // mails[8].isArchived = true
-        // mails[9].isArchived = true
-        // mails[10].fromEmail = getLoggedInUser().email
-        // mails[10].fromName = getLoggedInUser().name
-        // mails[10].to = 'puki205@gmail.com'
-        // mails[10].toName = 'puki atrr'
-        // mails[10].isSent = true
-        // mails[10].isRead = true
-
-        // mails[11].fromEmail = getLoggedInUser().email
-        // mails[11].fromName = getLoggedInUser().name
-        // mails[11].to = 'popo385@gmail.com'
-        // mails[11].toName = 'popo div'
-        // mails[11].isSent = true
-        // mails[11].isRead = true
-
-        // mails[12].fromEmail = getLoggedInUser().email
-        // mails[12].fromName = getLoggedInUser().name
-        // mails[12].to = 'muki391@gmail.com'
-        // mails[12].toName = 'muki bind'
-        // mails[12].isSent = true
-        // mails[12].isRead = true
-
-        // mails[13].fromEmail = getLoggedInUser().email
-        // mails[13].fromName = getLoggedInUser().name
-        // mails[13].to = 'luki012@gmail.com'
-        // mails[13].toName = 'luki dom'
-        // mails[13].isSent = true
-        // mails[13].isRead = true
 
         utilService.saveToStorage(STORAGE_KEY, mails)
     }
@@ -192,7 +151,7 @@ function _getSenderIdx() {
 function trashMail(mail) {
     return new Promise((resolve) => {
         mail.isTrash = true
-        mail.isArchived = true
+        // mail.isArchived = false
         mail.removedAt = Date.now()
         save(mail)
         resolve(mail)
@@ -239,6 +198,7 @@ function _prepareData(mails) {
     mails[15].isTrash = true
     mails[8].isArchived = true
     mails[9].isArchived = true
+
     mails[10].fromEmail = getLoggedInUser().email
     mails[10].fromName = getLoggedInUser().name
     mails[10].to = 'puki205@gmail.com'
@@ -273,7 +233,7 @@ function getUnreadAmount(mails) {
 
     mails.forEach(mail => {
         // console.log(mail);
-        if (!mail.isRead && !mail.isArchived && !mail.isTrash) count++
+        if (!mail.isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) count++
 
         // console.log(Promise.resolve(count))
     })
