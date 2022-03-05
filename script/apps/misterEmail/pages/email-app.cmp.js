@@ -2,13 +2,18 @@ import { mailService } from '../services/mail-service.js'
 import mailList from '../cmps/mail-list.cmp.js'
 import { eventBus } from '../../../services/eventBus-service.js'
 import mailFolderList from '../cmps/mail-folder-list.cmp.js'
+import mailCompose from '../cmps/mail-compose.cmp.js'
 
 export default {
     template: `
         <section class="email-app flex" style="font-family:sansRegular">
             <!-- <h1>hello</h1> -->
-            <mail-folder-list :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" />
+            <mail-folder-list @compose="isComposing=!isComposing" :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" />
             <mail-list :mails="mailsForDisplay"/>
+            <transition name="fade" enter-active-class="animate__animated animate__fadeInUp"
+    leave-active-class="animate__animated animate__fadeOutDown">
+            <mail-compose @composed="updateMails" v-if="isComposing"></mail-compose>
+        </transition>
             <!-- <router-view></router-view> -->
         </section>
     `,
@@ -17,6 +22,7 @@ export default {
             mails: null,
             filterBy: 'inbox',
             unreadAmount: null,
+            isComposing: false
         }
     },
     created() {
@@ -50,7 +56,8 @@ export default {
     },
     components: {
         mailList,
-        mailFolderList
+        mailFolderList,
+        mailCompose
     },
     methods: {
         trashMail(mail) {
@@ -118,7 +125,16 @@ export default {
         setMailsForDisply(type) {
             console.log(type);
             this.filterBy = type
-        }
+        },
+        updateMails() {
+            mailService.query()
+                .then(mails => {
+                    this.mails = mails
+                    this.isComposing = false
+                    eventBus.emit('show-msg', 'Mail sent')
+
+                })
+        },
     },
     computed: {
         mailsForDisplay() {

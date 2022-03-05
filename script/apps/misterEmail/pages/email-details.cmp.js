@@ -7,28 +7,16 @@ import mailSummery from '../cmps/mail-summery.cmp.js'
 
 
 export default {
+    props: ['summeryOpen'],
     template: `
-        <section v-if="mail" style="font-family:sansRegular">
-         <!-- <mail-folder-list></mail-folder-list> -->
-         <!-- <mail-summery :mail="this.mail"></mail-summery> -->
-         <div class="mail-details-container">
-         <div class="flex align-center summery-head mail-head">
-            <p class="sum-subject">{{ mail.subject }}</p>
-            <p class="sent-at">{{ formatDate }}</p>
-        </div>
-        <div class="flex align-center">
-        <p class="sum-from-name">{{ mail.fromName }}</p>
-        <p class="sum-from-address">&lt{{ mail.fromEmail }}&gt</p>
-        </div>
-        <p class="sum-to">to: {{mail.to}}</p>
-        <!-- <long-text class="sum-body" :txt="mail.body"></long-text> -->
-        <p>{{ mail.body }}</p>
-        </div>
+        <section class="mail-details">
+            <mail-summery :summeryOpen="summeryOpen" :mail="mail"></mail-summery>
         </section>
     `,
     data() {
         return {
             mail: null,
+            // summeryOpen: false
         }
     },
     created() {

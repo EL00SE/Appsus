@@ -2,7 +2,7 @@
     width: 200px;
 }
 
-.folder-list-container p{
+.folder-list-container p, .btn-compose{
     margin: 0;
     height: 35px;
     /* font-size: 100px; */
@@ -23,7 +23,7 @@
 
 }
 
-.folder-list-container p:not(:nth-child(2)):hover{
+.folder-list-container p:not(:nth-child(2)):hover, .btn-compose:hover{
     background-color: var(--clr-mail-read-mail) ;
     /* transition: background-color .2s ease-in-out; */
 }
@@ -33,7 +33,7 @@
     color: var(--clr-mail-folder-active-font);
     /* transition: background-color .2s ease-in-out; */
 }
-.folder-list-container p:hover{
+.folder-list-container p:hover, .btn-compose:hover{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);    
 
     /* transition: background-color .2s ease-in-out; */
@@ -81,4 +81,25 @@
 
 .mail-unread-amount{
     margin-inline-start: 90px;
+}
+
+.btn-compose{
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    margin-bottom: 5px;
+    /* padding: 5px;
+    border-radius: 0px 50px 50px 0px;
+    font-family: sansLight;
+    font-size: 15px; */
+}
+
+.btn-compose img{
+    width: 20px;
+    height: 20px;
+    margin-inline-end: 10px;
+}
+
+
+.btn-compose:hover{
+    font-family: sansRegular;
 }

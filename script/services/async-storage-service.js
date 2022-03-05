@@ -1,3 +1,5 @@
+import { utilService } from './util-service.js'
+
 export const storageService = {
     query,
     get,
@@ -18,7 +20,7 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-    newEntity.id = _makeId()
+    newEntity.id = utilService.makeId()
     return query(entityType)
         .then(entities => {
             entities.unshift(newEntity);
