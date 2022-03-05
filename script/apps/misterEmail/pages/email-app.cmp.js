@@ -129,6 +129,7 @@ export default {
         setMailsForDisply(type) {
             console.log(type);
             this.filterBy = type
+
         },
         updateMails() {
             mailService.query()
@@ -142,6 +143,9 @@ export default {
         setFilter(searchTerm) {
             this.searchTerm = searchTerm.searchTerm
         },
+        loadMail() {
+            this.setMailsForDisply(this.folder)
+        }
     },
     computed: {
         mailsForDisplay() {
@@ -186,6 +190,14 @@ export default {
         this.unsubscribe3();
     },
     watch: {
+        folder: {
+            handler() {
+                // console.log(bookId);
+                this.loadMail()
+                this.filterBy = this.folder
+            },
 
+            deep: true
+        }
     }
 }
