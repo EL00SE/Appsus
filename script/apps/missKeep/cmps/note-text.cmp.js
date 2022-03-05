@@ -3,13 +3,15 @@ export default {
     template: `
         <section class="note-text">
             {{note.title}}
-            <p class="neat-p">{{note.info.txt}}</p>
+            <pre class="neat-pre">{{this.note.info.txt}}</pre>
         </section>
     `,
     data() {
         return {}
     },
     created() {},
-    methods: {},
+    methods: {
+
+    },
     computed: {}
 }

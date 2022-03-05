@@ -12,6 +12,8 @@
     columns: 238px 10;
 }
 
+.neat-pre {}
+
 .note-preview-container {
     position: relative;
     break-inside: avoid-column;
@@ -55,6 +57,7 @@
 }
 
 .neat-p {
+    width: 100%;
     margin-top: 7px;
     margin-bottom: 0;
 }

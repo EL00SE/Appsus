@@ -3,17 +3,17 @@ import { utilService } from '../../../services/util-service.js'
 
 
 export default {
-    props: ['index', 'color'],
+    props: ['text', 'index', 'color'],
     template: `
         <section v-if="isShown" class="note-list-item flex">
-            <input :style="{backgroundColor: color}" v-model="text" type="text" placeholder="Add list item.." class="list-item form-input" @input="updateCurrItem()" >
+            <input :style="{backgroundColor: color}" v-model="itemText" type="text" placeholder="Add list item.." class="list-item form-input" @input="updateCurrItem()" >
             <button type="button" class="delete-btn" @click="deleteItem()"></button>
         </section>
     `,
     data() {
         return {
             isShown: true,
-            text: '',
+            itemText: this.text,
             data: {}
         }
     },
@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         updateCurrItem() {
-            this.data.text = this.text
+            this.data.text = this.itemText
             eventBus.emit('itemEdit', this.data)
         },
         deleteItem() {

@@ -14,14 +14,15 @@ export default {
     `,
     data() {
         return {
-            noteType: "noteText",
+            // noteType: "noteText",
             openPallete: false,
             distanceX: 0,
             distanceY: 0
         }
     },
     created() {
-        this.unsubscrive = eventBus.on('close', this.closeColorPallete)
+        this.changeColorUnsub = eventBus.on('close', this.closeColorPallete)
+        this.closePalleteUnsub = eventBus.on('closePallete', this.closeColorPallete)
     },
     components: {
         colorPallete,
@@ -30,21 +31,24 @@ export default {
     methods: {
         openColorPallete(ev) {
             this.openPallete = !this.openPallete
-            this.distanceX = ev.clientX + 10
-            this.distanceY = ev.clientY + 10
+            this.distanceX = ev.clientX
+            this.distanceY = ev.clientY + 5
         },
         closeColorPallete() {
-            this.openPallete = !this.openPallete
+            this.openPallete = false
         },
         save() {
             eventBus.emit('save')
         },
         changeType(type) {
+            this.closeColorPallete()
             eventBus.emit('typeChange', type)
         }
     },
     computed: {},
     mounted() {},
     updated() {},
-    watch: {}
+    watch: {
+
+    }
 }

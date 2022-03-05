@@ -10,27 +10,31 @@ import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     template: `
         <form ref="noteForm" class="note-create">
-            <input title="Add note title" ref="noteTitleInput" type="text" v-model="noteToCreate.title" placeholder="Title" class="form-element"/>
-            <note-text-input  v-if="noteType === 'noteText'" ref="noteText" class="form-element"></note-text-input> 
+            <input title="Add note title" ref="noteTitleInput" type="text" v-model="title" placeholder="Title" class="form-element"/>
+            <note-text-input :text="text" :color="color" v-if="noteType === 'noteText'" ref="noteText" class="form-element"></note-text-input> 
             <div class="todo-list" ref="noteTodo" v-if="noteType === 'noteTodo'" >
-                <note-list-item ref="noteTodoItem" v-for="(item, index) in listItems" :key="index" :index="index" :color="noteToCreate.color"></note-list-item>
+                <note-list-item ref="noteTodoItem" v-for="(item, index) in listItems" :key="index" :index="index" :text="item" :color="color"></note-list-item>
             </div>
             <button title="Add list item" v-if="noteType === 'noteTodo'" type="button" class="add-btn" @click="addListItem()"></button>
-            <note-img-input :color="noteToCreate.color" title="Add note content (required)" ref="noteImg" v-if="noteType === 'noteImg'" ></note-img-input>
-            <note-vid-input :color="noteToCreate.color" title="Add note content (required)" ref="noteVid" v-if="noteType === 'noteVid'" ></note-vid-input>
+            <note-img-input :color="color" :url="url" title="Add note content (required)" ref="noteImg" v-if="noteType === 'noteImg'" ></note-img-input>
+            <note-vid-input :color="color" :url="url" title="Add note content (required)" ref="noteVid" v-if="noteType === 'noteVid'" ></note-vid-input>
             <note-actions></note-actions>
         </form>
     `,
     data() {
         return {
             noteToCreate: noteService.getEmptyNote(),
-            noteType: 'noteText',
+            noteType: '',
+            title: '',
             text: '',
             listItems: [],
             url: '',
+            color: 'var(--color-def)',
+            id: ''
         }
     },
     created() {
+        this.noteEditUnsub = eventBus.on('noteEdit', this.editNote)
         this.colorUnsub = eventBus.on('colorChange', this.changeColor)
         this.saveUnsub = eventBus.on('save', this.save)
         this.typeUnsub = eventBus.on('typeChange', this.changeType)
@@ -52,60 +56,24 @@ export default {
         noteVidInput
     },
     methods: {
-        save() {
-            if (this.noteType === 'noteText') {
-                if (!this.text) {
-
-                    return
-                }
-                this.noteToCreate.info.txt = this.text
-            }
-            if (this.noteType === 'noteTodo') {
-                if (!this.listItems) {
-
-                    return
-                }
-                this.noteToCreate.info.items = []
-                this.listItems.forEach(item => {
-                    if (item !== '') this.noteToCreate.info.items.push(item)
-                });
-            }
-            if (this.noteType === 'noteImg') {
-                if (!this.url) {
-
-                    return
-                }
-                this.noteToCreate.info.url = this.url
-            }
-            if (this.noteType === 'noteVid') {
-                if (!this.url) {
-
-                    return
-                }
-                this.noteToCreate.info.url = ytService.createNewUrl(this.url)
-            }
-            noteService.save(this.noteToCreate)
-                .then(note => {
-                    eventBus.emit('noteCreate')
-
-                })
-        },
         changeColor(color) {
+            this.color = color
             this.noteToCreate.color = color
             this.$refs.noteForm.style.backgroundColor = color
             this.$refs.noteTitleInput.style.backgroundColor = color
         },
         changeType(type) {
-            this.noteToCreate.type = type
+            if (this.noteType === type) return
             this.noteType = type
             this.ResetData()
-            this.changeColor()
         },
         ResetData() {
             this.noteToCreate = noteService.getEmptyNote()
             this.text = ''
+                // this.title = ''
             this.listItems = []
             this.url = ''
+            this.id = ''
         },
         editText(text) {
             this.text = text
@@ -126,8 +94,67 @@ export default {
         editVidUrl(url) {
             this.url = url
         },
+        editNote(id) {
+            this.ResetData()
+            this.id = id
+            this.noteToCreate = noteService.get(id)
+                .then(note => {
+                    this.noteToCreate.id = id
+                    this.noteType = note.type
+                    this.color = note.color
+                    this.title = note.title
+                    this.changeColor(this.color)
+                    if (note.info.url) this.url = note.info.url
+                    if (note.info.txt) this.text = note.info.txt
+                    if (note.info.items) this.listItems = note.info.items
+                })
+        },
+        save() {
+            if (this.noteType === '') return
+            if (this.noteToCreate.id === '') this.noteToCreate = noteService.getEmptyNote()
+            this.noteToCreate.type = this.noteType
+            this.noteToCreate.color = this.color
+            this.noteToCreate.title = this.title
+            if (this.noteToCreate.type === 'noteText') {
+                if (!this.text) {
 
+                    return
+                }
+                const data = { txt: this.text }
+                this.noteToCreate.info = data
+            }
+            if (this.noteToCreate.type === 'noteTodo') {
+                if (!this.listItems) {
 
+                    return
+                }
+                const data = { items: this.listItems }
+                this.noteToCreate.info = data
+            }
+            if (this.noteToCreate.type === 'noteImg') {
+                if (!this.url) {
+
+                    return
+                }
+                const data = { url: this.url }
+                this.noteToCreate.info = data
+            }
+            if (this.noteToCreate.type === 'noteVid') {
+                if (!this.url) {
+
+                    return
+                }
+                const data = { url: ytService.createNewUrl(this.url) }
+                this.noteToCreate.info = data
+            }
+            noteService.save(this.noteToCreate)
+                .then(() => {
+                    this.ResetData()
+                    eventBus.emit('noteCreate')
+                    this.noteType = ''
+                    this.title = ''
+                })
+        },
     },
     mounted() {
         this.$refs.noteTitleInput.focus()
@@ -145,6 +172,7 @@ export default {
         this.itemDeleteUnsub()
         this.imgEditUnsub()
         this.vidEditUnsub()
+        this.noteEditUnsub()
     }
 
 }
