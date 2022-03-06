@@ -74,6 +74,7 @@ export default {
             this.listItems = []
             this.url = ''
             this.id = ''
+            return Promise.resolve();
         },
         editText(text) {
             this.text = text
@@ -95,19 +96,34 @@ export default {
             this.url = url
         },
         editNote(id) {
-            this.ResetData()
-            this.id = id
-            this.noteToCreate = noteService.get(id)
+            this.txt = ''
+            this.url = ''
+            this.listItems = ''
+            noteService.get(id)
                 .then(note => {
+                    this.id = id
+                    this.noteToCreate.isPinned = note.isPinned
                     this.noteToCreate.id = id
                     this.noteType = note.type
                     this.color = note.color
                     this.title = note.title
                     this.changeColor(this.color)
-                    if (note.info.url) this.url = note.info.url
-                    if (note.info.txt) this.text = note.info.txt
-                    if (note.info.items) this.listItems = note.info.items
+                    if (note.info.url) {
+                        this.url = note.info.url
+                        if (note.type === 'noteImg') {
+                            eventBus.emit('editNoteImg', note.info.url)
+                        }
+                        if (note.type === 'noteVid') {
+                            eventBus.emit('editNoteVid', note.info.url)
+                        }
+                    }
+                    if (note.info.txt) {
+                        eventBus.emit('editNoteText', note.info.txt)
+                        this.text = note.info.txt
+                    }
+                    if (note.info.items) { this.listItems = note.info.items }
                 })
+
         },
         save() {
             if (this.noteType === '') return
@@ -150,9 +166,11 @@ export default {
             noteService.save(this.noteToCreate)
                 .then(() => {
                     this.ResetData()
-                    eventBus.emit('noteCreate')
-                    this.noteType = ''
-                    this.title = ''
+                        .then(() => {
+                            eventBus.emit('noteCreate')
+                            this.noteType = ''
+                            this.title = ''
+                        })
                 })
         },
     },

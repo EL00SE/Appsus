@@ -2,6 +2,7 @@ import { eventBus } from '../../../services/eventBus-service.js';
 import { noteService } from '../services/note-service.js';
 import notePreview from './note-preview.cmp.js'
 import colorPalletePrev from './color-pallete-prev.cmp.js';
+import { utilService } from '../../../services/util-service.js';
 
 export default {
     template: `
@@ -10,8 +11,8 @@ export default {
                    <note-preview :note="note" @click="editNote(note.id)" ></note-preview>
                    <div class="actions">
                        <button title="Change note color" type="button" class="color-btn prev-btn" @click="openColorPallete($event)"></button>
-                       <button title="Pin to top" type="button" class="prev-btn pin-btn"></button>
-                       <button title="Duplicate" type="button" class="prev-btn dupe-btn"></button>
+                       <button title="Pin to top" type="button" class="prev-btn pin-btn" @click="pin(note.id)"></button>
+                       <button title="Duplicate" type="button" class="prev-btn dupe-btn"  @click="duplicate(note.id)"></button>
                        <button title="Send as mail" type="button" class="prev-btn send-as-mail-btn"></button>
                        <button title="Delete" type="button" class="prev-btn remove-btn" @click="remove(note.id)"></button>
                     <color-pallete-prev :note="note" type="button" v-if="openPallete" :style="{top: distanceY+'px',left:distanceX+'px'}"></color-pallete-prev>
@@ -36,7 +37,8 @@ export default {
         notePreview,
         colorPalletePrev,
         eventBus,
-        noteService
+        noteService,
+        utilService
 
     },
     methods: {
@@ -48,7 +50,7 @@ export default {
         },
         updateList() {
             noteService.query()
-                .then(notes => this.notes = notes)
+                .then(notes => this.notes = this.sortNotes(notes))
         },
         editNote(id) {
             eventBus.emit('noteEdit', id)
@@ -62,8 +64,30 @@ export default {
             this.openPallete = false
         },
         remove(id) {
-            noteService.remove(id)
-            Promise.resolve().then(() => this.updateList())
+            noteService.remove(id).then(() => this.updateList())
+
+        },
+        duplicate(id) {
+            noteService.get(id).then(note => {
+                    const newNote = note
+                    newNote.id = ''
+                    noteService.save(newNote)
+                })
+                .then(() => this.updateList())
+        },
+        pin(id) {
+            noteService.get(id).then(note => {
+                note.isPinned = true
+                noteService.save(note)
+            }).then(() => this.updateList())
+        },
+        sortNotes(notes) {
+            const sortedNotes = []
+            notes.forEach(note => {
+                if (note.isPinned) sortedNotes.unshift(note)
+                else sortedNotes.push(note)
+            });
+            return sortedNotes
         },
     },
     computed: {
