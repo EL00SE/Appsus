@@ -98,6 +98,14 @@
         margin-inline-end: 2.5vw;
         height: 80vh;
     }
+
+    .btn-send-mail{
+        right: 25px;
+    }
+
+    .compose-body{
+        height: calc(80vh - 150px)
+    }
 }
 
 @media (max-width: 800px) {
