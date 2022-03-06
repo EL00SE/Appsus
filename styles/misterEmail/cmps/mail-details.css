@@ -11,17 +11,12 @@
 }
 
 .mail-details-btn{
-    /* flex-direction: column; */
-    /* align-self: flex-end; */
     justify-content: flex-end;
     gap: 10px;
     margin: 10px;
 }
 
 .mail-details.mail-trash{
-    /* position: fixed;
-    bottom: 95px;
-    right: 15px; */
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.123);
 }
@@ -41,19 +36,6 @@
 
 .mail-export:hover{
     background-color: rgb(206, 206, 17) !important;
-}
-
-.mail-head{
-    /* margin-top: -15px; */
-    /* flex-direction: column; */
-}
-
-.mail-details-container .sent-at{
-    /* background-color: aqua;
-    position: relative;
-    bottom: 30px;
-    left: 220px; */
-    /* align-self: flex-end; */
 }
 
 .mail-details .summery-container{

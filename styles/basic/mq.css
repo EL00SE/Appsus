@@ -1,4 +1,4 @@
-@media (max-width: 700px) {
+@media (max-width: 750px) {
     .header:before{
         content:"";
         width:100%;
@@ -11,9 +11,17 @@
           transform: scale(1.0, 1.0);
           transform: translateZ(0);
         background:#1B2030 url(../../lib/assets/images/bgSmall.jpg) 50% 0 no-repeat;
-        background-size:100%;
+        background-size:110%;
         background-attachment:fixed;
         transition:all 0.4s ease-in-out;
         z-index:-2
       }
+
+      .home-container{
+          flex-direction: column;
+          /* margin-top: 0px; */
+          height: 90vh;
+      }
 }
+
+

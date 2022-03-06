@@ -21,7 +21,6 @@ export default {
     data() {
         return {
             mail: null,
-            // summeryOpen: false
         }
     },
     created() {
@@ -34,11 +33,6 @@ export default {
         mailSummery
     },
     methods: {
-        loadMail() {
-            // console.log(this.mailId);
-            // mailService.get(this.mailId)
-            //     .then(mail => this.mail = mail)
-        },
         trashMail(mail, isTrash) {
             if (!isTrash) {
                 mailService.trashMail(mail)
@@ -55,8 +49,6 @@ export default {
                             this.$router.push(`/email`)
                         }))
             }
-            // isTrash ? eventBus.emit('removed', mail) : eventBus.emit('trashed', mail)
-            // this.$router.push(`/email`)
 
         },
         closeDetails() {
@@ -76,15 +68,6 @@ export default {
 
     },
     watch: {
-        // mailId: {
-        //     handler() {
-        //         // this.loadMail()
-        //         // console.log(this.mailId);
-        //         // mailService.get(this.mailId)
-        //         //     .then(mail => thid.mail = mail)
-        //         // this.load = true
-        //     },
-        //     immediate: true
-        // }
+
     }
 }

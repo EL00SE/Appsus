@@ -3,41 +3,31 @@
         width: 40px;
         height: 40px;
     }
-    
 }
 
 @media (max-width: 1040px) {
     .mail-filter{
         width: calc(100vw - 170px);
         min-width: 250px;
-        /* height: 30px; */
         position: relative;
         left: calc((100vw - (100vw - 170px))/1.55);
     }
  .mail-container{
      grid-template-rows: 2 !important;
      height: 100px;
-     /* grid-template-columns: repeat(10, 1fr) */
-     /* background-color: red; */
  }
 
  .mail-container>*{
     margin: 0;
-    /* font-size: 20px; */
-    /* padding: 0; */
-     /* grid-template-columns: repeat(10, 1fr) */
-     /* background-color: red; */
  }
 
  .mail-star{
     grid-row: 1/ span 2 !important;
     grid-column: 1 / span 1;
-    /* align-content: ; */
     width: 35px ;
     height: 35px ;
     margin-top: 29px;
     margin: 29px 5px 0 5px;
-    /* margin: ; */
 }
 
 .mail-from{
@@ -45,14 +35,7 @@
     grid-column: 2 / span 2;
     margin: auto 0;
     margin-inline-end: 10px;
-    /* display: flex !important; */
-    /* flex-direction: column !important; */
-    /* width: 25vw; */
     min-width: min-content;
-    /* height: 10vh;
-    line-height: 10vh; */
-    /* flex-wrap: wrap !important; */
-    /* overflow: auto; */
 }
 .mail-subject{
     grid-row: 1 / span 1;
@@ -63,7 +46,6 @@
  .mail-body{
     grid-row: 2 / span 1;
     grid-column: 4/ span 5 ;
-    /* font-size: 14px; */
  }
 
  .mail-date, .mail-actions{
@@ -74,16 +56,9 @@
  }
 
  .mail-actions>*{
-    /* padding: 15px; */
     width: 40px;
     height: 40px;
-    /* width: auto; */
-    /* height: 90px !important; */
 }
-
-.mail-actions{
-    /* min-width: max-content;   */
- }
 
  .folder-list-container{
      width: 60px;
@@ -91,7 +66,6 @@
  
  .folder-list-container p{
      height: 50px;
-     /* font-size: 20px; */
  }
 
  .mail-folder-name{
@@ -113,57 +87,17 @@
 
  .mail-list{
      width: calc(100vw - 70px) !important;
-     /* width: auto; */
  }
-
- .sent-at{
-     /* position: relative !important; */
-     /* right: 5000px; */
-     /* bottom:30px; */
-     /* right: 5px !important; */
-     /* font-size: 14px; */
-     /* display: block; */
-     /* min-height: min-content; */
-     /* margin-bottom: -5px; */
- }
-
-
- .summery-head{
-     /* display: block; */
- }
-
 }
 
 @media (max-width: 700px) {
-   
-    .sum-subject {
-        /* display: inline-block !important; */
-        /* box-sizing: content-box !important; */
-        /* padding-top: 50px; */
-        /* font-size: 5vw; */
-        /* margin-top: 70px; */
-        /* display: block !important; */
-        /* top:0; */
-        /* font-size: 5vw; */
-    }
 
-    .sum-subject{
-        /* padding-top: 50px; */
-        /* font-size: 5vw; */
-    
-       
-    }
     .mail-compose,  .compose-inner-container{
-        /* right: 50vw; */
-        /* left: 0; */
         width: 95vw;
         right: 0;
         margin-inline-end: 2.5vw;
         height: 80vh;
-     
     }
-
-    
 }
 
 @media (max-width: 800px) {
@@ -184,11 +118,9 @@
     }
     .sent-at{
         font-size: 13px ;
-        /* grid-column: 8/ span 3 !important; */
-        /* margin-bottom: 20px; */
-            }
+      
+    }
     .sum-subject{
-        /* font-family: sansBold; */
         font-size: 23px;
     }
    

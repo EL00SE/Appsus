@@ -48,31 +48,9 @@
   }
   .header a{
     color:#eee
+    
   }
-  /* .menu{
-    display:block;
-    width:40px;
-    height:30px;
-    border:2px solid #fff;
-    border-radius:3px;
-    position:absolute;
-    right:20px;
-    top:20px;
-    text-decoration:none
-  }
-  .menu:after{
-    content:"";
-    display:block;
-    width:20px;
-    height:3px;
-    background:#fff;
-    position:absolute;
-    margin:0 auto;
-    top:5px;
-    left:0;
-    right:0;
-    box-shadow:0 8px, 0 16px
-  } */
+ 
   .sides, .info{
     flex: 0 0 auto;
     width:50%
@@ -92,10 +70,6 @@
     font-style:italic;
     cursor:default;
   }
-  /* @keyframes grow{
-    0% { transform: scale(1) translateY(0px)}
-    50% { transform: scale(1.2) translateY(-400px)}
-  } */
   
   .btn{
     color:#333;
@@ -112,7 +86,6 @@
     right: 0;
     margin: 10px;
     font-size: 18px;
-    /* font-weight: 600; */
   }
   
   .header .nav-bar a{
@@ -120,12 +93,22 @@
     border-radius: 5px;
   }
   
-  .header .nav-bar a:hover,
-  .router-link-exact-active {
-    color: var(--clr1) !important;
-    background-color: rgba(255, 255, 255, 0.7);
+  .header .nav-bar a:hover
+ {
+    color: black !important;
+    background-color: rgba(228, 225, 225, 0.8);
+  }
+
+  .nav-bar a {
+    background-color: rgba(15, 15, 15, 0.747);
   }
   
+  .router-link-exact-active{
+      color: black !important;
+      background-color:rgba(228, 225, 225, 0.8) !important;
+
+  }
+
   .big-hero{
     height: 100vh !important;
   }

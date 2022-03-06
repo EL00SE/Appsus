@@ -39,16 +39,13 @@ export default {
         mailSummery
     },
     created() {
-        // console.log(this.title);
 
     },
     methods: {
         trashMail(mail, isTrash) {
-            console.log(isTrash);
             isTrash ? eventBus.emit('removed', mail) : eventBus.emit('trashed', mail)
         },
         markRead(mail, isRead) {
-            // console.log('now');
             eventBus.emit('read', { mail: mail, state: isRead })
             if (isRead) eventBus.emit('show-msg', 'Marked as read')
             else eventBus.emit('show-msg', 'Marked as unread')
@@ -63,15 +60,11 @@ export default {
             this.summeryOpen = !this.summeryOpen
             if (this.mail.isRead) return
             this.mail.isRead = true
-            // if()
             this.markRead(this.mail, this.mail.isRead)
-            // this.summeryOpen = !this.summeryOpen
-            // this.$emit('summeryOpen', this.summeryOpen)
         },
         openFull() {
             if (!this.mail.isRead)
                 this.markRead(this.mail, !this.mail.isRead)
-            // console.log(this.mail.id);
             this.$router.push(`/email/${this.mail.id}`)
         },
 

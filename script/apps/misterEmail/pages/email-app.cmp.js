@@ -37,11 +37,9 @@ export default {
         mailService.query()
             .then(mails => {
                 this.mails = mails
-                console.log(this.mails)
                 mailService.getUnreadAmount(this.mails)
                     .then(res => {
                         this.unreadAmount = res
-                        console.log(this.unreadAmount);
                     })
             })
 
@@ -55,7 +53,6 @@ export default {
             this.archiveMail(mail.mail, mail.state)
         })
         this.unsubscribe4 = eventBus.on(('starred'), (mail) => {
-            console.log(mail.state);
             this.starMail(mail.mail, mail.state)
         })
         this.unsubscribe5 = eventBus.on(('removed'), (mail) => {
@@ -86,14 +83,10 @@ export default {
                     .then(res => {
                         if (isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) this.unreadAmount--
                         else if (!isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) this.unreadAmount++
-                        // if (isRead) eventBus.emit('show-msg', 'Marked as read')
-                        // else eventBus.emit('show-msg', 'Marked as unread')
-
                         return this.mails = res
                     }))
         },
         archiveMail(mail, isArchived) {
-            console.log('hi');
             mailService.archiveMail(mail, isArchived)
                 .then(() => mailService.query()
                     .then(res => {
@@ -107,7 +100,6 @@ export default {
                             eventBus.emit('show-msg', 'Moved to archive')
                         else {
                             eventBus.emit('show-msg', 'Moved to inbox')
-                            // this.unreadAmount++
                         }
 
                         return this.mails = res
@@ -123,7 +115,6 @@ export default {
                     }))
         },
         removeMail(mail) {
-            console.log(mail);
             mailService.removeMail(mail.id)
                 .then(() => mailService.query()
                     .then(res => {
@@ -132,7 +123,6 @@ export default {
                     }))
         },
         setMailsForDisply(type) {
-            console.log(type);
             this.filterBy = type
 
         },

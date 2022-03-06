@@ -18,7 +18,6 @@ export default {
         }
     },
     mounted() {
-        // this.$refs.searchInput.focus()
         this.$refs.searchInput.placeholder = 'Search...'
     },
     methods: {

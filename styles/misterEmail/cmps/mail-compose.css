@@ -10,17 +10,10 @@
     
 }
 
-.compose-inner-container{
-    
-}
-
-
 .btn-close-compose{
     align-self: flex-end;
     background-color: transparent;
     border: none;
-    /* min-width: min-content; */
-    /* padding: 10px; */
     width: 40px;
     height: 40px;
     margin: 5px;
@@ -32,10 +25,6 @@
 .btn-close-compose:hover{
     color: white;
     background-color: rgba(255, 255, 255, 0.158);
-}
-
-.mail-compose-container{
-    
 }
 
 .compose-header{
