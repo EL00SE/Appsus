@@ -77,7 +77,7 @@ export default {
         },
         pin(id) {
             noteService.get(id).then(note => {
-                note.isPinned = true
+                note.isPinned = !note.isPinned
                 noteService.save(note)
             }).then(() => this.updateList())
         },
