@@ -48,18 +48,6 @@
         }
     }
     
-    @media (min-width: 600px) {
-        .note-create {
-            /* width: 80%; */
-        }
-        .note-input {
-            /* width: 500px; */
-        }
-        .note-list {
-            /* width: fit-content; */
-        }
-    }
-    
     @media (min-width: 850px) {
         .note-list {
             columns: 350px 2;
