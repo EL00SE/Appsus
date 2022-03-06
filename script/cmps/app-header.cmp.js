@@ -12,7 +12,8 @@ export default {
                 <div class="sides">
                
             <div class="info">
-            <h1>APP SUS</h1>
+            <h1 title="Home" @click="$router.push('/')">APP SUS</h1>
+            <div class="meta">Home for apps</div>
             </div>
             </div>
             </div>
