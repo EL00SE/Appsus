@@ -24,6 +24,9 @@
 
 @media (min-width: 600px) {
     .note-create {
+        width: 80%;
+    }
+    .note-input {
         width: 500px;
     }
     .note-list {
