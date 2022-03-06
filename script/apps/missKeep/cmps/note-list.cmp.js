@@ -29,6 +29,7 @@ export default {
         }
     },
     created() {
+        this.typeFilterUnsub = eventBus.on('typeFilter', this.filterBy)
         this.changeColorPrevUnsub = eventBus.on('changeColorPrev', this.changeNoteColor)
         this.closePalletPrevUnsub = eventBus.on('close', this.closeColorPallete)
         this.unsubscribe = eventBus.on('noteCreate', this.updateList)
@@ -90,6 +91,12 @@ export default {
             });
             return sortedNotes
         },
+        filterBy(type) {
+            const filteredNotes = this.sortNotes(this.notes)
+            if (type !== '') filteredNotes.filter(note => note.type === type)
+            Promise.resolve().then(() => this.notes = filteredNotes)
+
+        }
     },
     computed: {
 
