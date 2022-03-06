@@ -13,12 +13,15 @@ export default {
         }
     },
     created() {
-
+        this.noteVidEdit = eventBus.on('editNoteVid', this.editUrl)
     },
     components: {
 
     },
     methods: {
+        editUrl(url) {
+            this.vidUrl = url
+        },
         updateUrl() {
             eventBus.emit('vidUrlEdit', this.vidUrl)
         }
