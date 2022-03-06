@@ -1,56 +1,88 @@
-@media (max-width: 850px) {
-    .note-list {
-        display: flex;
-        flex-direction: column;
-        width: 90%;
-        align-items: center;
+    @media (max-width: 850px) {
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .note-list {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            align-items: center;
+        }
+        .note-preview-container {
+            width: 70%;
+        }
+        .note-create {
+            width: 100%;
+        }
+        .note-input {
+            width: 70%
+        }
     }
-    .note-preview-container {
-        width: 100%;
+    
+    @media(max-width: 600px) {
+        .main {
+            width: 100%;
+        }
+        .note-preview-container {
+            width: 350px;
+            margin-inline-start: 60px;
+        }
+        .note-create {
+            width: 100%;
+        }
+        .form-element {
+            width: 100%;
+        }
+        .note-list {
+            padding-left: 0;
+            padding-right: 0;
+            width: 100%;
+            margin-inline-start: 20px;
+            /* margin-inline-start: -50px; */
+        }
+        .note-input {
+            width: 330px;
+            /* margin-inline-start: 90px; */
+        }
     }
-}
-
-@media(max-width: 600px) {
-    .note-create {
-        width: 100%;
+    
+    @media (min-width: 600px) {
+        .note-create {
+            /* width: 80%; */
+        }
+        .note-input {
+            /* width: 500px; */
+        }
+        .note-list {
+            /* width: fit-content; */
+        }
     }
-    .form-element {
-        width: 100%;
+    
+    @media (min-width: 850px) {
+        .note-list {
+            columns: 350px 2;
+        }
+        .note-preview-container {
+            width: 350px;
+        }
     }
-    .note-list {
-        width: 90%;
+    
+    @media (min-width:1040px) {
+        .note-input {
+            margin-left: 60px;
+        }
     }
-}
-
-@media (min-width: 600px) {
-    .note-create {
-        width: 80%;
+    
+    @media (min-width:1280px) {
+        .note-list {
+            columns: 350px 3;
+        }
     }
-    .note-input {
-        width: 500px;
+    
+    @media (min-width: 1600px) {
+        .note-list {
+            columns: 350px 4;
+        }
     }
-    .note-list {
-        width: fit-content;
-    }
-}
-
-@media (min-width: 850px) {
-    .note-list {
-        columns: 350px 2;
-    }
-    .note-preview-container {
-        width: 350px;
-    }
-}
-
-@media (min-width:1280px) {
-    .note-list {
-        columns: 350px 3;
-    }
-}
-
-@media (min-width: 1600px) {
-    .note-list {
-        columns: 350px 4;
-    }
-}

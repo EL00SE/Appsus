@@ -94,7 +94,7 @@ export default {
         filterBy(type) {
             const filteredNotes = this.sortNotes(this.notes)
             if (type !== '') filteredNotes.filter(note => note.type === type)
-            Promise.resolve().then(() => this.notes = filteredNotes)
+            this.notes = filteredNotes
 
         }
     },
