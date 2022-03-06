@@ -1,8 +1,9 @@
 .side-nav-container {
     position: fixed;
+    left: 0px;
     width: 60px;
     height: 90vh;
-    background-color: green;
+    background-color: var(--color-def);
     z-index: 3;
     bottom: 0;
     overflow: hidden;
@@ -38,4 +39,45 @@
     font-family: roboto;
     font-weight: 400;
     font-size: 1.35rem;
+}
+
+.nav-items:hover {
+    background-color: gray;
+}
+
+.icon {
+    top: 30px;
+    width: 26px;
+    height: 26px;
+    position: relative;
+    left: -70px;
+    cursor: pointer;
+}
+
+.nav-img {
+    background: url(/lib/assets/images/icons/img.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav-vid {
+    background: url(/lib/assets/images/icons/yt.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav-text {
+    background: url(/lib/assets/images/icons/txt.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav-todo {
+    background: url(/lib/assets/images/icons/todo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
