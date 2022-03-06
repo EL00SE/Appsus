@@ -18,10 +18,6 @@ const routes = [{
         component: noteApp,
     },
     {
-        path: "/note/:noteId?/edit",
-        component: noteEdit,
-    },
-    {
         path: "/email/:folder",
         component: emailApp,
     },
