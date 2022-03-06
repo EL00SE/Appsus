@@ -6,6 +6,7 @@
     background-color: var(--color-def);
     z-index: 3;
     bottom: 0;
+    transition: all 0.3s;
     overflow: hidden;
     cursor: pointer;
     box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
@@ -42,7 +43,7 @@
 }
 
 .nav-items:hover {
-    background-color: gray;
+    /* background-color: gray; */
 }
 
 .icon {
