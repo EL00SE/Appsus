@@ -1,3 +1,4 @@
+import { eventBus } from '../../../services/eventBus-service.js'
 export default {
     props: ['note'],
     template: `

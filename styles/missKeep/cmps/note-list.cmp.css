@@ -1,6 +1,4 @@
 .main {
-    position: relative;
-    align-self: center;
     margin-left: 10vw;
     width: 90vw;
     min-height: 65vh;
@@ -8,11 +6,8 @@
 }
 
 .note-list {
-    position: absolute;
     width: 100%;
-    display: inline-block;
     height: 100%;
-    columns: 350px 4;
 }
 
 .neat-pre {
@@ -22,18 +17,26 @@
 
 .pin-btn {
     background: url(/lib/assets/images/icons/pin.svg);
+    background-size: 32px;
 }
 
 .remove-btn {
     background: url(/lib/assets/images/icons/trash.svg);
+    background-size: 32px;
 }
 
 .send-as-mail-btn {
     background: url(/lib/assets/images/icons/mail.svg);
+    background-size: 32px;
 }
 
 .dupe-btn {
     background: url(/lib/assets/images/icons/copy.svg);
+    background-size: 32px;
+}
+
+.edit-btn {
+    background: url(/lib/assets/images/icons/edit.svg);
 }
 
 .prev-btn:hover {
@@ -41,10 +44,10 @@
 }
 
 .prev-btn {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
+    background-size: 38px;
     background-position: center;
-    background-size: 32px;
     background-repeat: no-repeat;
     border: 0px;
     border-radius: 6px;
@@ -70,7 +73,6 @@
     font-size: .875rem;
     font-weight: 400;
     line-height: 1.25rem;
-    width: 350px;
     height: fit-content;
     min-height: 120px;
     margin-bottom: 10px;
@@ -89,7 +91,7 @@
 .note-preview-container:hover {
     transition: all 0.2s ease-in-out;
     overflow: hidden;
-    /* box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.29); */
+    box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.29);
     cursor: pointer;
 }
 

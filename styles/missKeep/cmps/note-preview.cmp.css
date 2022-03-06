@@ -1,0 +1,29 @@
+.pin-icon {
+    height: 30px;
+    width: 30px;
+    background: url(/lib/assets/images/icons/pin.svg);
+    background-repeat: no-repeat;
+}
+
+.check-btn {
+    height: 35px;
+    width: 35px;
+    background: url(/lib/assets/images/icons/check.svg);
+    border: 0px;
+    border-radius: 6px;
+    background-position: center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+.check-btn:hover {
+    border: 2px solid black;
+}
+
+.done {
+    color: gray;
+}
+
+.donebtn {
+    background-color: greenyellow;
+}

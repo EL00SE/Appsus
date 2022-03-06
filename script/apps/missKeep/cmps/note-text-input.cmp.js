@@ -13,7 +13,7 @@ export default {
         }
     },
     created() {
-
+        this.changeUnsub = eventBus.on('editNoteText', this.editText)
     },
     components: {
 
@@ -21,6 +21,9 @@ export default {
     methods: {
         textEdit() {
             eventBus.emit('textEdit', this.inputText)
+        },
+        editText(text) {
+            this.inputText = text
         }
     },
     computed: {

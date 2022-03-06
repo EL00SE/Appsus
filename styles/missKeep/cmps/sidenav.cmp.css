@@ -1,0 +1,84 @@
+.side-nav-container {
+    position: fixed;
+    left: 0px;
+    width: 60px;
+    height: 90vh;
+    background-color: var(--color-def);
+    z-index: 3;
+    bottom: 0;
+    transition: all 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
+}
+
+.side-nav-container:hover {
+    width: 200px;
+}
+
+.nav {
+    list-style-type: none;
+    color: black;
+}
+
+.nav>*:first-child {
+    padding-top: 1.5rem;
+}
+
+.nav-items {
+    padding-bottom: 4rem;
+    font-family: roboto;
+    position: relative;
+    display: block;
+    /* top:-35px; */
+    padding-left: 25px;
+    padding-right: 15px;
+    margin-left: 25px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+    font-family: roboto;
+    font-weight: 400;
+    font-size: 1.35rem;
+}
+
+.nav-items:hover {
+    /* background-color: gray; */
+}
+
+.icon {
+    top: 30px;
+    width: 26px;
+    height: 26px;
+    position: relative;
+    left: -70px;
+    cursor: pointer;
+}
+
+.nav-img {
+    background: url(/lib/assets/images/icons/img.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav-vid {
+    background: url(/lib/assets/images/icons/yt.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav-text {
+    background: url(/lib/assets/images/icons/txt.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav-todo {
+    background: url(/lib/assets/images/icons/todo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
