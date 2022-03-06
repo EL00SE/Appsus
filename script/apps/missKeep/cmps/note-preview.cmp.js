@@ -36,7 +36,8 @@ export default {
                     note.color = color
                     noteService.save(note)
                 })
-        }
+        },
+
     },
     computed: {}
 }
