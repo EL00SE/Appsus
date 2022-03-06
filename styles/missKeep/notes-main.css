@@ -1,3 +1,7 @@
+/* MQ */
+
+@import 'setup/notes-mq.css';
+
 /* COMPONENTS */
 
 @import 'cmps/note-actions.cmp.css';

@@ -1,7 +1,6 @@
 .note-input {
     margin: auto;
     margin-bottom: 30px;
-    width: fit-content;
     height: fit-content;
     /* border: 3px solid black; */
 }
@@ -40,8 +39,12 @@
     background-color: var(--color-def);
 }
 
+.note-create:hover {
+    box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.29);
+}
+
 .form-element {
-    width: 500px;
+    width: 100%;
     margin: 12px 16px 0px 16px;
     /* width: 60%; */
     letter-spacing: .01428571em;
@@ -52,8 +55,6 @@
     border: none;
     outline: none;
 }
-
-.list-item {}
 
 .form-input {
     outline: none;
