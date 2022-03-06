@@ -52,28 +52,28 @@
 }
 
 .nav-img {
-    background: url(/lib/assets/images/icons/img.svg);
+    background: url(lib/assets/images/icons/img.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .nav-vid {
-    background: url(/lib/assets/images/icons/yt.svg);
+    background: url(lib/assets/images/icons/yt.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .nav-text {
-    background: url(/lib/assets/images/icons/txt.svg);
+    background: url(lib/assets/images/icons/txt.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .nav-todo {
-    background: url(/lib/assets/images/icons/todo.svg);
+    background: url(lib/assets/images/icons/todo.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
