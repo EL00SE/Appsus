@@ -22,16 +22,3 @@ export function showSuccessMsg(txt) {
     eventBus.emit('show-msg', { txt, type: 'success' });
 }
 
-
-
-
-
-
-
-eventBus.on('puk', (data) => {
-        console.log('Puk happened', data);
-    })
-    // eventBus.on('puk', (data)=>{
-    //     console.log('Mee too:', data);
-    // })
-    // eventBus.emit('puk', {level: 3})

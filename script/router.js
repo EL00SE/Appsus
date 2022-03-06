@@ -4,27 +4,28 @@ import noteApp from './apps/missKeep/pages/note-app.cmp.js'
 // import emailDetails from './cmps-email/email-details.cmp.js'
 import emailApp from './apps/misterEmail/pages/email-app.cmp.js'
 import emailDetails from './apps/misterEmail/pages/email-details.cmp.js'
+import mailFolderList from './apps/misterEmail/cmps/mail-folder-list.cmp.js'
 // import bookApp from '../js/pages/book-app.cmp.js'
 // import bookDetails from '../js/pages/book-details.cmp.js'
 // import noteCreate from './cmps-notes/note-create.cmp.js'
 
 const routes = [{
-        path: "/",
-        component: homePage,
-    },
-    {
-        path: "/note",
-        name: 'note',
-        component: noteApp,
-    },
-    {
-        path: "/email/:folder",
-        component: emailApp,
-    },
-    {
-        path: "/email/:mailId",
-        component: emailDetails,
-    },
+    path: "/",
+    component: homePage,
+},
+{
+    path: "/note",
+    name: 'note',
+    component: noteApp,
+},
+{
+    path: "/email",
+    component: emailApp,
+},
+{
+    path: "/email/:mailId",
+    component: emailDetails,
+},
     // {
     //     path: '/book',
     //     component: bookApp

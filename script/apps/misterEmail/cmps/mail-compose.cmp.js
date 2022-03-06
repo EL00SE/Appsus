@@ -1,5 +1,4 @@
-import mailSummery from './mail-summery.cmp.js'
-import { eventBus } from '../../../services/eventBus-service.js'
+
 import { mailService } from '../services/mail-service.js'
 
 export default {
@@ -17,8 +16,6 @@ export default {
        </textarea>
        <button class="btn-send-mail">send</button>
        </form>
-    <!-- <input  type="textarea" placeholder="Body:" resize="none"> -->
-            
         </div>
         </div>
         </section>
@@ -35,13 +32,25 @@ export default {
 
     },
     created() {
+        const subject = this.$route.query.title
+        const body = this.$route.query.txt
+        if (subject && body) {
+            this.mailSubject = subject
+            this.mailBody = body
+        }
 
+    },
+    mounted() {
+        const subject = this.$route.query.title
+        const body = this.$route.params.txt
+        if (subject && body) {
+            this.mailSubject = subject
+            this.mailBody = body
+        }
     },
     methods: {
         sendMail() {
-            console.log(this.mailBody);
-            console.log(this.mailSubject);
-            console.log(this.mailTo);
+
             const newMail = mailService.getEmptyMail()
             newMail.fromName = mailService.getLoggedInUser().name
             newMail.isSent = true
@@ -52,7 +61,6 @@ export default {
             newMail.subject = this.mailSubject
             newMail.body = this.mailBody
             newMail.id = null
-            console.log(newMail);
             mailService.save(newMail).then(() => {
                 this.$emit('composed')
             })
@@ -60,10 +68,30 @@ export default {
         closeCompose() {
             this.isComposing = false
             this.$emit('closeCompose')
+        },
+        import(txt) {
+            this.body = txt
+            return Promise.resolve()
+
         }
 
     },
     computed: {
 
+    },
+    watch: {
+        '$route.query.txt': {
+            handler(txt) {
+                this.body = txt
+
+            },
+            immeddiate: true,
+        },
+        '$route.params': {
+            handler(title) {
+                this.subject = title
+            },
+            immediate: true
+        }
     }
 }

@@ -1,6 +1,5 @@
 import mailPreview from './mail-preview.cmp.js'
 import mailSummery from './mail-summery.cmp.js'
-import { mailService } from '../services/mail-service.js'
 
 export default {
     props: ['mails'],
@@ -25,7 +24,6 @@ export default {
     },
     methods: {
         openSummery(mail) {
-            console.log(mail);
             this.summeryOpen = true
             this.mailSummery = mail
         }

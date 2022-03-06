@@ -10,20 +10,32 @@
     overflow-y: scroll;
 }
 
-.mail-details-container .sum-subject{
+.mail-details-btn{
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 10px;
 }
 
-.mail-head{
-    margin-top: -15px;
-    /* flex-direction: column; */
+.mail-details.mail-trash{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.123);
 }
 
-.mail-details-container .sent-at{
-    background-color: aqua;
-    position: relative;
-    bottom: 30px;
-    left: 220px;
-    /* align-self: flex-end; */
+.mail-details.mail-trash:hover{
+ background-color: var(--clr-mail-icon-trash); 
+}
+
+.mail-back{
+    cursor: pointer;
+    bottom: 140px !important;
+}
+
+.mail-back:hover{
+    background-color: rgb(11, 230, 164) !important;
+}
+
+.mail-export:hover{
+    background-color: rgb(206, 206, 17) !important;
 }
 
 .mail-details .summery-container{

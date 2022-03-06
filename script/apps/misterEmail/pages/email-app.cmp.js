@@ -7,16 +7,19 @@ import mailFilter from '../cmps/mail-filter.cmp.js'
 
 export default {
     template: `
-        <section class="email-app flex" style="font-family:sansRegular">
-            <!-- <h1>hello</h1> -->
+        <section class="email-app" style="font-family:sansRegular">
+          
             <mail-filter @filtered="setFilter"></mail-filter>
+          
+           <div class="flex">
             <mail-folder-list @compose="isComposing=!isComposing" :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" />
             <mail-list :mails="mailsForDisplay"/>
             <transition name="fade" enter-active-class="animate__animated animate__fadeInUp"
     leave-active-class="animate__animated animate__fadeOutDown">
             <mail-compose @closeCompose="isComposing = false" @composed="updateMails" v-if="isComposing"></mail-compose>
         </transition>
-            <!-- <router-view></router-view> -->
+        </div>
+            
         </section>
     `,
     data() {
@@ -29,14 +32,14 @@ export default {
         }
     },
     created() {
+
+
         mailService.query()
             .then(mails => {
                 this.mails = mails
-                console.log(this.mails)
                 mailService.getUnreadAmount(this.mails)
                     .then(res => {
                         this.unreadAmount = res
-                        console.log(this.unreadAmount);
                     })
             })
 
@@ -50,7 +53,6 @@ export default {
             this.archiveMail(mail.mail, mail.state)
         })
         this.unsubscribe4 = eventBus.on(('starred'), (mail) => {
-            console.log(mail.state);
             this.starMail(mail.mail, mail.state)
         })
         this.unsubscribe5 = eventBus.on(('removed'), (mail) => {
@@ -81,14 +83,10 @@ export default {
                     .then(res => {
                         if (isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) this.unreadAmount--
                         else if (!isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) this.unreadAmount++
-                        // if (isRead) eventBus.emit('show-msg', 'Marked as read')
-                        // else eventBus.emit('show-msg', 'Marked as unread')
-
                         return this.mails = res
                     }))
         },
         archiveMail(mail, isArchived) {
-            console.log('hi');
             mailService.archiveMail(mail, isArchived)
                 .then(() => mailService.query()
                     .then(res => {
@@ -102,7 +100,6 @@ export default {
                             eventBus.emit('show-msg', 'Moved to archive')
                         else {
                             eventBus.emit('show-msg', 'Moved to inbox')
-                            // this.unreadAmount++
                         }
 
                         return this.mails = res
@@ -118,7 +115,6 @@ export default {
                     }))
         },
         removeMail(mail) {
-            console.log(mail);
             mailService.removeMail(mail.id)
                 .then(() => mailService.query()
                     .then(res => {
@@ -127,7 +123,6 @@ export default {
                     }))
         },
         setMailsForDisply(type) {
-            console.log(type);
             this.filterBy = type
 
         },
@@ -145,7 +140,8 @@ export default {
         },
         loadMail() {
             this.setMailsForDisply(this.folder)
-        }
+        },
+
     },
     computed: {
         mailsForDisplay() {
@@ -190,14 +186,6 @@ export default {
         this.unsubscribe3();
     },
     watch: {
-        folder: {
-            handler() {
-                // console.log(bookId);
-                this.loadMail()
-                this.filterBy = this.folder
-            },
 
-            deep: true
-        }
     }
 }

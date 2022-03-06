@@ -21,14 +21,7 @@ export const mailService = {
 }
 
 function query() {
-    // return
     return storageService.query(STORAGE_KEY)
-    // .then(mails => {
-    //     console.log(mails)
-    //     return mails.filter(mail => {
-    //         return mail.isTrash === false
-    //     })
-    // })
 }
 
 function removeMail(mailId) {
@@ -48,7 +41,6 @@ function save(mail) {
 }
 
 function _setNextPrevMailId(mail) {
-    console.log(mail);
     return storageService.query(STORAGE_KEY).then(mails => {
         const mailIdx = mails.findIndex(currMail => currMail.id === mail.id)
         mail.nextNoteId = (mails[mailIdx + 1]) ? mails[mailIdx + 1].id : mails[0].id
@@ -108,8 +100,6 @@ function _createMail() {
     mail.fromName = _createSenderEmail(senderIdx).name
     mail.fromEmail = _createSenderEmail(senderIdx).email[mail.fromName] + '@gmail.com'
     mail.to = 'Me'
-    // console.log(_createSenderEmail(senderIdx).email[mail.fromName]);
-
     return mail
 }
 
@@ -130,7 +120,6 @@ function _createMailId() {
 }
 
 function _createSenderEmail(userIdx) {
-    // var idx = utilService.getRndIntInc(1, 5)
     const usersEmail = [
         { 'popo div': 'popo385' },
         { 'momo lib': 'momo592' },
@@ -151,7 +140,6 @@ function _getSenderIdx() {
 function trashMail(mail) {
     return new Promise((resolve) => {
         mail.isTrash = true
-        // mail.isArchived = false
         mail.removedAt = Date.now()
         save(mail)
         resolve(mail)
@@ -160,7 +148,6 @@ function trashMail(mail) {
 
 function markRead(mail, isRead) {
     return new Promise((resolve) => {
-        console.log(isRead);
         mail.isRead = isRead
         save(mail)
         resolve(mail)
@@ -169,7 +156,6 @@ function markRead(mail, isRead) {
 
 function archiveMail(mail, isArchived) {
     return new Promise((resolve) => {
-        // console.log(isArchived);
         mail.isArchived = isArchived
         mail.isTrash = false
         save(mail)
@@ -179,7 +165,6 @@ function archiveMail(mail, isArchived) {
 
 function markStar(mail, isStar) {
     return new Promise((resolve) => {
-        console.log(isStar)
         mail.isStar = isStar
         save(mail)
         resolve(mail)
@@ -232,10 +217,7 @@ function getUnreadAmount(mails) {
     var count = 0
 
     mails.forEach(mail => {
-        // console.log(mail);
         if (!mail.isRead && !mail.isArchived && !mail.isTrash && !mail.isSent) count++
-
-        // console.log(Promise.resolve(count))
     })
     return Promise.resolve(count)
 }

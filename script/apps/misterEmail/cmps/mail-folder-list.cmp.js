@@ -33,38 +33,29 @@ export default {
             onUnread: false,
             onInboxHover: false,
             isCompose: false
-            // unRead: this.unreadAmount
         }
     },
     components: {
 
     },
     created() {
-        // console.log(this.unRead);
     },
     mounted() {
-        // console.log(mailService.getUnreadAmount());
-        // this.unreadAmount = mailService.getUnreadAmount()
+
 
     },
     methods: {
         showFolder(folder) {
             this.$emit('openFolder', folder)
-            this.$router.push(`/email/${folder}`)
             var data = this.$data
-            console.log(data);
             for (var dataProp in data) {
                 data[dataProp] = false
-                // console.log(Object.keys(data)[0])
             }
         },
         activeFolder(folder) {
-            // debugger
             var data = this.$data
-            console.log(data);
             for (var dataProp in data) {
                 dataProp = false
-                console.log(dataProp);
             }
             this[folder] = true
             return this[folder]
@@ -72,7 +63,6 @@ export default {
         compose() {
             this.isCompose = !this.isCompose
             this.$emit('compose')
-            console.log(this.isCompose);
         }
     },
     computed: {
@@ -104,7 +94,6 @@ export default {
             if (this.onInbox || this.onInboxHover) return 'active-inbox-icon'
         },
         formatUnread() {
-            console.log(mailService.getUnreadAmount());
             return mailService.getUnreadAmount()
         }
 

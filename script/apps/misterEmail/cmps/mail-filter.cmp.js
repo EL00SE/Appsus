@@ -2,11 +2,10 @@ export default {
     template: `
         <section class="mail-filter">
             <label>
-                <input ref="searchInput" 
+                <input class="search-input" ref="searchInput" 
                     @input="setFilter" 
                     type="text" 
-                    v-model="searchTerm.searchTerm" 
-                    
+                    v-model="searchTerm.searchTerm"  
                 />
             </label>
         </section>
@@ -19,7 +18,6 @@ export default {
         }
     },
     mounted() {
-        this.$refs.searchInput.focus()
         this.$refs.searchInput.placeholder = 'Search...'
     },
     methods: {

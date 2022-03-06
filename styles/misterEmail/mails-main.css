@@ -4,4 +4,5 @@
 @import '../../styles/misterEmail/cmps/mail-folder-list.css';
 @import '../../styles/misterEmail/cmps/mail-details.css';
 @import '../../styles/misterEmail/cmps/mail-compose.css';
+@import '../../styles/misterEmail/cmps/mail-filter.css';
 @import '../../styles/misterEmail/mq.css';

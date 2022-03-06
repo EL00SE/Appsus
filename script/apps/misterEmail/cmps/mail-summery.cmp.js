@@ -13,7 +13,6 @@ export default {
             <p class="sum-subject">{{ mail.subject }}</p>
             <p class="sent-at">{{ formatDate }}</p>
         </div>
-        <!-- <button @click="openFull">full</button> -->
         <div class="flex align-center sum-inner-container">
         <p class="sum-from-name">{{ mail.fromName }}</p>
         <p class="sum-from-address">&lt{{ mail.fromEmail }}&gt</p>
@@ -26,14 +25,12 @@ export default {
     `,
     data() {
         return {
-            // summeryOpen: true
         }
     },
     components: {
         longText
     },
     created() {
-        console.log('hi');
     },
     methods: {
 

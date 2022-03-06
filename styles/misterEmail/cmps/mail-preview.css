@@ -3,10 +3,8 @@
 }
 
 .mail-preview{
-    /* height: 50px; */
     cursor: pointer;
     border-bottom: 1px solid rgba(0, 0, 0, 0.199);
-    /* transition: box-shadow .2s ease-in-out;    */
     transition: all .2s ease-in-out;    
     border-radius: 5px;
     border-left:  1px solid rgba(0, 0, 0, 0.199);
@@ -20,7 +18,6 @@
 .mail-star{
     color: var(--clr-mail-icon);
     grid-column: 1 / span 1;
-    /* text-align: center; */
     width: 45px;
     height: 45px;
     font-size: 18px;
@@ -43,8 +40,6 @@
 
 .mail-archive, .mail-read, .mail-trash, .mail-expand{
     color: var(--clr-mail-icon);
-    /* margin: 0 10px; */
-    /* padding: 15px; */
     width: 45px;
     height: 45px;
     font-size: 18px;
@@ -58,25 +53,18 @@
 
 .mail-star:hover, .mail-star.starred{
     color: goldenrod;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    /* border-radius: 50px; */
 
 }
 
 .mail-star:hover{
-    /* background-color: white; */
     background-color: rgba(92, 92, 92, 0.226);
 
 }
 
 
 .mail-preview:hover{
-    /* box-sizing: content-box; */
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
     transform: scale(1.005);
-    /* transition: box-shadow .3s;     */
 }
 
 .mail-container{
@@ -111,12 +99,10 @@
     text-align: center;
 }
 .unread{
-    /* font-weight: bold; */
     font-family: sansBold;
 }
 
 .read{
-    /* font-weight: lighter; */
     
     background-color: var(--clr-mail-read-mail);
 
