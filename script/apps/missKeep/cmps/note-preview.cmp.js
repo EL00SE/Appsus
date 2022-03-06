@@ -9,6 +9,7 @@ export default {
     props: ['note'],
     template: `
         <section  class="note-preview">
+            <div title="Pinned" v-if="note.isPinned" class="pin-icon"></div>
            <component :is="note.type" :note="note" class="note-content"></component>
         </section>
     `,

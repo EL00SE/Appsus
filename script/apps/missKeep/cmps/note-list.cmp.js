@@ -7,10 +7,11 @@ import { utilService } from '../../../services/util-service.js';
 export default {
     template: `
         <section class="note-list">
-                <div ref="noteCard" :style="{backgroundColor:note.color}" title="Click to edit note" v-for="(note, index) in notes" :key="note.id" class="note-preview-container">
-                   <note-preview :note="note" @click="editNote(note.id)" ></note-preview>
+                <div ref="noteCard" :style="{backgroundColor:note.color}" v-for="(note, index) in notes" :key="note.id" class="note-preview-container">
+                   <note-preview :note="note"></note-preview>
                    <div class="actions">
                        <button title="Change note color" type="button" class="color-btn prev-btn" @click="openColorPallete($event)"></button>
+                       <button title="Edit note" type="button" class="edit-btn prev-btn" @click="editNote(note.id)"></button>
                        <button title="Pin to top" type="button" class="prev-btn pin-btn" @click="pin(note.id)"></button>
                        <button title="Duplicate" type="button" class="prev-btn dupe-btn"  @click="duplicate(note.id)"></button>
                        <button title="Send as mail" type="button" class="prev-btn send-as-mail-btn"></button>

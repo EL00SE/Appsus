@@ -56,7 +56,7 @@ function _createNotes() {
         notes = [];
         notes.push(_createNote('noteText', 'var(--color-red)', 'Reminder', { txt: 'Dont forget to finish sprint 3' }))
         notes.push(_createNote('noteText', 'var(--color-orange)', 'Reminder', { txt: 'Bring some vegies!!' }))
-        notes.push(_createNote('noteTodo', 'var(--color-yellow)', 'Workouts', { items: ['Sunday: chest + back', 'Monday: shoulders + arms + legs + core', 'Wednesday: chest + back + core', 'Friday: shoulders + arms + legs'] }))
+        notes.push(_createNote('noteTodo', 'var(--color-yellow)', 'Workouts', { items: [{ txt: 'Sunday: chest + back', isDone: false }, { txt: 'Monday: shoulders + arms + legs + core', isDone: false }, { txt: 'Wednesday: chest + back + core', isDone: false }, { txt: 'Friday: shoulders + arms + legs', isDone: false }] }))
         notes.push(_createNote('noteText', 'var(--color-orange)', 'Reminder', { txt: 'Play Elden Ring' }))
         notes.push(_createNote('noteImg', 'var(--color-green)', 'Funny meme', { url: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg' }))
         notes.push(_createNote('noteText', 'var(--color-def)', 'Reminder', { txt: 'Improvise, Adapt, Overcome.., you should never give up' }))

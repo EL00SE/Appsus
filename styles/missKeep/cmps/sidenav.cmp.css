@@ -1,0 +1,41 @@
+.side-nav-container {
+    position: fixed;
+    width: 60px;
+    height: 90vh;
+    background-color: green;
+    z-index: 3;
+    bottom: 0;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
+}
+
+.side-nav-container:hover {
+    width: 200px;
+}
+
+.nav {
+    list-style-type: none;
+    color: black;
+}
+
+.nav>*:first-child {
+    padding-top: 1.5rem;
+}
+
+.nav-items {
+    padding-bottom: 4rem;
+    font-family: roboto;
+    position: relative;
+    display: block;
+    /* top:-35px; */
+    padding-left: 25px;
+    padding-right: 15px;
+    margin-left: 25px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+    font-family: roboto;
+    font-weight: 400;
+    font-size: 1.35rem;
+}

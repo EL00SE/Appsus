@@ -13,7 +13,7 @@ export default {
             <input title="Add note title" ref="noteTitleInput" type="text" v-model="title" placeholder="Title" class="form-element"/>
             <note-text-input :text="text" :color="color" v-if="noteType === 'noteText'" ref="noteText" class="form-element"></note-text-input> 
             <div class="todo-list" ref="noteTodo" v-if="noteType === 'noteTodo'" >
-                <note-list-item ref="noteTodoItem" v-for="(item, index) in listItems" :key="index" :index="index" :text="item" :color="color"></note-list-item>
+                <note-list-item ref="noteTodoItem" v-for="(item, index) in listItems" :key="index" :index="index" :text="item.txt" :color="color"></note-list-item>
             </div>
             <button title="Add list item" v-if="noteType === 'noteTodo'" type="button" class="add-btn" @click="addListItem()"></button>
             <note-img-input :color="color" :url="url" title="Add note content (required)" ref="noteImg" v-if="noteType === 'noteImg'" ></note-img-input>
@@ -80,8 +80,7 @@ export default {
             this.text = text
         },
         editItem(data) {
-            this.listItems[data.index] = data.text
-
+            this.listItems[data.index].txt = data.text
         },
         deleteItem(data) {
             this.listItems[data.index] = ''
@@ -145,6 +144,9 @@ export default {
                     return
                 }
                 const data = { items: this.listItems }
+                data.items.forEach(item => {
+                    if (!item.isDone) item.isDone = false
+                });
                 this.noteToCreate.info = data
             }
             if (this.noteToCreate.type === 'noteImg') {

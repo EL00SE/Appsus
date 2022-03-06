@@ -22,18 +22,26 @@
 
 .pin-btn {
     background: url(/lib/assets/images/icons/pin.svg);
+    background-size: 32px;
 }
 
 .remove-btn {
     background: url(/lib/assets/images/icons/trash.svg);
+    background-size: 32px;
 }
 
 .send-as-mail-btn {
     background: url(/lib/assets/images/icons/mail.svg);
+    background-size: 32px;
 }
 
 .dupe-btn {
     background: url(/lib/assets/images/icons/copy.svg);
+    background-size: 32px;
+}
+
+.edit-btn {
+    background: url(/lib/assets/images/icons/edit.svg);
 }
 
 .prev-btn:hover {
@@ -41,10 +49,10 @@
 }
 
 .prev-btn {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
+    background-size: 38px;
     background-position: center;
-    background-size: 32px;
     background-repeat: no-repeat;
     border: 0px;
     border-radius: 6px;
