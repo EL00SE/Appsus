@@ -7,6 +7,13 @@
 }
 
 @media (max-width: 1040px) {
+    .mail-filter{
+        width: calc(100vw - 170px);
+        min-width: 250px;
+        /* height: 30px; */
+        position: relative;
+        left: calc((100vw - (100vw - 170px))/1.55);
+    }
  .mail-container{
      grid-template-rows: 2 !important;
      height: 100px;
@@ -169,7 +176,12 @@
 }
 
 @media (max-width: 500px) {
-    
+    .mail-filter{
+        width: calc(100vw - 100px);
+        min-width: 250px;
+        
+        left: calc((100vw - (100vw - 110px))/1.5);
+    }
     .sent-at{
         font-size: 13px ;
         /* grid-column: 8/ span 3 !important; */

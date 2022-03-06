@@ -7,16 +7,19 @@ import mailFilter from '../cmps/mail-filter.cmp.js'
 
 export default {
     template: `
-        <section class="email-app flex" style="font-family:sansRegular">
-            <!-- <h1>hello</h1> -->
+        <section class="email-app" style="font-family:sansRegular">
+          
             <mail-filter @filtered="setFilter"></mail-filter>
+          
+           <div class="flex">
             <mail-folder-list @compose="isComposing=!isComposing" :unreadAmount="unreadAmount" @openFolder="setMailsForDisply" />
             <mail-list :mails="mailsForDisplay"/>
             <transition name="fade" enter-active-class="animate__animated animate__fadeInUp"
     leave-active-class="animate__animated animate__fadeOutDown">
             <mail-compose @closeCompose="isComposing = false" @composed="updateMails" v-if="isComposing"></mail-compose>
         </transition>
-            <!-- <router-view></router-view> -->
+        </div>
+            
         </section>
     `,
     data() {
@@ -29,6 +32,8 @@ export default {
         }
     },
     created() {
+
+
         mailService.query()
             .then(mails => {
                 this.mails = mails
@@ -145,7 +150,8 @@ export default {
         },
         loadMail() {
             this.setMailsForDisply(this.folder)
-        }
+        },
+
     },
     computed: {
         mailsForDisplay() {
@@ -190,14 +196,6 @@ export default {
         this.unsubscribe3();
     },
     watch: {
-        folder: {
-            handler() {
-                // console.log(bookId);
-                this.loadMail()
-                this.filterBy = this.folder
-            },
 
-            deep: true
-        }
     }
 }

@@ -5,6 +5,7 @@ import noteApp from './apps/missKeep/pages/note-app.cmp.js'
 import noteEdit from './apps/missKeep/pages/note-edit.cmp.js'
 import emailApp from './apps/misterEmail/pages/email-app.cmp.js'
 import emailDetails from './apps/misterEmail/pages/email-details.cmp.js'
+import mailFolderList from './apps/misterEmail/cmps/mail-folder-list.cmp.js'
 // import bookApp from '../js/pages/book-app.cmp.js'
 // import bookDetails from '../js/pages/book-details.cmp.js'
 // import noteCreate from './cmps-notes/note-create.cmp.js'
@@ -23,7 +24,8 @@ const routes = [{
     component: noteEdit,
 },
 {
-    path: "/email/:folder",
+    path: "/email",
+    name: emailApp,
     component: emailApp,
 },
 {

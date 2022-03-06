@@ -69,6 +69,8 @@ export default {
             // this.$emit('summeryOpen', this.summeryOpen)
         },
         openFull() {
+            if (!this.mail.isRead)
+                this.markRead(this.mail, !this.mail.isRead)
             // console.log(this.mail.id);
             this.$router.push(`/email/${this.mail.id}`)
         },

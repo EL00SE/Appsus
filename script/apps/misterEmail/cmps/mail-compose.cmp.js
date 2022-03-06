@@ -35,7 +35,22 @@ export default {
 
     },
     created() {
+        const subject = this.$route.query.title
+        const body = this.$route.query.txt
+        if (subject && body) {
+            this.mailSubject = subject
+            this.mailBody = body
+        }
 
+    },
+    mounted() {
+        const subject = this.$route.query.title
+        const body = this.$route.params.txt
+        console.log(subject);
+        if (subject && body) {
+            this.mailSubject = subject
+            this.mailBody = body
+        }
     },
     methods: {
         sendMail() {
@@ -60,10 +75,32 @@ export default {
         closeCompose() {
             this.isComposing = false
             this.$emit('closeCompose')
+        },
+        import(txt) {
+            this.body = txt
+            return Promise.resolve()
+
         }
 
     },
     computed: {
 
+    },
+    watch: {
+
+        '$route.query.txt': {
+            handler(txt) {
+                console.log(txt);
+                this.body = txt
+
+            },
+            immeddiate: true,
+        },
+        '$route.params': {
+            handler(title) {
+                this.subject = title
+            },
+            immediate: true
+        }
     }
 }
